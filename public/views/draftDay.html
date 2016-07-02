@@ -1,0 +1,295 @@
+<div ng-controller="DraftDayController">
+  <pre>{{players}}</pre>
+  <div class="container dd-ctr" id="dd">
+    <div class="col-md-5 col-sm-12 col-xs-12">
+      <table class="table dd-plyr-table">
+        <tr>
+          <th class="col-sm-2">Pos.</th>
+          <th class="col-sm-5">Player Name</th>
+          <th class="col-sm-2">BYE</th>
+          <th class="col-sm-2">Price</th>
+          <th class="col-sm-1"></th>
+        </tr>
+        <tr>
+          <td>QB</td>
+          <td>Russell Wilson</td>
+          <td>4</td>
+          <td>$23</td>
+          <td><a href=""><img ng-src="images/cancelBtn.jpg" alt="{{image.name}}"></a></td>
+          <!-- TODO ng-if="player.purchased" ng click in img tag-->
+        </tr>
+        <tr>
+          <td>QB</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr class="pos-chg">
+          <td>RB</td>
+          <td>Adrian Peterson</td>
+          <td>6</td>
+          <td>$50</td>
+          <td><a href=""><img src="images/cancelBtn.jpg" alt=""></a></td> <!-- ng-if="player.purchased" -->
+        </tr>
+        <tr>
+          <td>RB</td>
+          <td>Jeremy Hill</td>
+          <td>7</td>
+          <td>$43</td>
+          <td><a href=""><img src="images/cancelBtn.jpg" alt=""></a></td> <!-- ng-if="player.purchased" -->
+        </tr>
+        <tr>
+          <td>RB</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>RB</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr class="pos-chg">
+          <td>WR</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>WR</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>WR</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>WR</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>WR</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr class="pos-chg">
+          <td>TE</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>TE</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>TE</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr class="pos-chg">
+          <td>D/ST</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr>
+          <td>D/ST</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a ng-if="player.purchased" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr class="pos-chg">
+          <td>K</td>
+          <td>Johnny McFart</td>
+          <td>11</td>
+          <td>$1</td>
+          <td><a href=""><img src="images/cancelBtn.jpg" alt=""></a></td> <!-- ng-if="player.purchased" -->
+        </tr>
+      </table>
+    </div> <!-- /Left Column -->
+    <!-- Right Column -->
+    <div class="col-md-7 col-sm-12 col-xs-12 dd-player-details">
+      <div class="col-md-12 player-info">
+        <div class="col-md-4">
+          <p>Player: <span>{{selectedPlayer.player}}</span></p>
+        </div>
+        <div class="col-md-2">
+          <p>Pos: {{test.POS}}</p>
+        </div>
+        <div class="col-md-2">
+          <p>NFL: {{selectedPlayer.team}}</p>
+        </div>
+        <div class="col-md-2">
+          <p>Bye: {{test.BYE}}</p>
+        </div>
+        <div class="col-md-2">
+          <p>GP: {{selectedPlayer.GP}}</p>
+        </div>
+      </div>
+      <div class="col-md-12 player-stats dd-value-stats">
+        <div class="col-md-6">
+          <p>{{ffLY()}} Points: <span class="dd-bold">{{selectedPlayer.FPTS}}</span><span class="dd-percentile">({{test.PERT}}th)</span></p>
+          <p>Average Pts. / Week: <span class="dd-bold">{{test.FPTSG}}</span></p>
+          <p>Points St. Dev: <span class="dd-bold">{{test.PTSTD}}</span></p>
+          <!-- -->
+          <div>
+            <p>Highest Week: <span class="dd-bold">{{test.HI}}</span></p>
+            <p>Lowest Week: <span class="dd-bold">{{test.LOW}}</span></p>
+            <p>High / Low St. Dev: <span class="dd-bold">{{test.HILOSTD}}</span></p>
+            <!-- ADDED -->
+            <table class="table table-bordered">
+              <p class="dd-stats-header">Rushing Yards</p>
+              <tr>
+                <th class="col-sm-3">{{ffLY3()}}</th>
+                <th class="col-sm-3">{{ffLY2()}}</th>
+                <th class="col-sm-3">{{ffLY()}}</th>
+                <th class="col-sm-3">PER</th>
+              </tr>
+              <tr>
+                <td>{{threeYrStats.RYDS2013}}</td>
+                <td>{{threeYrStats.RYDS2014}}</td>
+                <td>{{threeYrStats.RYDS2015}}</td>
+                <td>{{threeYrStats.RYDPer}}</td>
+              </tr>
+            </table>
+            <table class="table table-bordered">
+              <p class="dd-stats-header">Rushing Touchdowns</p>
+              <tr>
+                <th class="col-sm-3">{{ffLY3()}}</th>
+                <th class="col-sm-3">{{ffLY2()}}</th>
+                <th class="col-sm-3">{{ffLY()}}</th>
+                <th class="col-sm-3">PER</th>
+              </tr>
+              <tr>
+                <td>{{threeYrStats.RTD2013}}</td>
+                <td>{{threeYrStats.RTD2014}}</td>
+                <td>{{threeYrStats.RTD2015}}</td>
+                <td>{{threeYrStats.RTDPer}}</td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>Plays: <span class="dd-bold">{{test.PLAYS}}</span></p>
+          <p>Pass/Rec Per: <span class="dd-bold">{{test.PASSPER}}%</span></p>
+          <p>Yards per Rush: <span class="dd-bold">{{test.YPR}}</span></p>
+          <p>Yards after Catch: <span class="dd-bold">{{test.YAC}}</span></p>
+          <p>Fumbles: <span class="dd-bold">{{test.FUM}}</span></p>
+          <p>Interception(s): <span class="dd-bold">{{test.INT}}</span></p>
+          <!-- -->
+          <div>
+
+            <!-- ADDED -->
+            <table class="table table-bordered">
+              <p class="dd-stats-header">Passing Yards</p>
+              <tr>
+                <th class="col-sm-3">{{ffLY3()}}</th>
+                <th class="col-sm-3">{{ffLY2()}}</th>
+                <th class="col-sm-3">{{ffLY()}}</th>
+                <th class="col-sm-3">PER</th>
+              </tr>
+              <tr>
+                <td>{{threeYrStats.PYDS2013}}</td>
+                <td>{{threeYrStats.PYDS2014}}</td>
+                <td>{{threeYrStats.PYDS2015}}</td>
+                <td>{{threeYrStats.PYDPer}}</td>
+              </tr>
+            </table>
+            <table class="table table-bordered">
+              <p class="dd-stats-header">Passing Touchdowns</p>
+              <tr>
+                <th class="col-sm-3">{{ffLY3()}}</th>
+                <th class="col-sm-3">{{ffLY2()}}</th>
+                <th class="col-sm-3">{{ffLY()}}</th>
+                <th class="col-sm-2">PER</th>
+              </tr>
+              <tr>
+                <td>{{threeYrStats.PTD2013}}</td>
+                <td>{{threeYrStats.PTD2014}}</td>
+                <td>{{threeYrStats.PTD2015}}</td>
+                <td>{{threeYrStats.PTDPer}}</td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+      <div class="dd-command-center">
+        <div class="col-md-12 cmd-ctr">
+          <div class="col-md-5 col-sm-12">
+            <p>Current Price: <input ng-bind="priceIncrement" maxlength="3" style="width: 33px;" type="text">
+            <button type="button" ng-click="priceIncrement()" class="btn btn-info btn-xs dd-increment">+</button></p>
+            <p>Average Price: <span class="dd-avg-price">${{filler.avg$}}</span></p>
+            <p>Standard Deviation: {{filler.stdev$}}</p>
+          </div>
+          <div class="col-md-5 dd-auction-price">
+            <p>Highest ${{filler.high$}}</p>
+            <p>Lowest ${{filler.low$}}</p>
+          </div>
+          <div class="col-md-offset-2"></div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <!-- <input type="text" class="player-input"> -->
+            <form name="nflPlayers">
+              <label for="selectedPlayer"></label>
+              <select name="selectedPlayer" id="selectedPlayer"
+                ng-options="option.player for option in {{players}}"
+                ng-model="selectedPlayer">
+                  <option value="">Select Player</option>
+              </select>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <div class="dd-go-pass">
+              <button class="btn btn-success">Go</button>
+              <button class="btn btn-danger">Pass</button>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- /Command Center -->
+    </div> <!-- /Right Column -->
+  </div> <!-- /Container && /.dd-ctr -->
+</div> <!-- Controller -->
+
+<!--
+<div class="col-md-12">
+  <div class="col-md-8">
+    <input type="text" class="player-input">
+  </div>
+  <div class="col-md-4">
+    <div class="dd-go-pass">
+      <button class="btn btn-success">Go</button>
+      <button class="btn btn-danger">Pass</button>
+    </div>
+  </div>
+</div>
+-->

@@ -1,0 +1,122 @@
+html, body
+  height: 100%
+
+html
+  box-sizing: border-box
+  font-size: 16px
+
+*
+  box-sizing: inherit
+  &:before, &:after
+    box-sizing: inherit
+
+body
+  margin: 0
+  line-height: 1.5
+  font-family: Roboto, Helvetica, Arial, sans-serif
+  color: #333
+
+main
+  display: block
+
+h1, h2, h3, h4, h5, h6
+  font-family: "Roboto Slab", Times, "Times New Roman", serif
+
+a
+  color: #009688
+  &:hover, &:active
+    text-decoration: none
+
+.ib
+  display: -moz-inline-stack
+  display: inline-block
+  zoom: 1
+  *display: inline
+  vertical-align: top
+
+.ul-reset
+  padding-left: 0
+  margin-top: 0
+  margin-bottom: 0
+  list-style: none
+
+.wrapper
+  width: 80%
+  margin-right: auto
+  margin-left: auto
+  padding-right: 20px
+  padding-left: 20px
+
+.header
+  text-align: center
+
+.navigation
+  background-color: #eee
+  font-weight: 700
+
+.navigation-list
+  font-size: 0
+  padding: 5px 0 5px 0
+
+.navigation-item
+  font-size: 1.2rem
+
+.navigation-link
+  display: block
+  position: relative
+  padding: 5px 20px
+  text-decoration: none
+  color: #333
+  -webkit-transition: color .2s ease-in-out
+  transition: color .2s ease-in-out
+  &:before
+    content: ""
+    position: absolute
+    bottom: 0
+    width: 0
+    border-bottom: solid 2px
+    left: 0
+  &:hover
+    color: #279029
+    &:before
+      width: 100%
+  &:before
+    -webkit-transition: width .2s ease-in-out
+    transition: width .2s ease-in-out
+
+.dd-plyr-table td
+  padding: 1px 2px
+
+.player-details
+  border: 1px solid black;
+
+.dd-ctr
+  margin-top: 20px
+
+.pos-chg
+  border-top: 3px solid black
+
+.player-info
+  padding-top: 10px
+  border: 1px solid black
+
+.player-stats
+  margin-top: 20px
+  padding-top: 10px
+  border: 1px dotted black
+
+.command-center
+  margin-top: 20px
+  button
+    margin: 1px 0 2px -6px
+    padding: 4px 4px 3px 4px
+  span
+    margin-left: 10px
+
+@media only screen and (max-width: 1024px)
+  .wrapper
+    width: 90%
+
+@media only screen and (max-width: 991px)
+  .dd-player-details
+    margin: 20px 0 0 15px

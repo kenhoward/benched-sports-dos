@@ -1,0 +1,228 @@
+/* Navigation */
+
+html {
+	box-sizing: border-box;
+	font-size: 10px;
+	font-family: 'Lato', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	line-height: 1.5;
+	font-family: 'Lato', sans-serif;
+	font-weight: 500;
+	color: #333;
+}
+
+main {
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Lato', sans-serif;
+}
+
+a {
+	color: #009688;
+}
+
+a:hover,
+a:active {
+	text-decoration: none;
+}
+
+.ib {
+	display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: top;
+}
+
+.ul-reset {
+	padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	list-style: none;
+}
+
+.wrapper {
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.header {
+	text-align: center;
+}
+
+.navigation {
+	background-color: #eee;
+	font-weight: 700;
+}
+
+.navigation-list {
+	font-size: 0;
+	padding: 5px 0 5px 0;
+}
+
+.navigation-item {
+	font-size: 1.2rem;
+}
+
+.navigation-link {
+	display: block;
+	position: relative;
+	padding: 5px 20px;
+	text-decoration: none;
+	color: #333;
+	-webkit-transition: color .2s ease-in-out;
+	transition: color .2s ease-in-out;
+}
+
+.navigation-link:before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	width: 0;
+	border-bottom: solid 2px;
+}
+
+.navigation-link:before {
+	left: 0;
+}
+
+.navigation-link:hover {
+	color: #279029;
+}
+
+.navigation-link:hover:before {
+	width: 100%;
+}
+
+.navigation-link:before {
+	-webkit-transition: width .2s ease-in-out;
+	transition: width .2s ease-in-out;
+}
+
+@media only screen and (max-width:1024px) {
+	.wrapper {
+		width: 90%;
+	}
+}
+
+/* drafDay.html */
+
+.dd-plyr-table td {
+  padding: 1px 2px;
+	text-transform: uppercase;
+}
+
+.dd-ctr {
+  margin-top: 20px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.pos-chg {
+  border-top: 3px solid black;
+}
+
+.player-info {
+  padding-top: 10px;
+  border: 1px solid black;
+}
+
+.player-info span {
+	font-weight: bolder;
+	color: #AA0000;
+}
+
+.player-stats {
+  margin-top: 20px;
+  padding-top: 10px;
+  border: 1px dotted black;
+}
+
+.dd-command-center input {
+	width: 100%;
+}
+
+.cmd-ctr {
+	margin-top: 10px;
+	padding-top: 10px;
+}
+
+.dd-increment {
+  margin: 1px 0 2px -6px;
+  padding: 3px 7px 4px 7px;
+}
+
+.player-input {
+	font-size: 150%;
+	font-weight: 300;
+}
+
+.dd-bold {
+	font-weight: bolder;
+	color: #B3995D;
+	padding: 0 10px 0 5px;
+	/*float: right; /* <~~ if no .dd-percentile */
+}
+
+.dd-percentile {
+	/*padding-left: 10px;*/
+	text-transform: lowercase;
+}
+
+.dd-value-stats p {
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #AA0000;
+}
+
+.dd-player-details th {
+	text-align: center;
+}
+
+.dd-player-details td {
+	text-align: center;
+}
+
+.dd-go-pass button {
+	text-transform: uppercase;
+	width: 60px;
+}
+
+.dd-avg-price {
+	font-weight: bold;
+	color: #4FA9BB;
+}
+
+.dd-auction-price {
+	margin-top: 5px;
+}
+
+.dd-stats-header {
+	text-align: center;
+	border: 1px solid #000000;
+	background: #B3995D; /*d0d6d6*/
+}
+
+@media only screen and (max-width: 991px) {
+  .dd-player-details {
+    margin: 20px 0 0 15px;
+  }
+}
