@@ -93,6 +93,26 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
   }
 
   $scope.passPlayer = function() {
+    swal({
+      title: "Are you sure?",
+      text: "Once removed, you will not be able to access this player",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, Remove player",
+      cancelButtonText: "No, Keep player",
+      closeOnConfirm: false,
+      closeOnCancel: true
+    }, function(isConfirm) {
+      if(isConfirm) {
+        // TODO this is buggy, it executes rmPlyr but won't clear the section
+        $scope.rmPlyr()
+        $scope.clearSelected();
+        swal("Deleted!", "Player no longer available", "success");
+      } /* else {
+        swal("Cancelled", "Player is still available", "error");
+      } */
+    })
     // TODO Remove from available in selectedPlayer array
     // $scope.selectedPlayer.splice
   }
