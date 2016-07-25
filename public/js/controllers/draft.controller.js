@@ -2,118 +2,144 @@
 
 var app = angular.module('FantasyFootball');
 
-app.controller('DraftDayController', function($scope, DraftDayService) {
+app.controller('DraftDayController', function($scope, DraftDayService, RosterService) { // dep Injection: rosterData
   // var pData = $scope.plyrData;
+
+  // $scope.viewRoster = rosterData;
 
   $scope.players = DraftDayService;
 
-  $scope.test = {
-    "PLAYER":"Cam Newton",
-    "POS": "QB",
-    "TEAM":"CAR",
-    "BYE": 5,
-    "PLAYS":628,
-    "FPTS":455,
-    "GP":16,
-    "FPTSG":28.47,
-    "RUN":132,
-    "RYD":636,
-    "RTD":10,
-    "PASS":496,
-    "CMP":296,
-    "PASSPER": 59.67,
-    "PYDS":3837,
-    "PTD":35,
-    "FUM":4,
-    "INT":10,
-    "PTSTD": 25.4566,
-    "HI": 44.8,
-    "LOW": 13.8,
-    "HILOSTD": 21.920,
-    "YPR": 4.8181,
-    "YAC": "N/A",
-    "PERT": 98,
-    "RANDO": "DERP",
-    "DC": 1
+  $scope.myQBs = [];
+  $scope.myRBs = [];
+  $scope.myWRs = [];
+  $scope.myTEs = [];
+  $scope.myDEFs = [];
+  $scope.myKckr = [];
+
+  $scope.rmPlyr = function() {
+    var all = $scope.players
+    var selp = $scope.selectedPlayer;
+    for (var i = 0; i < all.length; i++) {
+      if(all[i].player === selp.player) {
+        all.splice(i, 1);
+      }
+    }
   }
 
-  $scope.threeYrStats = {
-    "PLAYER":"selectedPlayer", //AS EXAMPLE
-    "RYDS2013": 585,
-    "RTD2013": 6,
-    "PYDS2013": 3379,
-    "PTD2013": 24,
-    "RYDS2014": 539,
-    "RTD2014": 5,
-    "PYDS2014": 3127,
-    "PTD2014": 18,
-    "RYDS2015": 636,
-    "RTD2015": 10,
-    "PYDS2015": 3837,
-    "PTD2015": 35,
-    "RYDPer": 48.521,
-    "PYDPer": 359.95,
-    "RTDPer": 2.645,
-    "PTDPer": 8.631
+  $scope.alrtUsr = function() {
+    swal("Hey now...", "You trying to break my app?!", "error");
   }
 
-  $scope.stats = {
-    //(dd-my-metrics.xlsx)
-    'fpts': 409.3,
-    'appw': 23.69,
-    'ptstd': 8.607,
-    'wkhigh': 34.2,
-    'wklow': 4.8,
-    'hilostd': 20.789,
-    'gp': 16,
-    'pyprice': 6,
-    'pyrank': 2,
-    // End (dd-my-metrics.xlsx)
-    'adp': 42, // TODO
-    'consensus': 2 //The Fantasy Footballers (TFF Ranks.xlsx)
-  }
-  $scope.posstats = {
-    //(dd-stats.xlsx)
-    'plays': 659,
-    'run': 34,
-    'ryd': 636,
-    'ypr': 1.6,
-    'rtd': 3,
-    'pass': 64.42,
-    'pyds': 3837,
-    'ptd': 36,
-    'fum': "NA",
-    'int': 7,
-    // End(dd-stats.xlsx)
-    // Additional Metrics
-    'sspd': true
-    // End Additional Metrics
-  }
-  $scope.filler = {
-    'avg$': 21,
-    'high$': 22,
-    'low$': 20,
-    'stdev$': 0.957
+  $scope.addPlayer = function() {
+    var all = $scope.players
+    var selp = $scope.selectedPlayer;
+    var acquiredPlayer = {};
+    // acquiredPlayer.position = $scope.plyrPos;
+    acquiredPlayer.player = selp.player;
+    acquiredPlayer.price = $scope.cpVal.level;
+    acquiredPlayer.bye = selp.bye;
+
+    if ($scope.myQBs.length === 3) {
+      $scope.alrtUsr();
+    }
+    if (selp.pos === 'QB' && $scope.myQBs.length < 3) {
+      $scope.myQBs.push(acquiredPlayer);
+      $scope.rmPlyr();
+    }
+    if ($scope.myRBs.length === 5) {
+      $scope.alrtUsr();
+    }
+    if (selp.pos === 'RB' && $scope.myRBs.length < 5) {
+      $scope.myRBs.push(acquiredPlayer);
+      $scope.rmPlyr();
+    }
+    if ($scope.myWRs.length === 6) {
+      $scope.alrtUsr();
+    }
+    if (selp.pos === 'WR' && $scope.myWRs.length < 6) {
+      $scope.myWRs.push(acquiredPlayer);
+      $scope.rmPlyr();
+    }
+    if ($scope.myTEs.length === 3) {
+      $scope.alrtUsr();
+    }
+    if (selp.pos === 'TE' && $scope.myTEs.length < 3) {
+      $scope.myTEs.push(acquiredPlayer);
+      $scope.rmPlyr();
+    }
+    if($scope.myDEFs.length === 2) {
+      $scope.alrtUsr();
+    }
+    if (selp.pos === 'DEF' && $scope.myDEFs.length < 2) {
+      $scope.myDEFs.push(acquiredPlayer);
+      $scope.rmPlyr();
+    }
+    if ($scope.myKckr.length === 1) {
+      swal({
+        title: "Seriously...",
+        text: "Are you Taco or something??",
+        imageUrl: "images/tickotaco.jpg"
+      })
+    }
+    if ($scope.myKckr.length === 2) {
+      swal("Great Job!", "You have no chance of winning in this league!");
+    }
+    if (selp.pos === 'K' && $scope.myKckr.length < 2) {
+      $scope.myKckr.push(acquiredPlayer);
+      $scope.rmPlyr();
+    }
+    $scope.selectedPlayer = '';
+    $scope.cpVal.level = $scope.cpVal={level: 1};
   }
 
-  $scope.plyrData = {
-    "PLAYER":"Cam Newton",
-    "NFL":"CAR",
-    "PLAYS":628,
-    "FPTS":397,
-    "GP":16,
-    "FPTS/G":24.82,
-    "RUN":132,
-    "RYD":636,
-    "YPR":4.818181818,
-    "RTD":10,
-    "PASS":496,
-    "CMP":296,
-    "PsPer":59.68,
-    "PYDS":3837,
-    "PTD":35,
-    "FUM":"NA",
-    "INT":10
+  $scope.passPlayer = function() {
+    // TODO Remove from available in selectedPlayer array
+    // $scope.selectedPlayer.splice
+  }
+
+  $scope.clearSelected = function() {
+    $scope.selectedPlayer = '';
+    $scope.cpVal.level = $scope.cpVal={level: 1};
+  }
+
+  $scope.oopsBtn = function(player) {
+    var qbArr = $scope.myQBs;
+    var rbArr = $scope.myRBs;
+    var wrArr = $scope.myWRs;
+    var teArr = $scope.myTEs;
+    var defArr = $scope.myDEFs;
+    var kckrArr = $scope.myKckr;
+    // console.log('player: ', player);
+    for (var i = 0; i < qbArr.length; i++) {
+      if (qbArr[i].player === player.player) {
+        qbArr.splice(i, 1);
+      }
+    }
+    for (var i = 0; i < rbArr.length; i++) {
+      if (rbArr[i].player === player.player) {
+        rbArr.splice(i, 1);
+      }
+    }
+    for (var i = 0; i < wrArr.length; i++) {
+      if (wrArr[i].player === player.player) {
+        wrArr.splice(i, 1);
+      }
+    }
+    for (var i = 0; i < teArr.length; i++) {
+      if (teArr[i].player === player.player) {
+        teArr.splice(i, 1);
+      }
+    }
+    for (var i = 0; i < defArr.length; i++) {
+      if (defArr[i].player === player.player) {
+        defArr.splice(i, 1);
+      }
+    }
+    for (var i = 0; i < kckrArr.length; i++) {
+      if (kckrArr[i].player === player.player) {
+        kckrArr.splice(i, 1);
+      }
+    }
   }
 
   $scope.playerScore = function(player) {
@@ -131,7 +157,7 @@ app.controller('DraftDayController', function($scope, DraftDayService) {
     return ps;
   }
 
-  // Keeping the following ...
+  // Keeselpng the following ...
 
   $scope.ffLY = function() {
     var lastYear = new Date().getFullYear() - 1;
@@ -148,10 +174,26 @@ app.controller('DraftDayController', function($scope, DraftDayService) {
     return threeYrsAgo;
   }
 
-  $scope.priceIncrement = function() {
-    var count = 0;
-    count += 1;
-    return count;
-  }
+  $scope.cpVal={level: 1};
 
-});
+})
+.directive('addOne', function() {
+  return {
+    link: function(scope, element, attrs) {
+      element.on('click', function() {
+        scope.$apply(scope.cpVal.level++);
+      });
+    }
+  }
+})
+.directive('subOne', function() {
+  return {
+    link: function(scope, element, attrs) {
+      element.on('click', function() {
+        if(scope.cpVal.level > 1) {
+          scope.$apply(scope.cpVal.level--);
+        }
+      });
+    }
+  }
+})

@@ -127,7 +127,6 @@ a:active {
 /* drafDay.html */
 
 .dd-plyr-table td {
-  padding: 1px 2px;
 	text-transform: uppercase;
 }
 
@@ -160,14 +159,38 @@ a:active {
 	width: 100%;
 }
 
+.dd-p1 {
+	float: left;
+}
+
+.cp-val-sty {
+	text-align: center;
+}
+
+.form-control {
+	font-weight: lighter;
+	font-family: 'Lato', sans-serif;
+	font-size: large;
+}
+
 .cmd-ctr {
 	margin-top: 10px;
 	padding-top: 10px;
 }
 
-.dd-increment {
+/*.dd-increment {
   margin: 1px 0 2px -6px;
   padding: 3px 7px 4px 7px;
+}*/
+
+.dd-increment-input {
+	float: left;
+	width: 70%;
+}
+
+.dd-increment-btn {
+	float: right;
+	width: 30%;
 }
 
 .player-input {
@@ -179,7 +202,7 @@ a:active {
 	font-weight: bolder;
 	color: #B3995D;
 	padding: 0 10px 0 5px;
-	/*float: right; /* <~~ if no .dd-percentile */
+	float: right; /* <~~ remove if no .dd-percentile */
 }
 
 .dd-percentile {
@@ -201,9 +224,13 @@ a:active {
 	text-align: center;
 }
 
+.no-val-spcr td {
+	height: 37px;
+}
+
 .dd-go-pass button {
 	text-transform: uppercase;
-	width: 60px;
+	width: 75px;
 }
 
 .dd-avg-price {
@@ -221,8 +248,57 @@ a:active {
 	background: #B3995D; /*d0d6d6*/
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media only screen and (max-width: 991px) {
   .dd-player-details {
     margin: 20px 0 0 15px;
   }
 }
+
+@media screen and (max-width: 1200px) {
+	.cp-sub-hide {
+		display: none;
+	}
+	.dd-go-pass button {
+		margin-top: 5px;
+	}
+}
+
+/* css.animate testing */
+/*
+.animate-switch-container {
+  position:relative;
+  background:white;
+  border:1px solid black;
+  height:40px;
+  overflow:hidden;
+}
+
+.animate-switch {
+  padding:10px;
+}
+
+.animate-switch.ng-animate {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.animate-switch.ng-leave.ng-leave-active,
+.animate-switch.ng-enter {
+  top:-50px;
+}
+.animate-switch.ng-leave,
+.animate-switch.ng-enter.ng-enter-active {
+  top:0;
+}
+*/
