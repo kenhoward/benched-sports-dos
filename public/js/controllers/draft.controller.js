@@ -88,88 +88,97 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     acquiredPlayer.price = $scope.cpVal.level;
     acquiredPlayer.bye = selp.bye;
 
-    // checkRoster();
-    if (selp.pos === 'QB' && $scope.myQBs.length === 3) {
-      $scope.alrtUsr('quarter backs');
-    }
-    if (selp.pos === 'QB' && $scope.myQBs.length < 3) {
-      $scope.myQBs.push(acquiredPlayer);
-      // TODO See if it's possible to utilize this
-      // $scope.backupPlyr();
-      $scope.rmPlyr();
-      if ($scope.myQBs.length > 1) {
-        $scope.altViewBE.push(acquiredPlayer)
+    if (acquiredPlayer.price > 0 && acquiredPlayer.price < 186) {
+      if (selp.pos === 'QB' && $scope.myQBs.length === 3) {
+        $scope.alrtUsr('quarter backs');
       }
-    }
-    if (selp.pos === 'RB' && $scope.myRBs.length === 4) {
-      $scope.alrtUsr('running backs');
-    }
-    if (selp.pos === 'RB' && $scope.myRBs.length < 4) {
-      $scope.myRBs.push(acquiredPlayer);
-      $scope.rmPlyr();
-      // TODO Will need to change length to '> 2' if 2 RBs
-      if ($scope.myRBs.length > 1 && flex.length < 1) {
-        $scope.myFlex.push(acquiredPlayer);
-      } else if ($scope.myRBs.length > 1) {
-        $scope.altViewBE.push(acquiredPlayer);
+      if (selp.pos === 'QB' && $scope.myQBs.length < 3) {
+        $scope.myQBs.push(acquiredPlayer);
+        // TODO See if it's possible to utilize this
+        // $scope.backupPlyr();
+        $scope.rmPlyr();
+        if ($scope.myQBs.length > 1) {
+          $scope.altViewBE.push(acquiredPlayer)
+        }
       }
-    }
-    if (selp.pos === 'WR' && $scope.myWRs.length === 6) {
-      $scope.alrtUsr('wide receivers');
-    }
-    if (selp.pos === 'WR' && $scope.myWRs.length < 6) {
-      $scope.myWRs.push(acquiredPlayer);
-      $scope.rmPlyr();
-      if ($scope.myWRs.length > 2 && flex.length < 1) {
-        $scope.myFlex.push(acquiredPlayer);
-      } else if ($scope.myWRs.length > 2) {
-        $scope.altViewBE.push(acquiredPlayer);
+      if (selp.pos === 'RB' && $scope.myRBs.length === 4) {
+        $scope.alrtUsr('running backs');
       }
-    }
-    if (selp.pos === 'TE' && $scope.myTEs.length === 3) {
-      $scope.alrtUsr('tight ends');
-    }
-    if (selp.pos === 'TE' && $scope.myTEs.length < 3) {
-      $scope.myTEs.push(acquiredPlayer);
-      $scope.rmPlyr();
-      if ($scope.myTEs.length > 1 && flex.length < 1) {
-        $scope.myFlex.push(acquiredPlayer);
-      } else if ($scope.myTEs.length > 1) {
-        $scope.altViewBE.push(acquiredPlayer);
+      if (selp.pos === 'RB' && $scope.myRBs.length < 4) {
+        $scope.myRBs.push(acquiredPlayer);
+        $scope.rmPlyr();
+        // TODO Will need to change length to '> 2' if 2 RBs
+        if ($scope.myRBs.length > 1 && flex.length < 1) {
+          $scope.myFlex.push(acquiredPlayer);
+        } else if ($scope.myRBs.length > 1) {
+          $scope.altViewBE.push(acquiredPlayer);
+        }
       }
-    }
-    if (selp.pos === 'DEF' && $scope.myDEFs.length === 2) {
-      $scope.alrtUsr('defenses');
-    }
-    if (selp.pos === 'DEF' && $scope.myDEFs.length < 2) {
-      $scope.myDEFs.push(acquiredPlayer);
-      $scope.rmPlyr();
-      if ($scope.myDEFs.length > 1) {
-        $scope.altViewBE.push(acquiredPlayer)
+      if (selp.pos === 'WR' && $scope.myWRs.length === 6) {
+        $scope.alrtUsr('wide receivers');
       }
-    }
-    if (selp.pos === 'K' && $scope.myKckr.length === 2) {
-      $scope.alrtUsr('kickers');
-    }
-    if (selp.pos === 'K' && $scope.myKckr.length < 2) {
-      $scope.myKckr.push(acquiredPlayer);
-      $scope.rmPlyr();
-      if ($scope.myKckr.length > 1) {
-        $scope.altViewBE.push(acquiredPlayer)
+      if (selp.pos === 'WR' && $scope.myWRs.length < 6) {
+        $scope.myWRs.push(acquiredPlayer);
+        $scope.rmPlyr();
+        if ($scope.myWRs.length > 2 && flex.length < 1) {
+          $scope.myFlex.push(acquiredPlayer);
+        } else if ($scope.myWRs.length > 2) {
+          $scope.altViewBE.push(acquiredPlayer);
+        }
       }
-      if ($scope.myKckr.length === 2) {
-        swal({
-          title: "Seriously...",
-          text: "Are you Taco or something??",
-          // imageUrl: "images/tickotaco.jpg",
-          imageUrl: "images/taco.gif",
-          imageSize: "400x228"
-        })
+      if (selp.pos === 'TE' && $scope.myTEs.length === 3) {
+        $scope.alrtUsr('tight ends');
       }
-    }
+      if (selp.pos === 'TE' && $scope.myTEs.length < 3) {
+        $scope.myTEs.push(acquiredPlayer);
+        $scope.rmPlyr();
+        if ($scope.myTEs.length > 1 && flex.length < 1) {
+          $scope.myFlex.push(acquiredPlayer);
+        } else if ($scope.myTEs.length > 1) {
+          $scope.altViewBE.push(acquiredPlayer);
+        }
+      }
+      if (selp.pos === 'DEF' && $scope.myDEFs.length === 2) {
+        $scope.alrtUsr('defenses');
+      }
+      if (selp.pos === 'DEF' && $scope.myDEFs.length < 2) {
+        $scope.myDEFs.push(acquiredPlayer);
+        $scope.rmPlyr();
+        if ($scope.myDEFs.length > 1) {
+          $scope.altViewBE.push(acquiredPlayer)
+        }
+      }
+      if (selp.pos === 'K' && $scope.myKckr.length === 2) {
+        $scope.alrtUsr('kickers');
+      }
+      if (selp.pos === 'K' && $scope.myKckr.length < 2) {
+        $scope.myKckr.push(acquiredPlayer);
+        $scope.rmPlyr();
+        if ($scope.myKckr.length > 1) {
+          $scope.altViewBE.push(acquiredPlayer)
+        }
+        if ($scope.myKckr.length === 2) {
+          swal({
+            title: "Seriously...",
+            text: "Are you Taco or something??",
+            // imageUrl: "images/tickotaco.jpg",
+            imageUrl: "images/taco.gif",
+            imageSize: "400x228"
+          })
+        }
+      }
     $scope.selectedPlayer = '';
     $scope.cpVal.level = $scope.cpVal={level: 1};
     $scope.checkRoster();
+  }
+  if (acquiredPlayer.price < 1) {
+    swal("Error...", "Price needs to be greater than $1", "error");
+    $scope.cpVal.level = $scope.cpVal={level: 1};
+  }
+  if (acquiredPlayer.price > 185) {
+    swal("Error...", "Exceeds maximum bid", "error");
+    $scope.cpVal.level = $scope.cpVal={level: 1};
+  }
   }
 
   $scope.passPlayer = function() {
