@@ -135,6 +135,10 @@ a:active {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+.remaining-bal {
+	float: right;
+}
+
 .pos-chg {
   border-top: 3px solid black;
 }
@@ -246,6 +250,14 @@ a:active {
 	text-align: center;
 	border: 1px solid #000000;
 	background: #B3995D; /*d0d6d6*/
+}
+
+.roster-view-chg {
+	padding: 0 0 5px 1px;
+}
+
+.roster-view-chg i {
+	padding-left: 2px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
