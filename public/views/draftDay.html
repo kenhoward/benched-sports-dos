@@ -2,6 +2,18 @@
   <!-- <pre>{{players}}</pre> -->
   <div class="container dd-ctr" id="dd">
     <div class="col-md-5 col-sm-12 col-xs-12">
+        <div class="col-md-12 auct-bdgt">
+          <p class="bdgt-title">budget</p>
+          <div class="col-md-4">
+            <p>Remaining: $200</p>
+          </div>
+          <div class="col-md-4">
+            <p>Max Bid: $185</p>
+          </div>
+          <div class="col-md-4">
+            <p>Amt Spent: $0</p>
+          </div>
+        </div>
       <div class="roster-view-chg">
         Default <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
         Alternate <input type="radio" name="rosterView" ng-click="alternateView()">
@@ -279,6 +291,46 @@
     </div> <!-- /Left Column -->
     <!-- Right Column -->
     <div class="col-md-7 col-sm-12 col-xs-12 dd-player-details">
+
+<!-- Construction zone -->
+
+      <div class="col-md-12 sp-input-btns">
+        <div class="col-lg-6">
+          <input type="text" placeholder="Please Enter Name..." ng-model="selectedPlayer" ng-disabled="rosterComplete" uib-typeahead="option as option.player for option in players | filter:$viewValue | limitTo:15" class="form-control">
+
+        </div>
+        <div class="col-lg-6">
+          <div class="dd-go-pass">
+            <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Buy</button>
+            <button ng-disabled="rosterComplete" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button>
+            <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-info btn">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd-command-center">
+        <div class="col-md-12 cmd-ctr">
+          <div class="col-md-5 col-sm-12">
+            <p class="dd-p1">Current Price:
+              <input type="number" step="1" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-disabled="!selectedPlayer" ng-model="cpVal.level">
+              <input type="button" value="+" style="width: 30px;" ng-disabled="!selectedPlayer" add-one>
+              <input type="button" value="&mdash;" style="width: 30px;" ng-disabled="!selectedPlayer" class="cp-sub-hide" sub-one>
+            </p>
+
+            <p>Average Price: <span class="dd-avg-price">${{selectedPlayer.avgprc}}</span></p>
+            <p>Standard Deviation: {{selectedPlayer.stdvprc}}</p>
+          </div>
+          <div class="col-md-5 dd-auction-price">
+            <p>Highest ${{selectedPlayer.highprc}}</p>
+            <p>Lowest ${{selectedPlayer.lowprc}}</p>
+          </div>
+          <div class="col-md-offset-2"></div>
+        </div>
+
+      </div> <!-- End Command Center -->
+
+<!-- End Construction Zone -->
+
       <div class="col-md-12 player-info">
         <div class="col-md-4">
           <p ng-hide="selectedPlayer.pos == 'DEF'">Player: <span>{{selectedPlayer.player}}</span></p>
@@ -401,7 +453,8 @@
           </div>
         </div>
       </div>
-      <div class="dd-command-center">
+
+      <!-- <div class="dd-command-center">
         <div class="col-md-12 cmd-ctr">
           <div class="col-md-5 col-sm-12">
             <p class="dd-p1">Current Price:
@@ -409,9 +462,6 @@
               <input type="button" value="+" style="width: 30px;" ng-disabled="!selectedPlayer" add-one>
               <input type="button" value="&mdash;" style="width: 30px;" ng-disabled="!selectedPlayer" class="cp-sub-hide" sub-one>
             </p>
-
-            <!-- <p>Current Price: <input ng-model="purchPrice" ng-bind="priceIncrement" maxlength="3" style="width: 33px;" type="text">
-            <button type="button" ng-click="priceIncrement()" class="btn btn-info btn-xs dd-increment">+</button></p> -->
 
             <p>Average Price: <span class="dd-avg-price">${{selectedPlayer.avgprc}}</span></p>
             <p>Standard Deviation: {{selectedPlayer.stdvprc}}</p>
@@ -425,18 +475,8 @@
 
         <div class="col-md-12">
           <div class="col-lg-6">
-            <!-- <input type="text" class="player-input" ng-model="plyrName"> -->
             <input type="text" placeholder="Please Enter Name..." ng-model="selectedPlayer" ng-disabled="rosterComplete" uib-typeahead="option as option.player for option in players | filter:$viewValue | limitTo:15" class="form-control">
-            <!-- <pre>Total Team:{{selectedPlayer | json}}</pre> -->
 
-            <!-- <form name="nflPlayers">
-              <label for="selectedPlayer"></label>
-              <select name="selectedPlayer" id="selectedPlayer"
-                ng-options="option.player for option in {{players}}"
-                ng-model="selectedPlayer">
-                  <option value="">Select Player</option>
-              </select>
-            </form> -->
           </div>
           <div class="col-lg-6">
             <div class="dd-go-pass">
@@ -446,8 +486,9 @@
             </div>
           </div>
         </div>
+      </div> -->
+      <!-- /Command Center-->
 
-      </div> <!-- /Command Center -->
     </div> <!-- /Right Column -->
   </div> <!-- /Container && /.dd-ctr -->
 </div> <!-- Controller -->

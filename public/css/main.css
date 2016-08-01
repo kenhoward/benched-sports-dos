@@ -159,8 +159,32 @@ a:active {
   border: 1px dotted black;
 }
 
+.auct-bdgt {
+	margin: 10px 0;
+	border: 1px dotted black;
+}
+
+.auct-bdgt p {
+	text-align: center;
+}
+
+.auct-bdgt .bdgt-title {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bolder;
+	border-bottom: 1px solid black;
+}
+
+.sp-input-btns {
+	margin: 10px 0;
+}
+
 .dd-command-center input {
 	width: 100%;
+}
+
+.cmd-ctr {
+	margin-bottom: 10px;
 }
 
 .dd-p1 {
@@ -175,11 +199,6 @@ a:active {
 	font-weight: lighter;
 	font-family: 'Lato', sans-serif;
 	font-size: large;
-}
-
-.cmd-ctr {
-	margin-top: 10px;
-	padding-top: 10px;
 }
 
 /*.dd-increment {
