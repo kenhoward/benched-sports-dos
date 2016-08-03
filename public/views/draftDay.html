@@ -5,13 +5,13 @@
         <div class="col-md-12 auct-bdgt">
           <p class="bdgt-title">budget</p>
           <div class="col-md-4">
-            <p>Remaining: $200</p>
+            <p>Remaining: ${{remainingBalance}}</p>
           </div>
           <div class="col-md-4">
-            <p>Max Bid: $185</p>
+            <p>Max Bid: ${{maxBid}}</p>
           </div>
           <div class="col-md-4">
-            <p>Amt Spent: $0</p>
+            <p>Amt Spent: ${{amountSpent}}</p>
           </div>
         </div>
       <div class="roster-view-chg">
@@ -302,7 +302,7 @@
         <div class="col-lg-6">
           <div class="dd-go-pass">
             <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Buy</button>
-            <button ng-disabled="rosterComplete" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button>
+            <button ng-disabled="!selectedPlayer" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button>
             <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-info btn">Clear</button>
           </div>
         </div>

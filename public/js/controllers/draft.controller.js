@@ -77,6 +77,25 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     }
   }
 
+  $scope.remainingBalance = 200;
+  $scope.amountSpent = 0;
+
+  $scope.adjBudget = function(price) {
+    var rbal = $scope.remainingBalance;
+    var as = $scope.amountSpent;
+    var initBal = 200;
+
+    if (rbal == 200) {
+      $scope.remainingBalance = (initBal -= price);
+      $scope.amountSpent += price;
+    } else {
+      $scope.remainingBalance = rbal - price;
+      $scope.amountSpent += price;
+    }
+    // Handle if price hit zero
+    // Will need to affect chg to addPlayer()
+  }
+
   $scope.addPlayer = function() {
     var all = $scope.players
     var selp = $scope.selectedPlayer;
@@ -87,6 +106,8 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     acquiredPlayer.player = selp.player;
     acquiredPlayer.price = $scope.cpVal.level;
     acquiredPlayer.bye = selp.bye;
+
+    $scope.adjBudget(acquiredPlayer.price);
 
     if (acquiredPlayer.price > 0 && acquiredPlayer.price < 186) {
       if (selp.pos === 'QB' && $scope.myQBs.length === 3) {
@@ -179,6 +200,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     swal("Error...", "Exceeds maximum bid", "error");
     $scope.cpVal.level = $scope.cpVal={level: 1};
   }
+  console.log('this is the value', $scope.myQBs);
   }
 
   $scope.passPlayer = function() {
