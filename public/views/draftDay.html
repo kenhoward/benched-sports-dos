@@ -1,8 +1,8 @@
 <div ng-controller="DraftDayController">
   <!-- <pre>{{players}}</pre> -->
   <div class="container dd-ctr" id="dd">
-    <div class="col-md-5 col-sm-12 col-xs-12">
-        <div class="col-md-12 auct-bdgt">
+    <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
+        <!-- <div class="col-md-12 auct-bdgt">
           <p class="bdgt-title">budget</p>
           <div class="col-md-4">
             <p>Remaining: ${{remainingBalance}}</p>
@@ -13,174 +13,299 @@
           <div class="col-md-4">
             <p>Amt Spent: ${{amountSpent}}</p>
           </div>
-        </div>
-      <div class="roster-view-chg">
-        Default <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
-        Alternate <input type="radio" name="rosterView" ng-click="alternateView()">
+        </div> -->
+        <!-- TODO  MOVE -->
+      <!-- <div class="roster-view-chg">
+        Research <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
+        Acquired <input type="radio" name="rosterView" ng-click="alternateView()">
         <i uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" class="fa fa-info-circle"></i>
-        <!-- <span class="remaining-bal">$200</span> -->
-      </div>
+
+      </div> -->
       <!-- <div>
         $200
       </div> -->
       <!-- Default View -->
-      <table ng-show="defaultRosterView" class="table dd-plyr-table"> <!-- ng-repeat="roster in viewRoster" -->
+      <table ng-show="defaultRosterView" class="table-condensed dd-plyr-table"> <!-- ng-repeat="roster in viewRoster" -->
         <tr>
           <th class="col-sm-2">Pos.</th>
           <th class="col-sm-5">Player Name</th>
-          <th class="col-sm-2">BYE</th>
-          <th class="col-sm-2">Price</th>
-          <th class="col-sm-1"></th>
+          <th class="col-sm-2">Score</th>
+          <th class="col-sm-1">BYE</th>
+          <th class="col-sm-1">Price</th>
+          <th class="col-sm-1">Buy</th>
         </tr>
         <tr>
           <td>QB</td>
           <td>{{myQBs[0].player}}</td>
+          <td>{{myQBs[0].scr}}</td>
           <td>{{myQBs[0].bye}}</td>
-          <td>{{myQBs[0].price}}</td>
-          <td><a ng-if="myQBs[0]" ng-click="oopsBtn(myQBs[0])" href=""><img ng-src="images/cancelBtn.jpg" ></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myQBs[0].ap" ng-if="myQBs[0]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myQBs[0]" ng-click="purchasedPlayer(myQBs[0])" href=""><img ng-src="images/chk_mrk.png" ></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myQBs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>QB</td>
           <td>{{myQBs[1].player}}</td>
+          <td>{{myQBs[1].scr}}</td>
           <td>{{myQBs[1].bye}}</td>
-          <td>{{myQBs[1].price}}</td>
-          <td><a ng-if="myQBs[1]" ng-click="oopsBtn(myQBs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myQBs[1].ap" ng-if="myQBs[1]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myQBs[1]" ng-click="purchasedPlayer(myQBs[1])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myQBs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <tr ng-if="myQBs[2]">
+        <tr>
           <td>QB</td>
           <td>{{myQBs[2].player}}</td>
+          <td>{{myQBs[2].scr}}</td>
           <td>{{myQBs[2].bye}}</td>
-          <td>{{myQBs[2].price}}</td>
-          <td><a ng-click="oopsBtn(myQBs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myQBs[2].ap" ng-if="myQBs[2]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myQBs[2]" ng-click="purchasedPlayer(myQBs[2])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myQBs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myQBs[3]"-->
+          <td>QB</td>
+          <td>{{myQBs[3].player}}</td>
+          <td>{{myQBs[3].scr}}</td>
+          <td>{{myQBs[3].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myQBs[3].ap" ng-if="myQBs[3]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myQBs[3]" ng-click="purchasedPlayer(myQBs[3])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myQBs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr class="pos-chg">
           <td>RB</td>
           <td>{{myRBs[0].player}}</td>
+          <td>{{myRBs[0].scr}}</td>
           <td>{{myRBs[0].bye}}</td>
-          <td>{{myRBs[0].price}}</td>
-          <td><a ng-if="myRBs[0]" ng-click="oopsBtn(myRBs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td> <!-- ng-if="player.purchased" -->
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[0].ap" ng-if="myRBs[0]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[0]" ng-click="purchasedPlayer(myRBs[0])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>RB</td>
           <td>{{myRBs[1].player}}</td>
+          <td>{{myRBs[1].scr}}</td>
           <td>{{myRBs[1].bye}}</td>
-          <td>{{myRBs[1].price}}</td>
-          <td><a ng-if="myRBs[1]" ng-click="oopsBtn(myRBs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td> <!-- ng-if="player.purchased" -->
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[1].ap" ng-if="myRBs[1]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[1]" ng-click="purchasedPlayer(myRBs[1])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>RB</td>
           <td>{{myRBs[2].player}}</td>
+          <td>{{myRBs[2].scr}}</td>
           <td>{{myRBs[2].bye}}</td>
-          <td>{{myRBs[2].price}}</td>
-          <td><a ng-if="myRBs[2]" ng-click="oopsBtn(myRBs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[2].ap" ng-if="myRBs[2]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[2]" ng-click="purchasedPlayer(myRBs[2])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <tr ng-if="myRBs[3]">
+        <tr>
           <td>RB</td>
           <td>{{myRBs[3].player}}</td>
+          <td>{{myRBs[3].scr}}</td>
           <td>{{myRBs[3].bye}}</td>
-          <td>{{myRBs[3].price}}</td>
-          <td><a ng-click="oopsBtn(myRBs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[3].ap" ng-if="myRBs[3]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[3]" ng-click="purchasedPlayer(myRBs[3])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <!-- <tr ng-if="myRBs[4]">
+        <tr>
           <td>RB</td>
           <td>{{myRBs[4].player}}</td>
+          <td>{{myRBs[4].scr}}</td>
           <td>{{myRBs[4].bye}}</td>
-          <td>{{myRBs[4].price}}</td>
-          <td><a ng-click="oopsBtn(myRBs[4])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-        </tr> -->
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[4].ap" ng-if="myRBs[4]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[4]" ng-click="purchasedPlayer(myRBs[4])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[4])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myRBs[5]"-->
+          <td>RB</td>
+          <td>{{myRBs[5].player}}</td>
+          <td>{{myRBs[5].scr}}</td>
+          <td>{{myRBs[5].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[5].ap" ng-if="myRBs[5]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[5]" ng-click="purchasedPlayer(myRBs[5])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[5])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myRBs[6]"-->
+          <td>RB</td>
+          <td>{{myRBs[6].player}}</td>
+          <td>{{myRBs[6].scr}}</td>
+          <td>{{myRBs[6].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[6].ap" ng-if="myRBs[6]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[6]" ng-click="purchasedPlayer(myRBs[6])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[6])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myRBs[7]"-->
+          <td>RB</td>
+          <td>{{myRBs[7].player}}</td>
+          <td>{{myRBs[7].scr}}</td>
+          <td>{{myRBs[7].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myRBs[7].ap" ng-if="myRBs[7]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myRBs[7]" ng-click="purchasedPlayer(myRBs[7])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myRBs[7])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
         <tr class="pos-chg">
           <td>WR</td>
           <td>{{myWRs[0].player}}</td>
+          <td>{{myWRs[0].scr}}</td>
           <td>{{myWRs[0].bye}}</td>
-          <td>{{myWRs[0].price}}</td>
-          <td><a ng-if="myWRs[0]" ng-click="oopsBtn(myWRs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[0].ap" ng-if="myWRs[0]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[0]" ng-click="purchasedPlayer(myWRs[0])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>WR</td>
           <td>{{myWRs[1].player}}</td>
+          <td>{{myWRs[1].scr}}</td>
           <td>{{myWRs[1].bye}}</td>
-          <td>{{myWRs[1].price}}</td>
-          <td><a ng-if="myWRs[1]" ng-click="oopsBtn(myWRs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[1].ap" ng-if="myWRs[1]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[1]" ng-click="purchasedPlayer(myWRs[1])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>WR</td>
           <td>{{myWRs[2].player}}</td>
+          <td>{{myWRs[2].scr}}</td>
           <td>{{myWRs[2].bye}}</td>
-          <td>{{myWRs[2].price}}</td>
-          <td><a ng-if="myWRs[2]" ng-click="oopsBtn(myWRs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[2].ap" ng-if="myWRs[2]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[2]" ng-click="purchasedPlayer(myWRs[2])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>WR</td>
           <td>{{myWRs[3].player}}</td>
+          <td>{{myWRs[3].scr}}</td>
           <td>{{myWRs[3].bye}}</td>
-          <td>{{myWRs[3].price}}</td>
-          <td><a ng-if="myWRs[3]" ng-click="oopsBtn(myWRs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[3].ap" ng-if="myWRs[3]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[3]" ng-click="purchasedPlayer(myWRs[3])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>WR</td>
           <td>{{myWRs[4].player}}</td>
+          <td>{{myWRs[4].scr}}</td>
           <td>{{myWRs[4].bye}}</td>
-          <td>{{myWRs[4].price}}</td>
-          <td><a ng-if="myWRs[4]" ng-click="oopsBtn(myWRs[4])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[4].ap" ng-if="myWRs[4]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[4]" ng-click="purchasedPlayer(myWRs[4])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[4])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <tr ng-if="myWRs[5]">
+        <tr> <!--  ng-if="myWRs[5]"-->
           <td>WR</td>
           <td>{{myWRs[5].player}}</td>
+          <td>{{myWRs[5].scr}}</td>
           <td>{{myWRs[5].bye}}</td>
-          <td>{{myWRs[5].price}}</td>
-          <td><a ng-click="oopsBtn(myWRs[5])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[5].ap" ng-if="myWRs[5]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[5]" ng-click="purchasedPlayer(myWRs[5])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[5])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myWRs[6]"-->
+          <td>WR</td>
+          <td>{{myWRs[6].player}}</td>
+          <td>{{myWRs[6].scr}}</td>
+          <td>{{myWRs[6].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[6].ap" ng-if="myWRs[6]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[6]" ng-click="purchasedPlayer(myWRs[6])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[6])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myWRs[7]"-->
+          <td>WR</td>
+          <td>{{myWRs[7].player}}</td>
+          <td>{{myWRs[7].scr}}</td>
+          <td>{{myWRs[7].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myWRs[7].ap" ng-if="myWRs[7]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myWRs[7]" ng-click="purchasedPlayer(myWRs[7])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myWRs[7])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr class="pos-chg">
           <td>TE</td>
           <td>{{myTEs[0].player}}</td>
+          <td>{{myTEs[0].scr}}</td>
           <td>{{myTEs[0].bye}}</td>
-          <td>{{myTEs[0].price}}</td>
-          <td><a ng-if="myTEs[0]" ng-click="oopsBtn(myTEs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myTEs[0].ap" ng-if="myTEs[0]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myTEs[0]" ng-click="purchasedPlayer(myTEs[0])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myTEs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr>
           <td>TE</td>
           <td>{{myTEs[1].player}}</td>
+          <td>{{myTEs[1].scr}}</td>
           <td>{{myTEs[1].bye}}</td>
-          <td>{{myTEs[1].price}}</td>
-          <td><a ng-if="myTEs[1]" ng-click="oopsBtn(myTEs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myTEs[1].ap" ng-if="myTEs[1]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myTEs[1]" ng-click="purchasedPlayer(myTEs[1])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myTEs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <tr ng-if="myTEs[2]">
+        <tr> <!--  ng-if="myTEs[2]"-->
           <td>TE</td>
           <td>{{myTEs[2].player}}</td>
+          <td>{{myTEs[2].scr}}</td>
           <td>{{myTEs[2].bye}}</td>
-          <td>{{myTEs[2].price}}</td>
-          <td><a ng-if="myTEs[2]" ng-click="oopsBtn(myTEs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myTEs[2].ap" ng-if="myTEs[2]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myTEs[2]" ng-click="purchasedPlayer(myTEs[2])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myTEs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr ng-if="myTEs[3]">
+          <td>TE</td>
+          <td>{{myTEs[3].player}}</td>
+          <td>{{myTEs[3].scr}}</td>
+          <td>{{myTEs[3].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myTEs[3].ap" ng-if="myTEs[3]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myTEs[3]" ng-click="purchasedPlayer(myTEs[3])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myTEs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr class="pos-chg">
           <td>D/ST</td>
           <td>{{myDEFs[0].player}}</td>
+          <td>{{myDEFs[0].scr}}</td>
           <td>{{myDEFs[0].bye}}</td>
-          <td>{{myDEFs[0].price}}</td>
-          <td><a ng-if="myDEFs[0]" ng-click="oopsBtn(myDEFs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myDEFs[0].ap" ng-if="myDEFs[0]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myDEFs[0]" ng-click="purchasedPlayer(myDEFs[0])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myDEFs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <tr ng-if="myDEFs[1]">
+        <tr>
           <td>D/ST</td>
           <td>{{myDEFs[1].player}}</td>
+          <td>{{myDEFs[1].scr}}</td>
           <td>{{myDEFs[1].bye}}</td>
-          <td>{{myDEFs[1].price}}</td>
-          <td><a ng-click="oopsBtn(myDEFs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myDEFs[1].ap" ng-if="myDEFs[1]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myDEFs[1]" ng-click="purchasedPlayer(myDEFs[1])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myDEFs[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
-        <tr class="pos-chg">
+        <tr> <!--  ng-if="myDEFs[2]"-->
+          <td>D/ST</td>
+          <td>{{myDEFs[2].player}}</td>
+          <td>{{myDEFs[2].scr}}</td>
+          <td>{{myDEFs[2].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myDEFs[2].ap" ng-if="myDEFs[2]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myDEFs[2]" ng-click="purchasedPlayer(myDEFs[2])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myDEFs[2])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr> <!--  ng-if="myDEFs[3]"-->
+          <td>D/ST</td>
+          <td>{{myDEFs[3].player}}</td>
+          <td>{{myDEFs[3].scr}}</td>
+          <td>{{myDEFs[3].bye}}</td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myDEFs[3].ap" ng-if="myDEFs[3]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myDEFs[3]" ng-click="purchasedPlayer(myDEFs[3])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myDEFs[3])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+        </tr>
+        <tr ng-if="myKckr[0]" class="pos-chg">
           <td>K</td>
           <td>{{myKckr[0].player}}</td>
+          <td>{{myKckr[0].scr}}</td>
           <td>{{myKckr[0].bye}}</td>
-          <td>{{myKckr[0].price}}</td>
-          <td><a ng-if="myKckr[0]" ng-click="oopsBtn(myKckr[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myKckr[0].ap" ng-if="myKckr[0]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myKckr[0]" ng-click="purchasedPlayer(myKckr[0])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myKckr[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
         <tr ng-if="myKckr[1]">
           <td>K</td>
           <td>{{myKckr[1].player}}</td>
+          <td>{{myKckr[1].scr}}</td>
           <td>{{myKckr[1].bye}}</td>
-          <td>{{myKckr[1].price}}</td>
-          <td><a ng-click="oopsBtn(myKckr[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myKckr[1].ap" ng-if="myKckr[1]"></td>
+          <td><a ng-hide="preDraftView" ng-if="myKckr[1]" ng-click="purchasedPlayer(myKckr[1])" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><a ng-show="preDraftView" ng-click="oopsBtn(myKckr[1])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
         </tr>
       </table>
-      <!-- Alternate View -->
+      <!-- Acquired View -->
       <table ng-show="altView" class="table dd-plyr-table">
         <tr>
           <th class="col-sm-2">Pos.</th>
@@ -191,15 +316,15 @@
         </tr>
         <tr>
           <td>QB</td>
-          <td>{{myQBs[0].player}}</td>
-          <td>{{myQBs[0].bye}}</td>
-          <td>{{myQBs[0].price}}</td>
+          <td>{{purchQBs[0].player}}</td>
+          <td>{{purchQBs[0].bye}}</td>
+          <td>{{purchQBs[0].ap}}</td>
         </tr>
         <tr>
           <td>RB</td>
-          <td>{{myRBs[0].player}}</td>
-          <td>{{myRBs[0].bye}}</td>
-          <td>{{myRBs[0].price}}</td>
+          <td>{{purchRBs[0].player}}</td>
+          <td>{{purchRBs[0].bye}}</td>
+          <td>{{purchRBs[0].ap}}</td>
         </tr>
         <!-- Pending League Changes
         <tr>
@@ -229,9 +354,9 @@
         </tr>
         <tr>
           <td>FLEX</td>
-          <td>{{myFlex[0].player}}</td>
-          <td>{{myFlex[0].bye}}</td>
-          <td>{{myFlex[0].price}}</td>
+          <td>{{purchFlex[0].player}}</td>
+          <td>{{purchFlex[0].bye}}</td>
+          <td>{{purchFlex[0].ap}}</td>
         </tr>
         <tr>
           <td>D/ST</td>
@@ -247,53 +372,50 @@
         </tr>
         <tr class="pos-chg">
           <td>BE</td>
-          <td>{{altViewBE[0].player}}</td>
-          <td>{{altViewBE[0].bye}}</td>
-          <td>{{altViewBE[0].price}}</td>
+          <td>{{purchBE[0].player}}</td>
+          <td>{{purchBE[0].bye}}</td>
+          <td>{{purchBE[0].ap}}</td>
         </tr>
         <tr>
           <td>BE</td>
-          <td>{{altViewBE[1].player}}</td>
-          <td>{{altViewBE[1].bye}}</td>
-          <td>{{altViewBE[1].price}}</td>
+          <td>{{purchBE[1].player}}</td>
+          <td>{{purchBE[1].bye}}</td>
+          <td>{{purchBE[1].ap}}</td>
         </tr>
         <tr>
           <td>BE</td>
-          <td>{{altViewBE[2].player}}</td>
-          <td>{{altViewBE[2].bye}}</td>
-          <td>{{altViewBE[2].price}}</td>
+          <td>{{purchBE[2].player}}</td>
+          <td>{{purchBE[2].bye}}</td>
+          <td>{{purchBE[2].ap}}</td>
         </tr>
         <tr>
           <td>BE</td>
-          <td>{{altViewBE[3].player}}</td>
-          <td>{{altViewBE[3].bye}}</td>
-          <td>{{altViewBE[3].price}}</td>
+          <td>{{purchBE[3].player}}</td>
+          <td>{{purchBE[3].bye}}</td>
+          <td>{{purchBE[3].ap}}</td>
         </tr>
         <tr>
           <td>BE</td>
-          <td>{{altViewBE[4].player}}</td>
-          <td>{{altViewBE[4].bye}}</td>
-          <td>{{altViewBE[4].price}}</td>
+          <td>{{purchBE[4].player}}</td>
+          <td>{{purchBE[4].bye}}</td>
+          <td>{{purchBE[4].ap}}</td>
         </tr>
         <tr>
           <td>BE</td>
-          <td>{{altViewBE[5].player}}</td>
-          <td>{{altViewBE[5].bye}}</td>
-          <td>{{altViewBE[5].price}}</td>
+          <td>{{purchBE[5].player}}</td>
+          <td>{{purchBE[5].bye}}</td>
+          <td>{{purchBE[5].ap}}</td>
         </tr>
         <tr>
           <td>BE</td>
-          <td>{{altViewBE[6].player}}</td>
-          <td>{{altViewBE[6].bye}}</td>
-          <td>{{altViewBE[6].price}}</td>
+          <td>{{purchBE[6].player}}</td>
+          <td>{{purchBE[6].bye}}</td>
+          <td>{{purchBE[6].ap}}</td>
         </tr>
       </table>
     </div> <!-- /Left Column -->
     <!-- Right Column -->
-    <div class="col-md-7 col-sm-12 col-xs-12 dd-player-details">
-
-<!-- Construction zone -->
-
+    <div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 dd-player-details">
       <div class="col-md-12 sp-input-btns">
         <div class="col-lg-6">
           <input type="text" placeholder="Please Enter Name..." ng-model="selectedPlayer" ng-disabled="rosterComplete" uib-typeahead="option as option.player for option in players | filter:$viewValue | limitTo:15" class="form-control">
@@ -309,55 +431,125 @@
       </div>
 
       <div class="dd-command-center">
+        <!-- PREVIOUS APPROACH - DO NOT REMOVE
         <div class="col-md-12 cmd-ctr">
           <div class="col-md-5 col-sm-12">
+            DO NOT REMOVE
             <p class="dd-p1">Current Price:
               <input type="number" step="1" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-disabled="!selectedPlayer" ng-model="cpVal.level">
               <input type="button" value="+" style="width: 30px;" ng-disabled="!selectedPlayer" add-one>
               <input type="button" value="&mdash;" style="width: 30px;" ng-disabled="!selectedPlayer" class="cp-sub-hide" sub-one>
             </p>
 
-            <p>Average Price: <span class="dd-avg-price">${{selectedPlayer.avgprc}}</span></p>
+            <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">$</span>{{selectedPlayer.avgprc}}</p>
             <p>Standard Deviation: {{selectedPlayer.stdvprc}}</p>
           </div>
           <div class="col-md-5 dd-auction-price">
-            <p>Highest ${{selectedPlayer.highprc}}</p>
-            <p>Lowest ${{selectedPlayer.lowprc}}</p>
+            <p>Highest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.highprc}}</p>
+            <p>Lowest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.lowprc}}</p>
           </div>
           <div class="col-md-offset-2"></div>
+        </div> -->
+
+        <div class="col-md-12 cmd-ctr">
+          <div class="col-md-3 col-sm-12">
+            <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">$</span>{{selectedPlayer.avgprc}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>$ St.Dev: {{selectedPlayer.prcstdev}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>Highest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.highprc}}</p>
+          </div>
+          <div class="col-md-3">
+            <p>Lowest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.lowprc}}</p>
+          </div>
         </div>
 
       </div> <!-- End Command Center -->
 
-<!-- End Construction Zone -->
-
       <div class="col-md-12 player-info">
         <div class="col-md-4">
-          <p ng-hide="selectedPlayer.pos == 'DEF'">Player: <span>{{selectedPlayer.player}}</span></p>
-          <p ng-show="selectedPlayer.pos == 'DEF'">Team: <span>{{selectedPlayer.player}}</span></p>
+          <p ng-hide="selectedPlayer.pos === 'DEF'">Player: <span>{{selectedPlayer.player}}</span></p>
+          <p ng-show="selectedPlayer.pos === 'DEF'">Team: <span>{{selectedPlayer.player}}</span></p>
         </div>
-        <div ng-hide="selectedPlayer.pos == 'DEF'" class="col-md-2">
+        <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
           <p>Pos: {{selectedPlayer.pos}}</p>
         </div>
-        <div ng-hide="selectedPlayer.pos == 'DEF'" class="col-md-2">
+        <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
           <p>NFL: <span>{{selectedPlayer.team}}</span></p>
         </div>
         <div class="col-md-2">
           <p>Bye: {{selectedPlayer.bye}}</p>
         </div>
-        <div class="col-md-2">
+        <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
           <p>GP: {{selectedPlayer.gp}}</p>
         </div>
+        <div ng-show="selectedPlayer.pos === 'DEF'" class="col-md-6">
+          <!-- TODO include DEFENSE's previous year's rank -->
+          <p>Previous Year's Rank: {{selectedPlayer.gp}}th</p>
+        </div>
+        <div ng-hide="selectedPlayer.pos === 'DEF'">
+          <div class="col-md-5">
+            <p ng-if="selectedPlayer.dc === '1'">Depth Chart: <span style="color:green;">FIRST</span> String</p>
+            <p ng-if="selectedPlayer.dc === '2'">Depth Chart: <span style="color:orange;">SECOND</span> String</p>
+            <p ng-if="selectedPlayer.dc === '3'">Depth Chart: <span style="color:red;">THIRD</span> String</p>
+          </div>
+          <div class="col-md-3" ng-if="selectedPlayer.sspd === 'TRUE'">
+            <p>Suspended: <span style="color:red;">YES</span></p>
+          </div>
+          <div class="col-md-3" ng-if="selectedPlayer.inj === 'TRUE'">
+            <p>INJURED: <span style="color:red;">YES</span></p>
+          </div>
+          <div class="col-md-5" ng-if="selectedPlayer.handcuff === 'TRUE'">
+            <p><span style="color:red;">Handcuff</span> to {{selectedPlayer.hcname}}</p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-12 player-stats dd-value-stats">
+      <div class="col-md-12 player-stats-box dd-value-stats">
         <div class="col-md-6">
-          <p>{{ffLY()}} Points: <span class="dd-bold">{{selectedPlayer.fpts}}</span><span class="dd-percentile">({{selectedPlayer.fptsPer}}th)</span></p>
-          <p>Average Pts. / Week: <span class="dd-bold">{{selectedPlayer.appw}}</span></p>
+
+          <div class="col-md-12 player-stats">
+            <div class="col-md-7 col-sm-4">
+              &nbsp; <!-- Player Stats -->
+              <p>{{ffLY()}} Points:</p>
+              <p>Avg Pts / Wk:</p>
+              <p>Pts St. Dev:</p>
+              <p>Highest Wk:</p>
+              <p>Lowest Week:</p>
+              <p>Hi / Low St.Dev:</p>
+            </div>
+            <div class="col-md-3 col-sm-4 player-score">
+              &nbsp; <!-- Metric -->
+              <p class="dd-bold">{{selectedPlayer.fpts}}</p>
+              <p class="dd-bold">{{selectedPlayer.appw}}</p>
+              <p class="dd-bold">{{selectedPlayer.ptstd}}</p>
+              <p class="dd-bold">{{selectedPlayer.high}}</p>
+              <p class="dd-bold">{{selectedPlayer.low}}</p>
+              <p class="dd-bold">{{selectedPlayer.hlsd}}</p>
+            </div>
+            <div class="col-md-2 col-sm-4 player-rank">
+              <span ng-if="selectedPlayer.fpts">Rank</span>
+              <!-- TODO ADD IN RANK -->
+              <p>{{selectedPlayer.gp}}</p>
+              <p>{{selectedPlayer.gp}}</p>
+              <p>{{selectedPlayer.gp}}</p>
+              <p>{{selectedPlayer.gp}}</p>
+              <p>{{selectedPlayer.gp}}</p>
+              <p>{{selectedPlayer.gp}}</p>
+            </div>
+          </div>
+
+          <!-- OLD APPROACH
+          <p>{{ffLY()}} Points: <span class="dd-bold">{{selectedPlayer.fpts}}</span><span class="dd-percentile">{{selectedPlayer.fptsPer}}</span></p>
+          <p>Avg Pts /Week: <span class="dd-bold">{{selectedPlayer.appw}}</span></p>
           <p>Points St. Dev: <span class="dd-bold">{{selectedPlayer.ptstd}}</span></p>
-          <div>
-            <p>Highest Week: <span class="dd-bold">{{selectedPlayer.high}}</span></p>
-            <p>Lowest Week: <span class="dd-bold">{{selectedPlayer.low}}</span></p>
-            <p>High / Low St. Dev: <span class="dd-bold">{{selectedPlayer.hlsd}}</span></p>
+          <p>Highest Week: <span class="dd-bold">{{selectedPlayer.high}}</span></p>
+          <p>Lowest Week: <span class="dd-bold">{{selectedPlayer.low}}</span></p>
+          <p>High / Low St. Dev: <span class="dd-bold">{{selectedPlayer.hlsd}}</span></p>
+              END OLD APPROACH -->
+
+          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
             <table class="table table-bordered no-val-spcr">
               <p class="dd-stats-header">Rushing Yards</p>
               <tr>
@@ -392,6 +584,94 @@
           </div>
         </div>
         <div class="col-md-6">
+
+          <div class="col-md-12 player-stats">
+            <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
+              <div class="col-md-7">
+                &nbsp; <!-- Player Stats -->
+                <p>Plays:</p>
+                <p>Pass / Rec Per:</p>
+                <p>Yards / Rush:</p>
+                <p>Yds after Rec:</p><!-- previously: Yards After Catch (YAC) -->
+                <p>Fumbles:</p>
+                <p>Interceptions:</p>
+              </div>
+              <div class="col-md-3 player-score">
+                &nbsp; <!-- Metric -->
+                <p class="dd-bold">{{selectedPlayer.plays}}</p>
+                <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
+                <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
+                <p class="dd-bold">{{selectedPlayer.yac}}</p>
+                <p class="dd-bold">{{selectedPlayer.fum}}</p>
+                <p class="dd-bold">{{selectedPlayer.int}}</p>
+              </div>
+              <div class="col-md-2 player-rank">
+                <span ng-if="selectedPlayer.player">Rank</span>
+                <!-- TODO ADD IN RANK -->
+                <p>{{selectedPlayer.gp}}</p>
+                <p>{{selectedPlayer.gp}}</p>
+                <p>{{selectedPlayer.gp}}</p>
+                <p>{{selectedPlayer.gp}}</p>
+                <p>{{selectedPlayer.gp}}</p>
+                <p>{{selectedPlayer.gp}}</p>
+              </div>
+            </div>
+            <!-- DEFENSE / SPECIAL TEAMS -->
+            <div ng-show="selectedPlayer.pos == 'DEF'">
+              <div class="col-md-7">
+                &nbsp;
+                <p>Sacks:</p>
+                <p>Fum Rec:</p>
+                <p>Interceptions:</p>
+                <p>Yds after Rec:</p>
+                <p>Touchdowns:</p>
+                <p>Tot. Yds Agnst:</p>
+              </div>
+              <div class="col-md-3 player-score">
+                &nbsp;
+                <!-- TODO CHANGE TO NEW STAT -->
+                <p class="dd-bold">{{selectedPlayer.plays}}</p>
+                <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
+                <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
+                <p class="dd-bold">{{selectedPlayer.yac}}</p>
+                <p class="dd-bold">{{selectedPlayer.fum}}</p>
+                <p class="dd-bold">{{selectedPlayer.int}}</p>
+              </div>
+              <div class="col-md-2 player-rank">
+                <span ng-if="selectedPlayer.player">Rank</span>
+                <!-- TODO ADD IN RANK -->
+              </div>
+            </div>
+            <!-- KICKERS -->
+            <div ng-show="selectedPlayer.pos == 'K'">
+              <div class="col-md-7">
+                &nbsp;
+                <p>Field Goals:</p>
+                <p>FGs Success:</p>
+                <p>FGs Missed:</p>
+                <p>Extra Points:</p>
+                <p>XPTs Missed:</p>
+                <p>XPTs Success:</p>
+              </div>
+              <div class="col-md-3 player-score">
+                &nbsp;
+                <!-- TODO CHANGE TO NEW STAT -->
+                <p class="dd-bold">{{selectedPlayer.plays}}</p>
+                <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
+                <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
+                <p class="dd-bold">{{selectedPlayer.yac}}</p>
+                <p class="dd-bold">{{selectedPlayer.fum}}</p>
+                <p class="dd-bold">{{selectedPlayer.int}}</p>
+              </div>
+              <div class="col-md-2 player-rank">
+                <span ng-if="selectedPlayer.player">Rank</span>
+                <!-- TODO ADD IN RANK -->
+              </div>
+            </div>
+          </div>
+
+          <!-- OLD WAY FIRST: QB, RB, WR, TE. SECOND: D/ST. THIRD: K.
+
           <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
             <p>Plays: <span class="dd-bold">{{selectedPlayer.plays}}</span></p>
             <p>Pass/Rec Per: <span ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}</span></p>
@@ -400,7 +680,6 @@
             <p>Fumbles: <span class="dd-bold">{{selectedPlayer.fum}}</span></p>
             <p>Interception(s): <span class="dd-bold">{{selectedPlayer.int}}</span></p>
           </div>
-          <!-- Defense / Special Teams -->
           <div ng-show="selectedPlayer.pos == 'DEF'">
             <p>Defense: <span class="dd-bold">{{selectedPlayer.plays}}</span></p>
             <p>Pass/Rec Per: <span ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}</span></p>
@@ -409,7 +688,6 @@
             <p>Fumbles: <span class="dd-bold">{{selectedPlayer.fum}}</span></p>
             <p>Interception(s): <span class="dd-bold">{{selectedPlayer.int}}</span></p>
           </div>
-          <!-- Kickers -->
           <div ng-show="selectedPlayer.pos == 'K'">
             <p>Field Goals: <span class="dd-bold">{{selectedPlayer.plays}}</span></p>
             <p>Field Goals Missed: <span ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}</span></p>
@@ -418,7 +696,11 @@
             <p>Extra Points Missed: <span class="dd-bold">{{selectedPlayer.fum}}</span></p>
             <p>Extra Points Success: <span class="dd-bold">{{selectedPlayer.int}}</span></p>
           </div>
-          <div>
+
+          OLD WAY -->
+
+
+          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
             <table class="table table-bordered no-val-spcr">
               <p class="dd-stats-header">Passing Yards</p>
               <tr>

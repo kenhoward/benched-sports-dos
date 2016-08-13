@@ -130,9 +130,22 @@ a:active {
 	text-transform: uppercase;
 }
 
+.dd-plyr-table {
+	width: 100%;
+}
+
+.dd-plyr-table td:nth-child(3) {
+	padding-left: 17px;
+}
+
+.dd-plyr-table td:nth-child(4) {
+	padding-left: 15px;
+}
+
 .dd-ctr {
   margin-top: 20px;
-	font-family: Helvetica, Arial, sans-serif;
+	/* TODO Decide on a font */
+	/*font-family: Helvetica, Arial, sans-serif;*/
 }
 
 .remaining-bal {
@@ -153,8 +166,8 @@ a:active {
 	color: #AA0000;
 }
 
-.player-stats {
-  margin-top: 20px;
+.player-stats-box {
+  margin-top: 10px;
   padding-top: 10px;
   border: 1px dotted black;
 }
@@ -176,7 +189,7 @@ a:active {
 }
 
 .sp-input-btns {
-	margin: 10px 0;
+	margin: 10px -30px;
 }
 
 .dd-command-center input {
@@ -184,7 +197,12 @@ a:active {
 }
 
 .cmd-ctr {
-	margin-bottom: 10px;
+	margin: 0 0 10px 0;
+	padding-top: 10px;
+	border: 1px dotted black;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #AA0000;
 }
 
 .dd-p1 {
@@ -201,10 +219,12 @@ a:active {
 	font-size: large;
 }
 
-/*.dd-increment {
+/*
+.dd-increment {
   margin: 1px 0 2px -6px;
   padding: 3px 7px 4px 7px;
-}*/
+}
+*/
 
 .dd-increment-input {
 	float: left;
@@ -221,15 +241,30 @@ a:active {
 	font-weight: 300;
 }
 
+.player-stats {
+	margin-left: -30px;
+	color: #B3995D;
+	font-weight: 600;
+}
+
+.player-score p {
+	padding-left: 2px;
+}
+
+.player-rank p {
+	padding-left: 6px;
+}
+
+/* TODO  remove once new style is done */
 .dd-bold {
 	font-weight: bolder;
 	color: #B3995D;
 	padding: 0 10px 0 5px;
-	float: right; /* <~~ remove if no .dd-percentile */
+	/*float: right; /* <~~ remove if no .dd-percentile */
 }
 
 .dd-percentile {
-	/*padding-left: 10px;*/
+	padding-left: 10px;
 	text-transform: lowercase;
 }
 
@@ -258,17 +293,18 @@ a:active {
 
 .dd-avg-price {
 	font-weight: bold;
-	color: #4FA9BB;
+	color: #000;
 }
 
-.dd-auction-price {
+/*.dd-auction-price {
 	margin-top: 5px;
-}
+}*/
 
 .dd-stats-header {
 	text-align: center;
-	border: 1px solid #000000;
-	background: #B3995D; /*d0d6d6*/
+	/*border: 1px solid #000000;*/
+	/*background: #B3995D;*/
+	/*d0d6d6*/
 }
 
 .roster-view-chg {
