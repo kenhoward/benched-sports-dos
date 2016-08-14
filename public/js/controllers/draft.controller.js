@@ -360,6 +360,18 @@ console.log(player);
     $scope.cpVal.level = $scope.cpVal={level: 1};
   }
 
+  // Roster views
+  $scope.preDrftPlayerDetails = true;
+  $scope.draftRoster = false;
+  $scope.defaultView = function () {
+    $scope.preDrftPlayerDetails = true;
+    $scope.draftRoster = false;
+  }
+  $scope.alternateView = function() {
+    $scope.preDrftPlayerDetails = false;
+    $scope.draftRoster = true;
+  }
+
   $scope.readyToDraft = function() {
     swal({
       title: "Are you ready to draft?",
@@ -373,8 +385,9 @@ console.log(player);
       closeOnCancel: true
     },function(isConfirm) {
       if (isConfirm) {
-        // Change view here
-        console.log("View ready to change");
+        $scope.preDrftPlayerDetails = false;
+        $scope.draftRoster = true;
+        $scope.$apply();
       } else {
         console.log("cancelled")
       }
@@ -490,17 +503,6 @@ console.log(player);
       ps -= 1;
     }
     return ps;
-  }
-
-  // Roster views
-  $scope.preDraftRoster = true;
-  $scope.defaultView = function () {
-      $scope.preDraftRoster = true;
-      $scope.altView = false;
-  }
-  $scope.alternateView = function() {
-  $scope.preDraftRoster = false;
-  $scope.altView = true;
   }
 
   $scope.dynamicPopover = {

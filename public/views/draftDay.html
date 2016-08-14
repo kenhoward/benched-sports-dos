@@ -2,29 +2,15 @@
   <!-- <pre>{{players}}</pre> -->
   <div class="container dd-ctr" id="dd">
     <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
-        <!-- <div class="col-md-12 auct-bdgt">
-          <p class="bdgt-title">budget</p>
-          <div class="col-md-4">
-            <p>Remaining: ${{remainingBalance}}</p>
-          </div>
-          <div class="col-md-4">
-            <p>Max Bid: ${{maxBid}}</p>
-          </div>
-          <div class="col-md-4">
-            <p>Amt Spent: ${{amountSpent}}</p>
-          </div>
-        </div> -->
-        <!-- TODO  MOVE -->
+      <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-info btn-xs">Back</button>
+        <!-- TODO  REMOVE
       <div class="roster-view-chg">
         Research <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
         Acquired <input type="radio" name="rosterView" ng-click="alternateView()">
         <i uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" class="fa fa-info-circle"></i>
       </div>
-      <!-- <div>
-        $200
-      </div> -->
-      <!-- Default View -->
-      <table ng-show="preDraftRoster" class="table-condensed dd-plyr-table"> <!-- ng-repeat="roster in viewRoster" -->
+    -->
+      <table class="table-condensed dd-plyr-table"> <!-- ng-repeat="roster in viewRoster" -->
         <tr>
           <th class="col-sm-2">Pos.</th>
           <th class="col-sm-5">Player Name</th>
@@ -305,6 +291,7 @@
         </tr>
       </table>
       <!-- Acquired View -->
+      <!-- OLD WAY
       <table ng-show="altView" class="table dd-plyr-table">
         <tr>
           <th class="col-sm-2">Pos.</th>
@@ -325,14 +312,6 @@
           <td>{{purchRBs[0].bye}}</td>
           <td>{{purchRBs[0].ap}}</td>
         </tr>
-        <!-- Pending League Changes
-        <tr>
-          <td>RB</td>
-          <td>{{myRBs[1].player}}</td>
-          <td>{{myRBs[1].bye}}</td>
-          <td>{{myRBs[1].price}}</td>
-        </tr>
-        -->
         <tr>
           <td>WR</td>
           <td>{{myWRs[0].player}}</td>
@@ -412,218 +391,124 @@
           <td>{{purchBE[6].ap}}</td>
         </tr>
       </table>
+      -->
     </div> <!-- /Left Column -->
     <!-- Right Column -->
     <div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 dd-player-details">
-      <div class="col-md-12 sp-input-btns">
-        <div class="col-lg-6">
-          <input type="text" placeholder="Please Enter Name..." ng-model="selectedPlayer" ng-disabled="rosterComplete" uib-typeahead="option as option.player for option in players | filter:$viewValue | limitTo:15" class="form-control">
+      <div ng-show="preDrftPlayerDetails">
+        <div class="col-md-12 sp-input-btns">
+          <div class="col-lg-6">
+            <input type="text" placeholder="Please Enter Name..." ng-model="selectedPlayer" ng-disabled="rosterComplete" uib-typeahead="option as option.player for option in players | filter:$viewValue | limitTo:15" class="form-control">
 
-        </div>
-        <div class="col-lg-6">
-          <div class="dd-go-pass">
-            <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Add</button>
-            <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-warning btn">Clear</button>
-            <button ng-click="readyToDraft()" class="btn btn-info btn">Draft!</button>
-            <!-- <button ng-disabled="!selectedPlayer" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button> -->
           </div>
-        </div>
-      </div>
-
-      <div class="dd-command-center">
-        <!-- PREVIOUS APPROACH - DO NOT REMOVE
-        <div class="col-md-12 cmd-ctr">
-          <div class="col-md-5 col-sm-12">
-            DO NOT REMOVE
-            <p class="dd-p1">Current Price:
-              <input type="number" step="1" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-disabled="!selectedPlayer" ng-model="cpVal.level">
-              <input type="button" value="+" style="width: 30px;" ng-disabled="!selectedPlayer" add-one>
-              <input type="button" value="&mdash;" style="width: 30px;" ng-disabled="!selectedPlayer" class="cp-sub-hide" sub-one>
-            </p>
-
-            <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">$</span>{{selectedPlayer.avgprc}}</p>
-            <p>Standard Deviation: {{selectedPlayer.stdvprc}}</p>
-          </div>
-          <div class="col-md-5 dd-auction-price">
-            <p>Highest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.highprc}}</p>
-            <p>Lowest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.lowprc}}</p>
-          </div>
-          <div class="col-md-offset-2"></div>
-        </div> -->
-
-        <div class="col-md-12 cmd-ctr">
-          <div class="col-md-3 col-sm-12">
-            <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.avgprc}}</span></p>
-          </div>
-          <div class="col-md-3">
-            <p>PRC St.Dev: <span class="dd-avg-price">{{selectedPlayer.prcstdev}}</span></p>
-          </div>
-          <div class="col-md-3">
-            <p>Highest: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.highprc}}</span></p>
-          </div>
-          <div class="col-md-3">
-            <p>Lowest: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.lowprc}}</span></p>
-          </div>
-        </div>
-
-      </div> <!-- End Command Center -->
-
-      <div class="col-md-12 player-info">
-        <div class="col-md-4">
-          <p ng-hide="selectedPlayer.pos === 'DEF'">Player: <span>{{selectedPlayer.player}}</span></p>
-          <p ng-show="selectedPlayer.pos === 'DEF'">Team: <span>{{selectedPlayer.player}}</span></p>
-        </div>
-        <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
-          <p>Pos: {{selectedPlayer.pos}}</p>
-        </div>
-        <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
-          <p>NFL: <span>{{selectedPlayer.team}}</span></p>
-        </div>
-        <div class="col-md-2">
-          <p>Bye: {{selectedPlayer.bye}}</p>
-        </div>
-        <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
-          <p>GP: {{selectedPlayer.gp}}</p>
-        </div>
-        <div ng-show="selectedPlayer.pos === 'DEF'" class="col-md-6">
-          <!-- TODO include DEFENSE's previous year's rank -->
-          <p>Previous Year's Rank: {{selectedPlayer.gp}}th</p>
-        </div>
-        <div ng-hide="selectedPlayer.pos === 'DEF'">
-          <div class="col-md-5">
-            <p ng-if="selectedPlayer.dc === '1'">Depth Chart: <span style="color:green;">FIRST</span> String</p>
-            <p ng-if="selectedPlayer.dc === '2'">Depth Chart: <span style="color:orange;">SECOND</span> String</p>
-            <p ng-if="selectedPlayer.dc === '3'">Depth Chart: <span style="color:red;">THIRD</span> String</p>
-          </div>
-          <div class="col-md-3" ng-if="selectedPlayer.sspd === 'TRUE'">
-            <p>Suspended: <span style="color:red;">YES</span></p>
-          </div>
-          <div class="col-md-3" ng-if="selectedPlayer.inj === 'TRUE'">
-            <p>INJURED: <span style="color:red;">YES</span></p>
-          </div>
-          <div class="col-md-5" ng-if="selectedPlayer.handcuff === 'TRUE'">
-            <p><span style="color:red;">Handcuff</span> to {{selectedPlayer.hcname}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12 player-stats-box dd-value-stats">
-        <div class="col-md-6">
-
-          <div class="col-md-12 player-stats">
-            <div class="col-md-7 col-sm-4">
-              &nbsp; <!-- Player Stats -->
-              <p>{{ffLY()}} Points:</p>
-              <p>Avg Pts / Wk:</p>
-              <p>Pts St. Dev:</p>
-              <p>Highest Wk:</p>
-              <p>Lowest Week:</p>
-              <p>Hi / Low St.Dev:</p>
-            </div>
-            <div class="col-md-3 col-sm-4 player-score">
-              &nbsp; <!-- Metric -->
-              <p class="dd-bold">{{selectedPlayer.fpts}}</p>
-              <p class="dd-bold">{{selectedPlayer.appw}}</p>
-              <p class="dd-bold">{{selectedPlayer.ptstd}}</p>
-              <p class="dd-bold">{{selectedPlayer.high}}</p>
-              <p class="dd-bold">{{selectedPlayer.low}}</p>
-              <p class="dd-bold">{{selectedPlayer.hlsd}}</p>
-            </div>
-            <div class="col-md-2 col-sm-4 player-rank">
-              <span ng-if="selectedPlayer.fpts">Rank</span>
-              <!-- TODO ADD IN RANK -->
-              <p>{{selectedPlayer.gp}}</p>
-              <p>{{selectedPlayer.gp}}</p>
-              <p>{{selectedPlayer.gp}}</p>
-              <p>{{selectedPlayer.gp}}</p>
-              <p>{{selectedPlayer.gp}}</p>
-              <p>{{selectedPlayer.gp}}</p>
+          <div class="col-lg-6">
+            <div class="dd-go-pass">
+              <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Add</button>
+              <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-warning btn">Clear</button>
+              <button ng-click="readyToDraft()" class="btn btn-info btn">Draft!</button>
+              <!-- <button ng-disabled="!selectedPlayer" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button> -->
             </div>
           </div>
+        </div>
+        <div class="dd-command-center">
+          <!-- PREVIOUS APPROACH - DO NOT REMOVE
+          <div class="col-md-12 cmd-ctr">
+            <div class="col-md-5 col-sm-12">
+              DO NOT REMOVE
+              <p class="dd-p1">Current Price:
+                <input type="number" step="1" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-disabled="!selectedPlayer" ng-model="cpVal.level">
+                <input type="button" value="+" style="width: 30px;" ng-disabled="!selectedPlayer" add-one>
+                <input type="button" value="&mdash;" style="width: 30px;" ng-disabled="!selectedPlayer" class="cp-sub-hide" sub-one>
+              </p>
 
-          <!-- OLD APPROACH
-          <p>{{ffLY()}} Points: <span class="dd-bold">{{selectedPlayer.fpts}}</span><span class="dd-percentile">{{selectedPlayer.fptsPer}}</span></p>
-          <p>Avg Pts /Week: <span class="dd-bold">{{selectedPlayer.appw}}</span></p>
-          <p>Points St. Dev: <span class="dd-bold">{{selectedPlayer.ptstd}}</span></p>
-          <p>Highest Week: <span class="dd-bold">{{selectedPlayer.high}}</span></p>
-          <p>Lowest Week: <span class="dd-bold">{{selectedPlayer.low}}</span></p>
-          <p>High / Low St. Dev: <span class="dd-bold">{{selectedPlayer.hlsd}}</span></p>
-              END OLD APPROACH -->
+              <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">$</span>{{selectedPlayer.avgprc}}</p>
+              <p>Standard Deviation: {{selectedPlayer.stdvprc}}</p>
+            </div>
+            <div class="col-md-5 dd-auction-price">
+              <p>Highest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.highprc}}</p>
+              <p>Lowest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.lowprc}}</p>
+            </div>
+            <div class="col-md-offset-2"></div>
+          </div> -->
 
-          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K' || selectedPlayer.pos == 'TE'">
-            <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header">Rushing Yards</p>
-              <tr>
-                <th class="col-sm-3">{{ffLY3()}}</th>
-                <th class="col-sm-3">{{ffLY2()}}</th>
-                <th class="col-sm-3">{{ffLY()}}</th>
-                <th class="col-sm-3">PER</th>
-              </tr>
-              <tr>
-                <td>{{selectedPlayer.ryd13}}</td>
-                <td>{{selectedPlayer.ryd14}}</td>
-                <td>{{selectedPlayer.ryd}}</td>
-                <td>{{selectedPlayer.rydper}}</td>
-              </tr>
-            </table>
-            <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header">Rushing Touchdowns</p>
-              <tr>
-                <th class="col-sm-3">{{ffLY3()}}</th>
-                <th class="col-sm-3">{{ffLY2()}}</th>
-                <th class="col-sm-3">{{ffLY()}}</th>
-                <th class="col-sm-3">PER</th>
-              </tr>
-              <tr>
-                <td>{{selectedPlayer.rtd13}}</td>
-                <td>{{selectedPlayer.rtd14}}</td>
-                <td>{{selectedPlayer.rtd}}</td>
-                <td>{{selectedPlayer.rtdper}}</td>
-              </tr>
-            </table>
+          <div class="col-md-12 cmd-ctr">
+            <div class="col-md-3 col-sm-12">
+              <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.avgprc}}</span></p>
+            </div>
+            <div class="col-md-3">
+              <p>PRC St.Dev: <span class="dd-avg-price">{{selectedPlayer.prcstdev}}</span></p>
+            </div>
+            <div class="col-md-3">
+              <p>Highest: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.highprc}}</span></p>
+            </div>
+            <div class="col-md-3">
+              <p>Lowest: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.lowprc}}</span></p>
+            </div>
           </div>
-          <!-- IF TIGHT END -->
-          <div ng-show="selectedPlayer.pos == 'TE'">
-            <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header">Receiving Yards</p>
-              <tr>
-                <th class="col-sm-3">{{ffLY3()}}</th>
-                <th class="col-sm-3">{{ffLY2()}}</th>
-                <th class="col-sm-3">{{ffLY()}}</th>
-                <th class="col-sm-3">PER</th>
-              </tr>
-              <tr>
-                <td>{{selectedPlayer.pyd13}}</td>
-                <td>{{selectedPlayer.pyd14}}</td>
-                <td>{{selectedPlayer.pyd}}</td>
-                <td>{{selectedPlayer.pydper}}</td>
-              </tr>
-            </table>
+        </div> <!-- End Command Center -->
+
+        <div class="col-md-12 player-info">
+          <div class="col-md-4">
+            <p ng-hide="selectedPlayer.pos === 'DEF'">Player: <span>{{selectedPlayer.player}}</span></p>
+            <p ng-show="selectedPlayer.pos === 'DEF'">Team: <span>{{selectedPlayer.player}}</span></p>
+          </div>
+          <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
+            <p>Pos: {{selectedPlayer.pos}}</p>
+          </div>
+          <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
+            <p>NFL: <span>{{selectedPlayer.team}}</span></p>
+          </div>
+          <div class="col-md-2">
+            <p>Bye: {{selectedPlayer.bye}}</p>
+          </div>
+          <div ng-hide="selectedPlayer.pos === 'DEF'" class="col-md-2">
+            <p>GP: {{selectedPlayer.gp}}</p>
+          </div>
+          <div ng-show="selectedPlayer.pos === 'DEF'" class="col-md-6">
+            <!-- TODO include DEFENSE's previous year's rank -->
+            <p>Previous Year's Rank: {{selectedPlayer.gp}}th</p>
+          </div>
+          <div ng-hide="selectedPlayer.pos === 'DEF'">
+            <div class="col-md-5">
+              <p ng-if="selectedPlayer.dc === '1'">Depth Chart: <span style="color:green;">FIRST</span> String</p>
+              <p ng-if="selectedPlayer.dc === '2'">Depth Chart: <span style="color:orange;">SECOND</span> String</p>
+              <p ng-if="selectedPlayer.dc === '3'">Depth Chart: <span style="color:red;">THIRD</span> String</p>
+            </div>
+            <div class="col-md-3" ng-if="selectedPlayer.sspd === 'TRUE'">
+              <p>Suspended: <span style="color:red;">YES</span></p>
+            </div>
+            <div class="col-md-3" ng-if="selectedPlayer.inj === 'TRUE'">
+              <p>INJURED: <span style="color:red;">YES</span></p>
+            </div>
+            <div class="col-md-5" ng-if="selectedPlayer.handcuff === 'TRUE'">
+              <p><span style="color:red;">Handcuff</span> to {{selectedPlayer.hcname}}</p>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12 player-stats-box dd-value-stats">
+          <div class="col-md-6">
 
-          <div class="col-md-12 player-stats">
-            <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
-              <div class="col-md-7">
+            <div class="col-md-12 player-stats">
+              <div class="col-md-7 col-sm-4">
                 &nbsp; <!-- Player Stats -->
-                <p>Plays:</p>
-                <p>Pass / Rec Per:</p>
-                <p>Yards / Rush:</p>
-                <p>Yds after Rec:</p><!-- previously: Yards After Catch (YAC) -->
-                <p>Fumbles:</p>
-                <p>Interceptions:</p>
+                <p>{{ffLY()}} Points:</p>
+                <p>Avg Pts / Wk:</p>
+                <p>Pts St. Dev:</p>
+                <p>Highest Wk:</p>
+                <p>Lowest Week:</p>
+                <p>Hi / Low St.Dev:</p>
               </div>
-              <div class="col-md-3 player-score">
+              <div class="col-md-3 col-sm-4 player-score">
                 &nbsp; <!-- Metric -->
-                <p class="dd-bold">{{selectedPlayer.plays}}</p>
-                <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
-                <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
-                <p class="dd-bold">{{selectedPlayer.yac}}</p>
-                <p class="dd-bold">{{selectedPlayer.fum}}</p>
-                <p class="dd-bold">{{selectedPlayer.int}}</p>
+                <p class="dd-bold">{{selectedPlayer.fpts}}</p>
+                <p class="dd-bold">{{selectedPlayer.appw}}</p>
+                <p class="dd-bold">{{selectedPlayer.ptstd}}</p>
+                <p class="dd-bold">{{selectedPlayer.high}}</p>
+                <p class="dd-bold">{{selectedPlayer.low}}</p>
+                <p class="dd-bold">{{selectedPlayer.hlsd}}</p>
               </div>
-              <div class="col-md-2 player-rank">
-                <span ng-if="selectedPlayer.player">Rank</span>
+              <div class="col-md-2 col-sm-4 player-rank">
+                <span ng-if="selectedPlayer.fpts">Rank</span>
                 <!-- TODO ADD IN RANK -->
                 <p>{{selectedPlayer.gp}}</p>
                 <p>{{selectedPlayer.gp}}</p>
@@ -633,144 +518,208 @@
                 <p>{{selectedPlayer.gp}}</p>
               </div>
             </div>
-            <!-- DEFENSE / SPECIAL TEAMS -->
-            <div ng-show="selectedPlayer.pos == 'DEF'">
-              <div class="col-md-7">
-                &nbsp;
-                <p>Sacks:</p>
-                <p>Fum Rec:</p>
-                <p>Interceptions:</p>
-                <p>Yds after Rec:</p>
-                <p>Touchdowns:</p>
-                <p>Tot. Yds Agnst:</p>
+
+            <!-- OLD APPROACH
+            <p>{{ffLY()}} Points: <span class="dd-bold">{{selectedPlayer.fpts}}</span><span class="dd-percentile">{{selectedPlayer.fptsPer}}</span></p>
+            <p>Avg Pts /Week: <span class="dd-bold">{{selectedPlayer.appw}}</span></p>
+            <p>Points St. Dev: <span class="dd-bold">{{selectedPlayer.ptstd}}</span></p>
+            <p>Highest Week: <span class="dd-bold">{{selectedPlayer.high}}</span></p>
+            <p>Lowest Week: <span class="dd-bold">{{selectedPlayer.low}}</span></p>
+            <p>High / Low St. Dev: <span class="dd-bold">{{selectedPlayer.hlsd}}</span></p>
+                END OLD APPROACH -->
+
+            <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K' || selectedPlayer.pos == 'TE'">
+              <table class="table table-bordered no-val-spcr">
+                <p class="dd-stats-header">Rushing Yards</p>
+                <tr>
+                  <th class="col-sm-3">{{ffLY3()}}</th>
+                  <th class="col-sm-3">{{ffLY2()}}</th>
+                  <th class="col-sm-3">{{ffLY()}}</th>
+                  <th class="col-sm-3">PER</th>
+                </tr>
+                <tr>
+                  <td>{{selectedPlayer.ryd13}}</td>
+                  <td>{{selectedPlayer.ryd14}}</td>
+                  <td>{{selectedPlayer.ryd}}</td>
+                  <td>{{selectedPlayer.rydper}}</td>
+                </tr>
+              </table>
+              <table class="table table-bordered no-val-spcr">
+                <p class="dd-stats-header">Rushing Touchdowns</p>
+                <tr>
+                  <th class="col-sm-3">{{ffLY3()}}</th>
+                  <th class="col-sm-3">{{ffLY2()}}</th>
+                  <th class="col-sm-3">{{ffLY()}}</th>
+                  <th class="col-sm-3">PER</th>
+                </tr>
+                <tr>
+                  <td>{{selectedPlayer.rtd13}}</td>
+                  <td>{{selectedPlayer.rtd14}}</td>
+                  <td>{{selectedPlayer.rtd}}</td>
+                  <td>{{selectedPlayer.rtdper}}</td>
+                </tr>
+              </table>
+            </div>
+            <!-- IF TIGHT END -->
+            <div ng-show="selectedPlayer.pos == 'TE'">
+              <table class="table table-bordered no-val-spcr">
+                <p class="dd-stats-header">Receiving Yards</p>
+                <tr>
+                  <th class="col-sm-3">{{ffLY3()}}</th>
+                  <th class="col-sm-3">{{ffLY2()}}</th>
+                  <th class="col-sm-3">{{ffLY()}}</th>
+                  <th class="col-sm-3">PER</th>
+                </tr>
+                <tr>
+                  <td>{{selectedPlayer.pyd13}}</td>
+                  <td>{{selectedPlayer.pyd14}}</td>
+                  <td>{{selectedPlayer.pyd}}</td>
+                  <td>{{selectedPlayer.pydper}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6">
+
+            <div class="col-md-12 player-stats">
+              <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
+                <div class="col-md-7">
+                  &nbsp; <!-- Player Stats -->
+                  <p>Plays:</p>
+                  <p>Pass / Rec Per:</p>
+                  <p>Yards / Rush:</p>
+                  <p>Yds after Rec:</p><!-- previously: Yards After Catch (YAC) -->
+                  <p>Fumbles:</p>
+                  <p>Interceptions:</p>
+                </div>
+                <div class="col-md-3 player-score">
+                  &nbsp; <!-- Metric -->
+                  <p class="dd-bold">{{selectedPlayer.plays}}</p>
+                  <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
+                  <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
+                  <p class="dd-bold">{{selectedPlayer.yac}}</p>
+                  <p class="dd-bold">{{selectedPlayer.fum}}</p>
+                  <p class="dd-bold">{{selectedPlayer.int}}</p>
+                </div>
+                <div class="col-md-2 player-rank">
+                  <span ng-if="selectedPlayer.player">Rank</span>
+                  <!-- TODO ADD IN RANK -->
+                  <p>{{selectedPlayer.gp}}</p>
+                  <p>{{selectedPlayer.gp}}</p>
+                  <p>{{selectedPlayer.gp}}</p>
+                  <p>{{selectedPlayer.gp}}</p>
+                  <p>{{selectedPlayer.gp}}</p>
+                  <p>{{selectedPlayer.gp}}</p>
+                </div>
               </div>
-              <div class="col-md-3 player-score">
-                &nbsp;
-                <!-- TODO CHANGE TO NEW STAT -->
-                <p class="dd-bold">{{selectedPlayer.plays}}</p>
-                <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
-                <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
-                <p class="dd-bold">{{selectedPlayer.yac}}</p>
-                <p class="dd-bold">{{selectedPlayer.fum}}</p>
-                <p class="dd-bold">{{selectedPlayer.int}}</p>
+              <!-- DEFENSE / SPECIAL TEAMS -->
+              <div ng-show="selectedPlayer.pos == 'DEF'">
+                <div class="col-md-7">
+                  &nbsp;
+                  <p>Sacks:</p>
+                  <p>Fum Rec:</p>
+                  <p>Interceptions:</p>
+                  <p>Yds after Rec:</p>
+                  <p>Touchdowns:</p>
+                  <p>Tot. Yds Agnst:</p>
+                </div>
+                <div class="col-md-3 player-score">
+                  &nbsp;
+                  <!-- TODO CHANGE TO NEW STAT -->
+                  <p class="dd-bold">{{selectedPlayer.plays}}</p>
+                  <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
+                  <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
+                  <p class="dd-bold">{{selectedPlayer.yac}}</p>
+                  <p class="dd-bold">{{selectedPlayer.fum}}</p>
+                  <p class="dd-bold">{{selectedPlayer.int}}</p>
+                </div>
+                <div class="col-md-2 player-rank">
+                  <span ng-if="selectedPlayer.player">Rank</span>
+                  <!-- TODO ADD IN RANK -->
+                </div>
               </div>
-              <div class="col-md-2 player-rank">
-                <span ng-if="selectedPlayer.player">Rank</span>
-                <!-- TODO ADD IN RANK -->
+              <!-- KICKERS -->
+              <div ng-show="selectedPlayer.pos == 'K'">
+                <div class="col-md-7">
+                  &nbsp;
+                  <p>Field Goals:</p>
+                  <p>FGs Success:</p>
+                  <p>FGs Missed:</p>
+                  <p>Extra Points:</p>
+                  <p>XPTs Missed:</p>
+                  <p>XPTs Success:</p>
+                </div>
+                <div class="col-md-3 player-score">
+                  &nbsp;
+                  <!-- TODO CHANGE TO NEW STAT -->
+                  <p class="dd-bold">{{selectedPlayer.plays}}</p>
+                  <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
+                  <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
+                  <p class="dd-bold">{{selectedPlayer.yac}}</p>
+                  <p class="dd-bold">{{selectedPlayer.fum}}</p>
+                  <p class="dd-bold">{{selectedPlayer.int}}</p>
+                </div>
+                <div class="col-md-2 player-rank">
+                  <span ng-if="selectedPlayer.player">Rank</span>
+                  <!-- TODO ADD IN RANK -->
+                </div>
               </div>
             </div>
-            <!-- KICKERS -->
-            <div ng-show="selectedPlayer.pos == 'K'">
-              <div class="col-md-7">
-                &nbsp;
-                <p>Field Goals:</p>
-                <p>FGs Success:</p>
-                <p>FGs Missed:</p>
-                <p>Extra Points:</p>
-                <p>XPTs Missed:</p>
-                <p>XPTs Success:</p>
-              </div>
-              <div class="col-md-3 player-score">
-                &nbsp;
-                <!-- TODO CHANGE TO NEW STAT -->
-                <p class="dd-bold">{{selectedPlayer.plays}}</p>
-                <p ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}%</p>
-                <p class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</p>
-                <p class="dd-bold">{{selectedPlayer.yac}}</p>
-                <p class="dd-bold">{{selectedPlayer.fum}}</p>
-                <p class="dd-bold">{{selectedPlayer.int}}</p>
-              </div>
-              <div class="col-md-2 player-rank">
-                <span ng-if="selectedPlayer.player">Rank</span>
-                <!-- TODO ADD IN RANK -->
-              </div>
+
+            <div ng-hide="selectedPlayer.pos === 'DEF' || selectedPlayer.pos === 'K' || selectedPlayer.pos === 'TE'">
+              <table class="table table-bordered no-val-spcr">
+                <p class="dd-stats-header"><span ng-show="selectedPlayer.pos === 'QB'">Passing</span><span ng-hide="selectedPlayer.pos === 'QB'">Receiving</span> Yards</p>
+                <tr>
+                  <th class="col-sm-3">{{ffLY3()}}</th>
+                  <th class="col-sm-3">{{ffLY2()}}</th>
+                  <th class="col-sm-3">{{ffLY()}}</th>
+                  <th class="col-sm-3">PER</th>
+                </tr>
+                <tr>
+                  <td>{{selectedPlayer.pyd13}}</td>
+                  <td>{{selectedPlayer.pyd14}}</td>
+                  <td>{{selectedPlayer.pyrd}}</td>
+                  <td>{{selectedPlayer.pydper}}</td>
+                </tr>
+              </table>
+              <table class="table table-bordered no-val-spcr">
+                <p class="dd-stats-header"><span ng-show="selectedPlayer.pos === 'QB'">Passing</span><span ng-hide="selectedPlayer.pos === 'QB'">Receiving</span> Touchdowns</p>
+                <tr>
+                  <th class="col-sm-3">{{ffLY3()}}</th>
+                  <th class="col-sm-3">{{ffLY2()}}</th>
+                  <th class="col-sm-3">{{ffLY()}}</th>
+                  <th class="col-sm-2">PER</th>
+                </tr>
+                <tr>
+                  <td>{{selectedPlayer.ptd13}}</td>
+                  <td>{{selectedPlayer.ptd14}}</td>
+                  <td>{{selectedPlayer.ptd}}</td>
+                  <td>{{selectedPlayer.ptdper}}</td>
+                </tr>
+              </table>
+
             </div>
-          </div>
-
-          <!-- OLD WAY FIRST: QB, RB, WR, TE. SECOND: D/ST. THIRD: K.
-
-          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
-            <p>Plays: <span class="dd-bold">{{selectedPlayer.plays}}</span></p>
-            <p>Pass/Rec Per: <span ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}</span></p>
-            <p>Yards per Rush: <span class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</span></p>
-            <p>Yards after Catch: <span class="dd-bold">{{selectedPlayer.yac}}</span></p>
-            <p>Fumbles: <span class="dd-bold">{{selectedPlayer.fum}}</span></p>
-            <p>Interception(s): <span class="dd-bold">{{selectedPlayer.int}}</span></p>
-          </div>
-          <div ng-show="selectedPlayer.pos == 'DEF'">
-            <p>Defense: <span class="dd-bold">{{selectedPlayer.plays}}</span></p>
-            <p>Pass/Rec Per: <span ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}</span></p>
-            <p>Yards per Rush: <span class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</span></p>
-            <p>Yards after Catch: <span class="dd-bold">{{selectedPlayer.yac}}</span></p>
-            <p>Fumbles: <span class="dd-bold">{{selectedPlayer.fum}}</span></p>
-            <p>Interception(s): <span class="dd-bold">{{selectedPlayer.int}}</span></p>
-          </div>
-          <div ng-show="selectedPlayer.pos == 'K'">
-            <p>Field Goals: <span class="dd-bold">{{selectedPlayer.plays}}</span></p>
-            <p>Field Goals Missed: <span ng-show="selectedPlayer.passperc" class="dd-bold">{{selectedPlayer.passperc}}</span></p>
-            <p>Field Goals Success: <span class="dd-bold">{{selectedPlayer.ypr | limitTo: 4}}</span></p>
-            <p>Extra Points: <span class="dd-bold">{{selectedPlayer.yac}}</span></p>
-            <p>Extra Points Missed: <span class="dd-bold">{{selectedPlayer.fum}}</span></p>
-            <p>Extra Points Success: <span class="dd-bold">{{selectedPlayer.int}}</span></p>
-          </div>
-
-          OLD WAY -->
-
-
-          <div ng-hide="selectedPlayer.pos === 'DEF' || selectedPlayer.pos === 'K' || selectedPlayer.pos === 'TE'">
-            <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header"><span ng-show="selectedPlayer.pos === 'QB'">Passing</span><span ng-hide="selectedPlayer.pos === 'QB'">Receiving</span> Yards</p>
-              <tr>
-                <th class="col-sm-3">{{ffLY3()}}</th>
-                <th class="col-sm-3">{{ffLY2()}}</th>
-                <th class="col-sm-3">{{ffLY()}}</th>
-                <th class="col-sm-3">PER</th>
-              </tr>
-              <tr>
-                <td>{{selectedPlayer.pyd13}}</td>
-                <td>{{selectedPlayer.pyd14}}</td>
-                <td>{{selectedPlayer.pyrd}}</td>
-                <td>{{selectedPlayer.pydper}}</td>
-              </tr>
-            </table>
-            <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header"><span ng-show="selectedPlayer.pos === 'QB'">Passing</span><span ng-hide="selectedPlayer.pos === 'QB'">Receiving</span> Touchdowns</p>
-              <tr>
-                <th class="col-sm-3">{{ffLY3()}}</th>
-                <th class="col-sm-3">{{ffLY2()}}</th>
-                <th class="col-sm-3">{{ffLY()}}</th>
-                <th class="col-sm-2">PER</th>
-              </tr>
-              <tr>
-                <td>{{selectedPlayer.ptd13}}</td>
-                <td>{{selectedPlayer.ptd14}}</td>
-                <td>{{selectedPlayer.ptd}}</td>
-                <td>{{selectedPlayer.ptdper}}</td>
-              </tr>
-            </table>
-
-          </div>
-          <!-- IF Tight End -->
-          <div ng-show="selectedPlayer.pos == 'TE'">
-            <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header">Receiving Touchdowns</p>
-              <tr>
-                <th class="col-sm-3">{{ffLY3()}}</th>
-                <th class="col-sm-3">{{ffLY2()}}</th>
-                <th class="col-sm-3">{{ffLY()}}</th>
-                <th class="col-sm-3">PER</th>
-              </tr>
-              <tr>
-                <td>{{selectedPlayer.ptd13}}</td>
-                <td>{{selectedPlayer.ptd14}}</td>
-                <td>{{selectedPlayer.ptd}}</td>
-                <td>{{selectedPlayer.ptdper}}</td>
-              </tr>
-            </table>
+            <!-- IF Tight End -->
+            <div ng-show="selectedPlayer.pos == 'TE'">
+              <table class="table table-bordered no-val-spcr">
+                <p class="dd-stats-header">Receiving Touchdowns</p>
+                <tr>
+                  <th class="col-sm-3">{{ffLY3()}}</th>
+                  <th class="col-sm-3">{{ffLY2()}}</th>
+                  <th class="col-sm-3">{{ffLY()}}</th>
+                  <th class="col-sm-3">PER</th>
+                </tr>
+                <tr>
+                  <td>{{selectedPlayer.ptd13}}</td>
+                  <td>{{selectedPlayer.ptd14}}</td>
+                  <td>{{selectedPlayer.ptd}}</td>
+                  <td>{{selectedPlayer.ptdper}}</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-
+      </div> <!-- End Player Details -->
       <!-- <div class="dd-command-center">
         <div class="col-md-12 cmd-ctr">
           <div class="col-md-5 col-sm-12">
@@ -805,21 +754,126 @@
         </div>
       </div> -->
       <!-- /Command Center-->
-
+      <div ng-show="draftRoster" class="col-lg-offset-2 col-lg-10 col-md-offset-1 col-md-9 col-sm-12 col-xs-12">
+        <table class="table dd-final-roster">
+          <tr>
+            <th class="col-sm-2">Pos.</th>
+            <th class="col-sm-5">Player Name</th>
+            <th class="col-sm-2">BYE</th>
+            <th class="col-sm-2">Price</th>
+          </tr>
+          <tr>
+            <td>QB</td>
+            <td>{{purchQBs[0].player}}</td>
+            <td>{{purchQBs[0].bye}}</td>
+            <td>{{purchQBs[0].ap}}</td>
+          </tr>
+          <tr>
+            <td>RB</td>
+            <td>{{purchRBs[0].player}}</td>
+            <td>{{purchRBs[0].bye}}</td>
+            <td>{{purchRBs[0].ap}}</td>
+          </tr>
+          <!-- Pending League Changes
+          <tr>
+            <td>RB</td>
+            <td>{{myRBs[1].player}}</td>
+            <td>{{myRBs[1].bye}}</td>
+            <td>{{myRBs[1].price}}</td>
+          </tr>
+          -->
+          <tr>
+            <td>WR</td>
+            <td>{{myWRs[0].player}}</td>
+            <td>{{myWRs[0].bye}}</td>
+            <td>{{myWRs[0].price}}</td>
+          </tr>
+          <tr>
+            <td>WR</td>
+            <td>{{myWRs[1].player}}</td>
+            <td>{{myWRs[1].bye}}</td>
+            <td>{{myWRs[1].price}}</td>
+          </tr>
+          <tr>
+            <td>TE</td>
+            <td>{{myTEs[0].player}}</td>
+            <td>{{myTEs[0].bye}}</td>
+            <td>{{myTEs[0].price}}</td>
+          </tr>
+          <tr>
+            <td>FLEX</td>
+            <td>{{purchFlex[0].player}}</td>
+            <td>{{purchFlex[0].bye}}</td>
+            <td>{{purchFlex[0].ap}}</td>
+          </tr>
+          <tr>
+            <td>D/ST</td>
+            <td>{{myDEFs[0].player}}</td>
+            <td>{{myDEFs[0].bye}}</td>
+            <td>{{myDEFs[0].price}}</td>
+          </tr>
+          <tr>
+            <td>K</td>
+            <td>{{myKckr[0].player}}</td>
+            <td>{{myKckr[0].bye}}</td>
+            <td>{{myKckr[0].price}}</td>
+          </tr>
+          <tr class="pos-chg">
+            <td>BE</td>
+            <td>{{purchBE[0].player}}</td>
+            <td>{{purchBE[0].bye}}</td>
+            <td>{{purchBE[0].ap}}</td>
+          </tr>
+          <tr>
+            <td>BE</td>
+            <td>{{purchBE[1].player}}</td>
+            <td>{{purchBE[1].bye}}</td>
+            <td>{{purchBE[1].ap}}</td>
+          </tr>
+          <tr>
+            <td>BE</td>
+            <td>{{purchBE[2].player}}</td>
+            <td>{{purchBE[2].bye}}</td>
+            <td>{{purchBE[2].ap}}</td>
+          </tr>
+          <tr>
+            <td>BE</td>
+            <td>{{purchBE[3].player}}</td>
+            <td>{{purchBE[3].bye}}</td>
+            <td>{{purchBE[3].ap}}</td>
+          </tr>
+          <tr>
+            <td>BE</td>
+            <td>{{purchBE[4].player}}</td>
+            <td>{{purchBE[4].bye}}</td>
+            <td>{{purchBE[4].ap}}</td>
+          </tr>
+          <tr>
+            <td>BE</td>
+            <td>{{purchBE[5].player}}</td>
+            <td>{{purchBE[5].bye}}</td>
+            <td>{{purchBE[5].ap}}</td>
+          </tr>
+          <tr>
+            <td>BE</td>
+            <td>{{purchBE[6].player}}</td>
+            <td>{{purchBE[6].bye}}</td>
+            <td>{{purchBE[6].ap}}</td>
+          </tr>
+        </table>
+      </div> <!-- /Final Roster -->
+      <div ng-show="draftRoster" class="col-md-12 col-sm-12 .auct-bdgt" id="auctionBudget">
+        <p class="bdgt-title">budget</p>
+        <div class="col-md-4">
+          <p>Remaining: <span>${{remainingBalance}}</span></p>
+        </div>
+        <div class="col-md-4">
+          <p>Max Bid: <span>${{maxBid}}</span></p>
+        </div>
+        <div class="col-md-4">
+          <p>Amt Spent: <span>${{amountSpent}}</span></p>
+        </div>
+      </div>
     </div> <!-- /Right Column -->
   </div> <!-- /Container && /.dd-ctr -->
 </div> <!-- Controller -->
-
-<!--
-<div class="col-md-12">
-  <div class="col-md-8">
-    <input type="text" class="player-input">
-  </div>
-  <div class="col-md-4">
-    <div class="dd-go-pass">
-      <button class="btn btn-success">Go</button>
-      <button class="btn btn-danger">Pass</button>
-    </div>
-  </div>
-</div>
--->
