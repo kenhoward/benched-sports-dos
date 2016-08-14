@@ -15,17 +15,16 @@
           </div>
         </div> -->
         <!-- TODO  MOVE -->
-      <!-- <div class="roster-view-chg">
+      <div class="roster-view-chg">
         Research <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
         Acquired <input type="radio" name="rosterView" ng-click="alternateView()">
         <i uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" class="fa fa-info-circle"></i>
-
-      </div> -->
+      </div>
       <!-- <div>
         $200
       </div> -->
       <!-- Default View -->
-      <table ng-show="defaultRosterView" class="table-condensed dd-plyr-table"> <!-- ng-repeat="roster in viewRoster" -->
+      <table ng-show="preDraftRoster" class="table-condensed dd-plyr-table"> <!-- ng-repeat="roster in viewRoster" -->
         <tr>
           <th class="col-sm-2">Pos.</th>
           <th class="col-sm-5">Player Name</th>
@@ -423,9 +422,10 @@
         </div>
         <div class="col-lg-6">
           <div class="dd-go-pass">
-            <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Buy</button>
-            <button ng-disabled="!selectedPlayer" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button>
-            <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-info btn">Clear</button>
+            <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Add</button>
+            <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-warning btn">Clear</button>
+            <button ng-click="readyToDraft()" class="btn btn-info btn">Draft!</button>
+            <!-- <button ng-disabled="!selectedPlayer" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button> -->
           </div>
         </div>
       </div>
@@ -453,16 +453,16 @@
 
         <div class="col-md-12 cmd-ctr">
           <div class="col-md-3 col-sm-12">
-            <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">$</span>{{selectedPlayer.avgprc}}</p>
+            <p>Avg Price: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.avgprc}}</span></p>
           </div>
           <div class="col-md-3">
-            <p>$ St.Dev: {{selectedPlayer.prcstdev}}</p>
+            <p>PRC St.Dev: <span class="dd-avg-price">{{selectedPlayer.prcstdev}}</span></p>
           </div>
           <div class="col-md-3">
-            <p>Highest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.highprc}}</p>
+            <p>Highest: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.highprc}}</span></p>
           </div>
           <div class="col-md-3">
-            <p>Lowest: <span ng-if="selectedPlayer.player">$</span>{{selectedPlayer.lowprc}}</p>
+            <p>Lowest: <span class="dd-avg-price" ng-if="selectedPlayer.player">${{selectedPlayer.lowprc}}</span></p>
           </div>
         </div>
 
@@ -549,7 +549,7 @@
           <p>High / Low St. Dev: <span class="dd-bold">{{selectedPlayer.hlsd}}</span></p>
               END OLD APPROACH -->
 
-          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
+          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K' || selectedPlayer.pos == 'TE'">
             <table class="table table-bordered no-val-spcr">
               <p class="dd-stats-header">Rushing Yards</p>
               <tr>
@@ -580,7 +580,24 @@
                 <td>{{selectedPlayer.rtdper}}</td>
               </tr>
             </table>
-
+          </div>
+          <!-- IF TIGHT END -->
+          <div ng-show="selectedPlayer.pos == 'TE'">
+            <table class="table table-bordered no-val-spcr">
+              <p class="dd-stats-header">Receiving Yards</p>
+              <tr>
+                <th class="col-sm-3">{{ffLY3()}}</th>
+                <th class="col-sm-3">{{ffLY2()}}</th>
+                <th class="col-sm-3">{{ffLY()}}</th>
+                <th class="col-sm-3">PER</th>
+              </tr>
+              <tr>
+                <td>{{selectedPlayer.pyd13}}</td>
+                <td>{{selectedPlayer.pyd14}}</td>
+                <td>{{selectedPlayer.pyd}}</td>
+                <td>{{selectedPlayer.pydper}}</td>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="col-md-6">
@@ -700,9 +717,9 @@
           OLD WAY -->
 
 
-          <div ng-hide="selectedPlayer.pos == 'DEF' || selectedPlayer.pos == 'K'">
+          <div ng-hide="selectedPlayer.pos === 'DEF' || selectedPlayer.pos === 'K' || selectedPlayer.pos === 'TE'">
             <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header">Passing Yards</p>
+              <p class="dd-stats-header"><span ng-show="selectedPlayer.pos === 'QB'">Passing</span><span ng-hide="selectedPlayer.pos === 'QB'">Receiving</span> Yards</p>
               <tr>
                 <th class="col-sm-3">{{ffLY3()}}</th>
                 <th class="col-sm-3">{{ffLY2()}}</th>
@@ -717,7 +734,7 @@
               </tr>
             </table>
             <table class="table table-bordered no-val-spcr">
-              <p class="dd-stats-header">Passing Touchdowns</p>
+              <p class="dd-stats-header"><span ng-show="selectedPlayer.pos === 'QB'">Passing</span><span ng-hide="selectedPlayer.pos === 'QB'">Receiving</span> Touchdowns</p>
               <tr>
                 <th class="col-sm-3">{{ffLY3()}}</th>
                 <th class="col-sm-3">{{ffLY2()}}</th>
@@ -732,6 +749,24 @@
               </tr>
             </table>
 
+          </div>
+          <!-- IF Tight End -->
+          <div ng-show="selectedPlayer.pos == 'TE'">
+            <table class="table table-bordered no-val-spcr">
+              <p class="dd-stats-header">Receiving Touchdowns</p>
+              <tr>
+                <th class="col-sm-3">{{ffLY3()}}</th>
+                <th class="col-sm-3">{{ffLY2()}}</th>
+                <th class="col-sm-3">{{ffLY()}}</th>
+                <th class="col-sm-3">PER</th>
+              </tr>
+              <tr>
+                <td>{{selectedPlayer.ptd13}}</td>
+                <td>{{selectedPlayer.ptd14}}</td>
+                <td>{{selectedPlayer.ptd}}</td>
+                <td>{{selectedPlayer.ptdper}}</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>

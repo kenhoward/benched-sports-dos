@@ -360,6 +360,27 @@ console.log(player);
     $scope.cpVal.level = $scope.cpVal={level: 1};
   }
 
+  $scope.readyToDraft = function() {
+    swal({
+      title: "Are you ready to draft?",
+      text: "You can return to this view after proceeding",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#5cb85c",
+      confirmButtonText: "Let's do this!",
+      cancelButtonText: "Not yet!",
+      closeOnConfirm: true,
+      closeOnCancel: true
+    },function(isConfirm) {
+      if (isConfirm) {
+        // Change view here
+        console.log("View ready to change");
+      } else {
+        console.log("cancelled")
+      }
+    });
+  }
+
   $scope.oopsBtn = function(player) {
     var qbArr = $scope.myQBs;
     var rbArr = $scope.myRBs;
@@ -472,13 +493,13 @@ console.log(player);
   }
 
   // Roster views
-  $scope.defaultRosterView = true;
+  $scope.preDraftRoster = true;
   $scope.defaultView = function () {
-      $scope.defaultRosterView = true;
+      $scope.preDraftRoster = true;
       $scope.altView = false;
   }
   $scope.alternateView = function() {
-  $scope.defaultRosterView = false;
+  $scope.preDraftRoster = false;
   $scope.altView = true;
   }
 
