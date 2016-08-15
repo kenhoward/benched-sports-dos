@@ -409,15 +409,15 @@ console.log(player);
         qbArr.splice(i, 1);
       }
       // TODO buggy, Fix either here or up in backupPlyr
-      // for (var j = 0; j < buu.length; j++) {
-      //   if (buu[j].player === player.player) {
-      //     all.push(buu[j]);
-      //   }
+      for (var j = 0; j < buu.length; j++) {
+        if (buu[j].player === player.player) {
+          all.push(buu[j]);
+        }
       //   // Previous v1
       //   // if (buu[i].player === player.player) {
       //   //   all.push(buu[i]);
       //   // }
-      // }
+      }
     }
     for (var i = 0; i < rbArr.length; i++) {
       if (rbArr[i].player === player.player) {

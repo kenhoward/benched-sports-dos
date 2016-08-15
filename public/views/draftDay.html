@@ -17,7 +17,9 @@
           <th class="col-sm-2">Score</th>
           <th class="col-sm-1">BYE</th>
           <th class="col-sm-1">Price</th>
-          <th class="col-sm-1">Buy</th>
+          <!-- <th ng-if="preDrftPlayerDetails" class="col-sm-1">&nbsp;</th> -->
+          <!-- <th ng-if="draftRoster" class="col-sm-1">Buy</th> -->
+          <th class="col-sm-1"></th>
         </tr>
         <tr>
           <td>QB</td>
@@ -25,8 +27,8 @@
           <td>{{myQBs[0].scr}}</td>
           <td>{{myQBs[0].bye}}</td>
           <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="myQBs[0].ap" ng-if="myQBs[0]"></td>
-          <td><a ng-hide="preDraftView" ng-if="myQBs[0]" ng-click="purchasedPlayer(myQBs[0])" href=""><img ng-src="images/chk_mrk.png" ></a></td>
-          <td><a ng-show="preDraftView" ng-click="oopsBtn(myQBs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-show="preDrftPlayerDetails" ng-if="myQBs[0]" ng-click="oopsBtn(myQBs[0])" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-hide="preDrftPlayerDetails" ng-if="myQBs[0]" ng-click="purchasedPlayer(myQBs[0])" href=""><img ng-src="images/chk_mrk.png" ></a></td>
         </tr>
         <tr>
           <td>QB</td>
@@ -343,8 +345,7 @@
           <td>{{myDEFs[0].price}}</td>
         </tr>
         <tr>
-          <td>K</td>
-          <td>{{myKckr[0].player}}</td>
+          <td>K</td>          <td>{{myKckr[0].player}}</td>
           <td>{{myKckr[0].bye}}</td>
           <td>{{myKckr[0].price}}</td>
         </tr>
@@ -867,11 +868,11 @@
         <div class="col-md-4">
           <p>Remaining: <span>${{remainingBalance}}</span></p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <p>Max Bid: <span>${{maxBid}}</span></p>
         </div>
-        <div class="col-md-4">
-          <p>Amt Spent: <span>${{amountSpent}}</span></p>
+        <div class="col-md-5">
+          <p>Avg <span>${{amountSpent}}</span> left per spot</p>
         </div>
       </div>
     </div> <!-- /Right Column -->
