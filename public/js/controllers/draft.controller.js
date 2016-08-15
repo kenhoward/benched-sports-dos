@@ -2,7 +2,7 @@
 
 var app = angular.module('FantasyFootball');
 
-app.controller('DraftDayController', function($scope, DraftDayService, RosterService) {
+app.controller('DraftDayController', function($scope, DraftDayService, RosterService, SortPlayerService) {
 
   // $scope.viewRoster = rosterData;
 
@@ -528,6 +528,34 @@ console.log(player);
     ],
     selected: 'top'
   };
+
+  // Sortable Chart Modal
+  $scope.items = DraftDayService;
+  $scope.qbs = SortPlayerService.qbsArr;
+  $scope.rbs = SortPlayerService.rbsArr;
+  $scope.wrs = SortPlayerService.wrsArr;
+  $scope.tes = SortPlayerService.tesArr;
+  $scope.defs = SortPlayerService.defsArr;
+  $scope.ks = SortPlayerService.ksArr;
+
+  $scope.sortViewPositions = ['All', 'QBs', 'RBs', 'WRs', 'TEs', 'DSTs', 'Ks'];
+  $scope.selection = $scope.sortViewPositions[0];
+
+  $scope.sort = {
+      column: '',
+      descending: false
+  };
+  $scope.changeSorting = function(column) {
+
+      var sort = $scope.sort;
+
+      if (sort.column === column) {
+          sort.descending = !sort.descending;
+      } else {
+          sort.column = column;
+          sort.descending = false;
+      }
+  };  
 
   // Keeselpng the following ...
   $scope.ffLY = function() {

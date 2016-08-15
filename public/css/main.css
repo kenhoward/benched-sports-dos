@@ -331,6 +331,22 @@ a:active {
 	padding-left: 2px;
 }
 
+.sc-button {
+	margin-top: 10px;
+	width: 100%;
+}
+
+.sort-player-dropdown {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: medium;
+	padding-top: 5px;
+}
+
+.sc-table-views table {
+	cursor: pointer;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;

@@ -720,6 +720,165 @@
             </div>
           </div>
         </div>
+        <!-- Sortable Chart Modal -->
+        <button class="btn btn-primary btn sc-button" data-toggle="modal" data-target="#sortableList">Sortable Chart</button>
+
+        <div id="sortableList" class="modal fade">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="sort-player-dropdown">
+                Postion:
+                <select ng-model="selection" ng-options="position for position in sortViewPositions"></select>
+              </div>
+              <div ng-switch on ="selection" class="sc-table-views">
+                <table ng-switch-when="All" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">Poistion</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">Player</th>
+                      <th ng-click="changeSorting('ryd')">Rush Yds</th>
+                      <th ng-click="changeSorting('ypr')">Yds/Rush</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in items|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-when="QBs" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">Poistion</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">Player</th>
+                      <th ng-click="changeSorting('ryd')">Rush Yds</th>
+                      <th ng-click="changeSorting('ypr')">Yds/Rush</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in qbs|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-when="RBs" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">RBs</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">RBs</th>
+                      <th ng-click="changeSorting('ryd')">RBs</th>
+                      <th ng-click="changeSorting('ypr')">RBs</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in rbs|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-when="WRs" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">A</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">B</th>
+                      <th ng-click="changeSorting('ryd')">C</th>
+                      <th ng-click="changeSorting('ypr')">D</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in wrs|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-when="TEs" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">A</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">B</th>
+                      <th ng-click="changeSorting('ryd')">C</th>
+                      <th ng-click="changeSorting('ypr')">D</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in tes|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-when="DSTs" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">A</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">B</th>
+                      <th ng-click="changeSorting('ryd')">C</th>
+                      <th ng-click="changeSorting('ypr')">D</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in defs|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-when="Ks" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">A</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">B</th>
+                      <th ng-click="changeSorting('ryd')">C</th>
+                      <th ng-click="changeSorting('ypr')">D</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in ks|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table ng-switch-default class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="first" ng-click="changeSorting('pos')">A</th> <!-- optional -->
+                      <th ng-click="changeSorting('player')">B</th>
+                      <th ng-click="changeSorting('ryd')">C</th>
+                      <th ng-click="changeSorting('ypr')">D</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="vm in items|orderBy:sort.column:sort.descending">
+                      <td class="first">{{vm.pos}}</td>
+                      <td>{{vm.player}}</td>
+                      <td>{{vm.ryd}}</td>
+                      <td>{{vm.ypr}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div> <!-- End Player Details -->
       <!-- <div class="dd-command-center">
         <div class="col-md-12 cmd-ctr">
