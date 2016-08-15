@@ -2,7 +2,7 @@
   <!-- <pre>{{players}}</pre> -->
   <div class="container dd-ctr" id="dd">
     <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
-      <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-info btn-xs">Back</button>
+      <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-xs">Back</button>
         <!-- TODO  REMOVE
       <div class="roster-view-chg">
         Research <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
@@ -405,7 +405,7 @@
           <div class="col-lg-6">
             <div class="dd-go-pass">
               <button ng-disabled="!selectedPlayer" ng-click="addPlayer()" class="btn btn-success btn">Add</button>
-              <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-warning btn">Clear</button>
+              <button ng-disabled="rosterComplete" ng-click="clearSelected()" class="btn btn-danger btn">Clear</button>
               <button ng-click="readyToDraft()" class="btn btn-info btn">Draft!</button>
               <!-- <button ng-disabled="!selectedPlayer" ng-click="passPlayer()" class="btn btn-danger btn">Pass</button> -->
             </div>
@@ -721,7 +721,7 @@
           </div>
         </div>
         <!-- Sortable Chart Modal -->
-        <button class="btn btn-primary btn sc-button" data-toggle="modal" data-target="#sortableList">Sortable Chart</button>
+        <button class="btn btn-success btn sc-button" data-toggle="modal" data-target="#sortableList">Sortable Stat Chart</button>
 
         <div id="sortableList" class="modal fade">
           <div class="modal-dialog modal-lg">
