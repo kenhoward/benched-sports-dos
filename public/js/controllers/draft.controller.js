@@ -36,6 +36,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
 
   $scope.purchBE = [];
   $scope.altViewBE = [];
+  $scope.fullBench = false;
 
   $scope.rmPlyr = function() {
     var all = $scope.players
@@ -62,7 +63,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
       imageUrl: "images/mutombo.gif",
       imageSize: "250x250",
       title: "Too many " + position + ".",
-      timer: 1250,
+      timer: 2500,
       showConfirmButton: false
     })
   }
@@ -86,25 +87,39 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     }
   }
 
-  $scope.remainingBalance = 200;
+  $scope.remainingBalance = 100;
   $scope.amountSpent = 0;
+  $scope.outtaMoney = false;
 
+/*
   $scope.adjBudget = function(price) {
     var rbal = $scope.remainingBalance;
     var as = $scope.amountSpent;
+    var mb = $scope.maxBid = 185;
     var initBal = 200;
 
-    if (rbal == 200) {
-      $scope.remainingBalance = (initBal -= price);
-      $scope.amountSpent += price;
-    } else {
-      $scope.remainingBalance = rbal - price;
-      $scope.amountSpent += price;
+    // if (rbal === 200) {
+    //   $scope.remainingBalance = (initBal -= price);
+    //   $scope.amountSpent += price;
+    // }
+    if ($scope.remainingBalance > 0 && ($scope.remainingBalance - price > 0)) {
+      if ($scope.outtaMoney === false) {
+        $scope.remainingBalance = rbal - price;
+        $scope.amountSpent += price;
+      }
     }
+    if ($scope.remainingBalance < 0 || $scope.remainingBalance === 0) {
+      $scope.outtaMoney = true;
+    }
+    else {
+      $scope.outtaMoney = true;
+    }
+    console.log("rbal=",$scope.remainingBalance);
+    console.log("what I'm looking for=",$scope.remainingBalance - price);
     // Handle if price hit zero
     // Will need to affect chg to addPlayer()
   }
-
+*/
   $scope.purchasedPlayer = function(player) {
     var qbArr = $scope.myQBs;
     var rbArr = $scope.myRBs;
@@ -129,10 +144,31 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     var purch = $scope.purchPlayer;
     var bench = $scope.purchBE;
     var flex = $scope.purchFlex;
+    var fullBE = $scope.fullBench;
 
-console.log(player);
-    if (player.price > 0 && player.price < 186) {
-      if (player.pos === 'QB' && $scope.validQB.length < 3) {
+console.log("purch bench size=", $scope.purchBE.length);
+console.log("validQB size=", $scope.validQB.length);
+
+    /*
+    $scope.adjBudget(player.ap);
+
+    if ($scope.outtaMoney === true) {
+      swal({
+        title: "You broke, foo!",
+        // imageUrl: "images/tickotaco.jpg",
+        imageUrl: "images/u_broke.gif",
+        imageSize: "400x228"
+      })
+    }
+    */
+    // TODO need to fix this validation
+    if ((valQB.length > 1 && $scope.purchBE > 6) || (valRB.length >1 && $scope.purchBE > 6) || (valWR.length > 1 && $scope.purchBE > 6)) {
+      alert("derp");
+
+    }
+    if (player.price > 0 && player.price < 186) { //&& $scope.outtaMoney === false
+    /* QB */
+      if (player.pos === 'QB' && valQB.length < 3) {
         $scope.validQB.push(player);
         if (purQB <= 1) {
           $scope.purchQBs.push(player);
@@ -144,13 +180,13 @@ console.log(player);
             qbArr.splice(i, 1);
           }
         }
-        if (valQB.length === 4) {
-          $scope.alrtUsr2('quarter backs');
-        }
+      } else if (player.pos === 'QB' && valQB.length === 3) {
+        $scope.alrtUsr2('quarter backs');
       }
     /* RB */
       if (player.pos === 'RB' && $scope.validRB.length < 4) {
-        $scope.validRB.push(player)
+        $scope.validRB.push(player);
+        // $scope.adjBudget(player.ap);
         if (purRB.length < 1) {
           $scope.purchRBs.push(player);
         }
@@ -164,55 +200,81 @@ console.log(player);
             rbArr.splice(i, 1);
           }
         }
-        if (valRB === 3) {
-          $scope.alrtUsr2('running backs');
-        }
+      } else if (player.pos === 'RB' && valRB.length === 4) {
+        $scope.alrtUsr2('running backs');
       }
-/*
-      for (var i = 0; i < buu.length; i++) {
-        if (buu[i].player === player.player) {
-
-        if (buu[i].pos === 'QB' && $scope.validQB.length < 3) {
-          $scope.validQB.push(player);
-          if (purQB <= 1) {
-            $scope.purchQBs.push(player);
-          } else {
+    /* WR */
+      if (player.pos === 'WR' && $scope.validWR.length < 6) {
+        $scope.validWR.push(player);
+        // $scope.adjBudget(player.ap);
+        if (purWR.length < 2) {
+          $scope.purchWRs.push(player);
+        }
+        if ($scope.validWR.length > 2 && $scope.purchFlex.length < 1) {
+          $scope.purchFlex.push(player);
+        } else if ($scope.validWR.length > 2) {
             $scope.purchBE.push(player);
-          }
-          for (var i = 0; i < qbArr.length; i++) {
-            if (qbArr[i].player === player.player) {
-              qbArr.splice(i, 1);
-            }
-          }
-          if (valQB.length === 4) {
-            $scope.alrtUsr2('quarter backs');
+        }
+        for (var i = 0; i < wrArr.length; i++) {
+          if (wrArr[i].player === player.player) {
+            wrArr.splice(i, 1);
           }
         }
-
-        if (buu[i].pos === 'RB' && $scope.validRB.length < 4) {
-          $scope.validRB.push(player)
-          if (purRB.length < 1) {
-            $scope.purchRBs.push(player);
-          }
-          if ($scope.validRB.length > 1 && $scope.purchFlex.length < 1) {
-            $scope.purchFlex.push(player);
-          } else if ($scope.validRB.length > 1) {
-              $scope.purchBE.push(player);
-          }
-          for (var i = 0; i < rbArr.length; i++) {
-            if (rbArr[i].player === player.player) {
-              rbArr.splice(i, 1);
-            }
-          }
-          if (valRB === 3) {
-            $scope.alrtUsr2('running backs');
+      } else if (player.pos === 'WR' && valWR.length === 6) {
+        $scope.alrtUsr2('wide receivers');
+      }
+    /* TE */
+      if (player.pos === 'TE' && $scope.validTE.length < 3) {
+        $scope.validTE.push(player);
+        // $scope.adjBudget(player.ap);
+        if (purTE.length < 1) {
+          $scope.purchTEs.push(player);
+        }
+        if ($scope.validTE.length > 1 && $scope.purchFlex.length < 1) {
+          $scope.purchFlex.push(player);
+        } else if ($scope.validTE.length > 1) {
+            $scope.purchBE.push(player);
+        }
+        for (var i = 0; i < teArr.length; i++) {
+          if (teArr[i].player === player.player) {
+            teArr.splice(i, 1);
           }
         }
-
-        } // player.player
-      } // loop
-*/
-
+      } else if (player.pos === 'TE' && valTE.length === 3) {
+        $scope.alrtUsr2('tight ends');
+      }
+    /* D/ST */
+      if (player.pos === 'DEF' && valDEF.length < 2) {
+        $scope.validDEF.push(player);
+        if (purDEF <= 1) {
+          $scope.purchDEFs.push(player);
+        } else {
+          $scope.purchBE.push(player);
+        }
+        for (var i = 0; i < defArr.length; i++) {
+          if (defArr[i].player === player.player) {
+            defArr.splice(i, 1);
+          }
+        }
+      } else if (player.pos === 'DEF' && valDEF.length === 2) {
+        $scope.alrtUsr2('defenses');
+      }
+    /* K */
+      if (player.pos === 'K' && valK.length < 2) {
+        $scope.validKckr.push(player);
+        if (purKckr <= 1) {
+          $scope.purchKckr.push(player);
+        } else {
+          $scope.purchBE.push(player);
+        }
+        for (var i = 0; i < kckrArr.length; i++) {
+          if (kckrArr[i].player === player.player) {
+            kckrArr.splice(i, 1);
+          }
+        }
+      } else if (player.pos === 'K' && valK.length === 2) {
+        $scope.alrtUsr2('kickers');
+      }
     } // price validation
   }
 
@@ -242,9 +304,9 @@ console.log(player);
         // TODO See if it's possible to utilize this
         $scope.backupPlyr();
         $scope.rmPlyr();
-        if ($scope.myQBs.length > 1) {
-          $scope.altViewBE.push(acquiredPlayer)
-        }
+        // if ($scope.myQBs.length > 1) {
+        //   $scope.altViewBE.push(acquiredPlayer)
+        // }
       }
       if (selp.pos === 'RB' && $scope.myRBs.length === 8) {
         $scope.notifyUsr('running backs');
@@ -262,54 +324,67 @@ console.log(player);
         }
         */
       }
-      if (selp.pos === 'WR' && $scope.myWRs.length === 6) {
+      if (selp.pos === 'WR' && $scope.myWRs.length === 8) {
         $scope.notifyUsr('wide receivers');
       }
-      if (selp.pos === 'WR' && $scope.myWRs.length < 6) {
+      if (selp.pos === 'WR' && $scope.myWRs.length < 8) {
         $scope.myWRs.push(acquiredPlayer);
+        $scope.backupPlyr();
         $scope.rmPlyr();
+        // TODO Same as RBs, remove once redesign is done
+        /*
         if ($scope.myWRs.length > 2 && flex.length < 1) {
           $scope.myFlex.push(acquiredPlayer);
         } else if ($scope.myWRs.length > 2) {
           $scope.altViewBE.push(acquiredPlayer);
         }
+        */
       }
-      if (selp.pos === 'TE' && $scope.myTEs.length === 3) {
+      if (selp.pos === 'TE' && $scope.myTEs.length === 4) {
         $scope.notifyUsr('tight ends');
       }
-      if (selp.pos === 'TE' && $scope.myTEs.length < 3) {
+      if (selp.pos === 'TE' && $scope.myTEs.length < 4) {
         $scope.myTEs.push(acquiredPlayer);
+        $scope.backupPlyr();
         $scope.rmPlyr();
+        // TODO Same as above
+        /*
         if ($scope.myTEs.length > 1 && flex.length < 1) {
           $scope.myFlex.push(acquiredPlayer);
         } else if ($scope.myTEs.length > 1) {
           $scope.altViewBE.push(acquiredPlayer);
         }
+        */
       }
-      if (selp.pos === 'DEF' && $scope.myDEFs.length === 2) {
+      if (selp.pos === 'DEF' && $scope.myDEFs.length === 4) {
         $scope.notifyUsr('defenses');
       }
-      if (selp.pos === 'DEF' && $scope.myDEFs.length < 2) {
+      if (selp.pos === 'DEF' && $scope.myDEFs.length < 4) {
         $scope.myDEFs.push(acquiredPlayer);
+        $scope.backupPlyr();
         $scope.rmPlyr();
+        /* TODO REMOVE
         if ($scope.myDEFs.length > 1) {
           $scope.altViewBE.push(acquiredPlayer)
         }
+        */
       }
       if (selp.pos === 'K' && $scope.myKckr.length === 2) {
         $scope.notifyUsr('kickers');
       }
       if (selp.pos === 'K' && $scope.myKckr.length < 2) {
         $scope.myKckr.push(acquiredPlayer);
+        $scope.backupPlyr();
         $scope.rmPlyr();
+        /* TODO REMOVE
         if ($scope.myKckr.length > 1) {
           $scope.altViewBE.push(acquiredPlayer)
         }
+        */
         if ($scope.myKckr.length === 2) {
           swal({
             title: "Seriously...",
             text: "Are you Taco or something??",
-            // imageUrl: "images/tickotaco.jpg",
             imageUrl: "images/taco.gif",
             imageSize: "400x228"
           })
@@ -361,6 +436,7 @@ console.log(player);
   }
 
   // Roster views
+  // TODO SWITCH BACK
   $scope.preDrftPlayerDetails = true;
   $scope.draftRoster = false;
   $scope.defaultView = function () {
@@ -388,8 +464,6 @@ console.log(player);
         $scope.preDrftPlayerDetails = false;
         $scope.draftRoster = true;
         $scope.$apply();
-      } else {
-        console.log("cancelled")
       }
     });
   }
@@ -403,91 +477,83 @@ console.log(player);
     var kckrArr = $scope.myKckr;
     var buu = $scope.backupArr;
     var all = $scope.players;
-    // console.log('player: ', player);
-    for (var i = 0; i < qbArr.length; i++) {
-      if (qbArr[i].player === player.player) {
-        qbArr.splice(i, 1);
-      }
-      // TODO buggy, Fix either here or up in backupPlyr
-      for (var j = 0; j < buu.length; j++) {
-        if (buu[j].player === player.player) {
-          all.push(buu[j]);
+
+
+    // TODO buggy (cannot use more than once)
+    // need to fix in backupPlyr
+    if (player.pos === 'QB') {
+      for (var i = 0; i < qbArr.length; i++) {
+        if (qbArr[i].player === player.player) {
+          qbArr.splice(i, 1);
         }
-      //   // Previous v1
-      //   // if (buu[i].player === player.player) {
-      //   //   all.push(buu[i]);
-      //   // }
+        for (var j = 0; j < buu.length; j++) {
+          if (buu[j].player === player.player) {
+            $scope.players.push(buu[j]);
+          }
+        }
       }
     }
-    for (var i = 0; i < rbArr.length; i++) {
-      if (rbArr[i].player === player.player) {
-        rbArr.splice(i, 1);
+    if (player.pos === 'RB') {
+      for (var i = 0; i < rbArr.length; i++) {
+        if (rbArr[i].player === player.player) {
+          rbArr.splice(i, 1);
+        }
+        for (var j = 0; j < buu.length; j++) {
+          if (buu[j].player === player.player) {
+            $scope.players.push(buu[j]);
+          }
+        }
       }
     }
-    for (var i = 0; i < wrArr.length; i++) {
-      if (wrArr[i].player === player.player) {
-        wrArr.splice(i, 1);
+    if (player.pos === 'WR') {
+      for (var i = 0; i < wrArr.length; i++) {
+        if (wrArr[i].player === player.player) {
+          wrArr.splice(i, 1);
+        }
+        for (var j = 0; j < buu.length; j++) {
+          if (buu[j].player === player.player) {
+            $scope.players.push(buu[j]);
+          }
+        }
       }
     }
-    for (var i = 0; i < teArr.length; i++) {
-      if (teArr[i].player === player.player) {
-        teArr.splice(i, 1);
+    if (player.pos === 'TE') {
+      for (var i = 0; i < teArr.length; i++) {
+        if (teArr[i].player === player.player) {
+          teArr.splice(i, 1);
+        }
+        for (var j = 0; j < buu.length; j++) {
+          if (buu[j].player === player.player) {
+            $scope.players.push(buu[j]);
+          }
+        }
       }
     }
-    for (var i = 0; i < defArr.length; i++) {
-      if (defArr[i].player === player.player) {
-        defArr.splice(i, 1);
+    if (player.pos === 'DEF') {
+      for (var i = 0; i < defArr.length; i++) {
+        if (defArr[i].player === player.player) {
+          defArr.splice(i, 1);
+        }
+        for (var j = 0; j < buu.length; j++) {
+          if (buu[j].player === player.player) {
+            $scope.players.push(buu[j]);
+          }
+        }
       }
     }
-    for (var i = 0; i < kckrArr.length; i++) {
-      if (kckrArr[i].player === player.player) {
-        kckrArr.splice(i, 1);
-      }
-    }
-  }
-
-  /*
-  // BACKUP code for oopsBtn
-    var qbArr = $scope.myQBs;
-    var rbArr = $scope.myRBs;
-    var wrArr = $scope.myWRs;
-    var teArr = $scope.myTEs;
-    var defArr = $scope.myDEFs;
-    var kckrArr = $scope.myKckr;
-    // console.log('player: ', player);
-    for (var i = 0; i < qbArr.length; i++) {
-      if (qbArr[i].player === player.player) {
-        qbArr.splice(i, 1);
-      }
-    }
-    for (var i = 0; i < rbArr.length; i++) {
-      if (rbArr[i].player === player.player) {
-        rbArr.splice(i, 1);
-      }
-    }
-    for (var i = 0; i < wrArr.length; i++) {
-      if (wrArr[i].player === player.player) {
-        wrArr.splice(i, 1);
-      }
-    }
-    for (var i = 0; i < teArr.length; i++) {
-      if (teArr[i].player === player.player) {
-        teArr.splice(i, 1);
-      }
-    }
-    for (var i = 0; i < defArr.length; i++) {
-      if (defArr[i].player === player.player) {
-        defArr.splice(i, 1);
-      }
-    }
-    for (var i = 0; i < kckrArr.length; i++) {
-      if (kckrArr[i].player === player.player) {
-        kckrArr.splice(i, 1);
+    if (player.pos === 'K') {
+      for (var i = 0; i < kckrArr.length; i++) {
+        if (kckrArr[i].player === player.player) {
+          kckrArr.splice(i, 1);
+        }
+        for (var j = 0; j < buu.length; j++) {
+          if (buu[j].player === player.player) {
+            $scope.players.push(buu[j]);
+          }
+        }
       }
     }
   }
-
-  */
 
   // scoring prototype
   $scope.playerScore = function(player) {
@@ -530,7 +596,7 @@ console.log(player);
   };
 
   // Sortable Chart Modal
-  $scope.items = DraftDayService;
+  $scope.items = SortPlayerService.playersArr;
   $scope.qbs = SortPlayerService.qbsArr;
   $scope.rbs = SortPlayerService.rbsArr;
   $scope.wrs = SortPlayerService.wrsArr;
@@ -555,7 +621,7 @@ console.log(player);
           sort.column = column;
           sort.descending = false;
       }
-  };  
+  };
 
   // Keeselpng the following ...
   $scope.ffLY = function() {
