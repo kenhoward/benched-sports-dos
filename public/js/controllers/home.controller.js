@@ -12,6 +12,8 @@ app.controller('HomeController', function($scope, DraftDayService, SortPlayerSer
   $scope.defs = SortPlayerService.defsArr;
   $scope.ks = SortPlayerService.ksArr;
 
+// Potentially remove
+
   $scope.sortViewPositions = ['All', 'QBs', 'RBs', 'WRs', 'TEs', 'DSTs', 'Ks'];
   $scope.selection = $scope.sortViewPositions[0];
 

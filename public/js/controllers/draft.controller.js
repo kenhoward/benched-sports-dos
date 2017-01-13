@@ -9,6 +9,8 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
   $scope.players = DraftDayService;
 
   // TODO create another array that backs up removed players
+
+  // CLEAN UP
   $scope.backupArr = [];
 
   $scope.myQBs = [];
@@ -36,7 +38,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
 
   $scope.purchBE = [];
   $scope.altViewBE = [];
-  $scope.fullBench = false;
+  $scope.benchFull = false;
 
   $scope.rmPlyr = function() {
     var all = $scope.players
@@ -55,7 +57,13 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
   }
 
   $scope.alrtUsr = function(position) {
-    swal("Hey now...", "You can't have any more " + position + "!!", "error");
+    swal({
+      imageUrl: "images/no_room.gif",
+      imageSize: "450x300",
+      title: "No Room on the bench",
+      timer: 4000,
+      showConfirmButton: false
+    })
   }
 
   $scope.alrtUsr2 = function(position) {
@@ -120,7 +128,58 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     // Will need to affect chg to addPlayer()
   }
 */
+
+/*
+$scope.purchQBs = [];
+$scope.purchRBs = [];
+$scope.purchWRs = [];
+$scope.purchTEs = [];
+$scope.purchFlex = [];
+$scope.purchDEFs = [];
+$scope.purchKckr = [];
+
+$scope.purchBE = [];
+*/
+
+  $scope.fullBench = function(position) {
+    switch (position) {
+      case 'QB':
+        // if ($scope.purchBE.length ===  && $scope.purchQBs.length === 1) {
+        //   $scope.benchFull = true;
+        // }
+        break;
+      case 'RB':
+        // alert('rb');
+        break;
+      case 'WR':
+        // alert('wr');
+        break;
+      case 'TE':
+        // alert('te');
+        break;
+      case 'DEF':
+        // alert('def');
+        break;
+      case 'K':
+        // alert('k');
+        break;
+      default:
+
+    }
+  }
+
   $scope.purchasedPlayer = function(player) {
+    // CLEAN UP
+
+  /*
+
+Something like
+var qbArr = $scope.myQBs,
+    rbArr = $scope.myRBs,
+    wrArr = $scope.myWRs,
+    ETC ETC
+
+  */
     var qbArr = $scope.myQBs;
     var rbArr = $scope.myRBs;
     var wrArr = $scope.myWRs;
@@ -144,10 +203,6 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     var purch = $scope.purchPlayer;
     var bench = $scope.purchBE;
     var flex = $scope.purchFlex;
-    var fullBE = $scope.fullBench;
-
-console.log("purch bench size=", $scope.purchBE.length);
-console.log("validQB size=", $scope.validQB.length);
 
     /*
     $scope.adjBudget(player.ap);
@@ -161,14 +216,16 @@ console.log("validQB size=", $scope.validQB.length);
       })
     }
     */
-    // TODO need to fix this validation
-    if ((valQB.length > 1 && $scope.purchBE > 6) || (valRB.length >1 && $scope.purchBE > 6) || (valWR.length > 1 && $scope.purchBE > 6)) {
-      alert("derp");
 
-    }
-    if (player.price > 0 && player.price < 186) { //&& $scope.outtaMoney === false
+    $scope.fullBench(player.pos);
+
+    console.log("purch bench size=", $scope.purchBE.length);
+    console.log("status of full bench", $scope.benchFull);
+
+    if (player.price > 0 && player.price < 186 && $scope.benchFull === false) { //&& $scope.outtaMoney === false
+      console.log('made it in');
     /* QB */
-      if (player.pos === 'QB' && valQB.length < 3) {
+      if (player.pos === 'QB' && valQB.length < 3 && bench.length <= 6) {
         $scope.validQB.push(player);
         if (purQB <= 1) {
           $scope.purchQBs.push(player);
@@ -180,8 +237,12 @@ console.log("validQB size=", $scope.validQB.length);
             qbArr.splice(i, 1);
           }
         }
-      } else if (player.pos === 'QB' && valQB.length === 3) {
-        $scope.alrtUsr2('quarter backs');
+      } else if (player.pos === 'QB' && (valQB.length === 3 || bench.length <= 7)) {
+        if (bench.length <= 7) {
+          $scope.alrtUsr();
+        } else {
+          $scope.alrtUsr2('quarter backs');
+        }
       }
     /* RB */
       if (player.pos === 'RB' && $scope.validRB.length < 4) {
@@ -288,8 +349,8 @@ console.log("validQB size=", $scope.validQB.length);
     acquiredPlayer.player = selp.player;
     acquiredPlayer.price = $scope.cpVal.level;
     acquiredPlayer.bye = selp.bye;
-    acquiredPlayer.ap = selp.avgprc;
-    acquiredPlayer.scr = selp.score;
+    acquiredPlayer.avg = selp.avg;
+    acquiredPlayer.tier = selp.tier;
     acquiredPlayer.pos = selp.pos;
 
     // TODO Move plyrAcquired()
@@ -690,5 +751,19 @@ swal({
   imageUrl: "images/luck.gif",
   imageSize: "445x280"
 });
+swal({
+  imageUrl: "images/no_room.gif",
+  imageSize: "450x300",
+  title: "No Room on the bench",
+  timer: 3000,
+  showConfirmButton: false
+})
+swal({
+  imageUrl: "images/no_room2.gif",
+  imageSize: "450x300",
+  title: "No Room on the bench",
+  timer: 8000,
+  showConfirmButton: false
+})
 
 */

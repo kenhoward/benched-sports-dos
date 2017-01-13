@@ -1,5 +1,5 @@
 "use strict";
-var app = angular.module('FantasyFootball', ['ngRoute', 'ui.bootstrap']);
+var app = angular.module('FantasyFootball', ['ngRoute', 'ui.bootstrap']); //, 'ngAnimate'
 
 app.config(function($routeProvider) {
   $routeProvider

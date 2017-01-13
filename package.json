@@ -9,9 +9,11 @@
   "author": "Kenny Howard",
   "license": "ISC",
   "dependencies": {
+    "angular-animate": "^1.6.1",
     "express": "^4.13.4"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.5",
     "gulp": "^3.9.1"
   }
 }

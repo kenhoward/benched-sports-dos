@@ -161,7 +161,21 @@ a:active {
 }
 
 .pos-chg {
-  border-top: 3px solid black;
+  border-bottom: 3px solid #000;
+}
+
+/* IDEA - refigure pos-chg class*/
+
+/*
+TODO - will need to find softer colors to handle position change. I will need to work out
+*/
+
+.lt-gry-bk {
+	background-color: #ecf0f1;
+}
+
+.drk-gry-bk {
+	background-color: #bdc3c7;
 }
 
 .player-info {
