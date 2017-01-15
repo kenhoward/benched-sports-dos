@@ -41,3 +41,10 @@ Need to move over to SASS to help make things cleaner
 app.js is handling routing 
 - Currently pointing to /draft-day with /home being commented out (focus has been draft-day functionality)
 - Once we are ready to develop other views, we'll need to adjust routing accordingly
+
+# TO BE COMPLETED
+- explain how fantasy football app version 1.0 worked
+- explain what are the many features of 2.0
+- style guide suggestions (naming conventions)
+- explaining all files
+- how to handle future pull requests
