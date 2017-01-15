@@ -13,7 +13,7 @@
 
 Only folder to look at is public (everything else is still in development)
 
-public/
+```public/
 ├── css/
 │   └── main.css
 ├── images/
@@ -30,4 +30,4 @@ public/
 │   └── bootstrap.min.js
 └── views/
     ├── draftDay.html
-    └── home.html
+    └── home.html```
