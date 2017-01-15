@@ -30,3 +30,14 @@ Only folder to look at is public (everything else is still in development)
 └── views/
     ├── draftDay.html
     └── home.html
+```
+***
+#### CSS
+Need to move over to SASS to help make things cleaner
+- [ ] Create build process to compile SASS
+- [ ] Refactor CSS to SASS
+
+#### JS
+app.js is handling routing 
+- Currently pointing to /draft-day with /home being commented out (focus has been draft-day functionality)
+- Once we are ready to develop other views, we'll need to adjust routing accordingly
