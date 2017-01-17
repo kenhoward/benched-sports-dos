@@ -37,6 +37,7 @@ Need to move over to SASS to help make things cleaner
 - To do List for this particular file:
 - [ ] Create build process to compile SASS
 - [ ] Refactor CSS to SASS
+
 ***
 #### JS
 app.js is handling routing 
@@ -66,6 +67,7 @@ roster.service.js
 
 sortplayer.service.js
 - This, like the draft service file, are temporary and this one also seems to be redundant 
+
 ***
 ### Views
 index.html
@@ -82,6 +84,7 @@ draftDay.html
 - To do list for this particular file:
 - [ ] At the very least need to have unique colors for each position
 - [ ] Ideally build it out so that it has at least the positions visible
+
 ***
 # TO BE COMPLETED:
 - [ ] Explain how fantasy football app version 1.0 worked
