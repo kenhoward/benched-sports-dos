@@ -49,11 +49,12 @@ draft.controller.js
 - I have a function called **fullBench** (notifies the user when their bench is full and disables certain functionality) that has the skeleton of a switch case. This may be how we should approach this and other functions in this entire file :/
 - We'll want to refactor our approach to what I did in lines 183 to 205 (looks incredibly messy)
 - You'll see that I have a bunch of conditionals starting on line 225 that could possibly be refactored to make it much cleaner
-- I have my logic for a sortable list in here as well, but the sorted list is currently non functional (design-wise)
-- I also have two directives that handledd
+- I have old logic for a sortable list in here as well, but the sorted list is currently non functional and the actual logic is being hanlded on the home.controller.js
+- I also have two directives that handled defunct code that I may need to bring back for a different iteration that I want to make.
 
 ##### Services
 home.controller.js
+- All of this code is how I tried to handle a sortable table within a modal. The table works fine, but the table is ill-conceived.wa
 
 # TO BE COMPLETED
 - explain how fantasy football app version 1.0 worked
