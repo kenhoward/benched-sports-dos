@@ -34,6 +34,7 @@ Only folder to look at is public (everything else is still in development)
 ***
 #### CSS
 Need to move over to SASS to help make things cleaner
+- To do List for this particular file:
 - [ ] Create build process to compile SASS
 - [ ] Refactor CSS to SASS
 
@@ -52,14 +53,39 @@ draft.controller.js
 - I have old logic for a sortable list in here as well, but the sorted list is currently non functional and the actual logic is being hanlded on the home.controller.js
 - I also have two directives that handled defunct code that I may need to bring back for a different iteration that I want to make
 
-##### Services
 home.controller.js
 - All of this code is how I tried to handle a sortable table within a modal. The table works fine, but the table was ill-conceived
 - I will want to use this functionality but definitely not in a modal
 
-# TO BE COMPLETED
-- explain how fantasy football app version 1.0 worked
-- explain what are the many features of 2.0
-- style guide suggestions (naming conventions)
-- explaining all files
-- how to handle future pull requests
+##### Services
+draft.service.js
+- My temporary database holding all of the player data (FYI, it doesn't have all of the complete data)
+
+roster.service.js
+- This is a future iteration where it will handle requests made to the database of the players
+
+sortplayer.service.js
+- This, like the draft service file, are temporary and this one also seems to be redundant 
+
+### Views
+index.html
+- Holding all the usual logic from an Angular web app
+
+home.html
+- Future home of any landing page that we would like to have
+
+draftDay.html
+- Holds the entire draft day view
+- Recently began refactoring this from an quick and dirty approach to actually utilizing ng-repeats properly
+- With that refactor though, it dramatically changed how the roster table looks, as in it's not there until you start populating it with players
+- I have a lot to do with this one to make it more visually pleasing and help it look like how it did before I refactored the player table into an ng-repeat
+- To do list for this particular file:
+- [ ] At the very least need to have unique colors for each position
+- [ ] Ideally build it out so that it has at least the positions visible
+
+# TO BE COMPLETED:
+- [ ] Explain how fantasy football app version 1.0 worked
+- [ ] Explain what are the many features of 2.0
+- [ ] Style guide suggestions (naming conventions)
+- [x] Explaining all files
+- [ ] How to handle future pull requests
