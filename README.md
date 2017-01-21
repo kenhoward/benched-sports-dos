@@ -86,9 +86,13 @@ draftDay.html
 - [ ] Ideally build it out so that it has at least the positions visible
 
 ***
-# TO BE COMPLETED:
-- [ ] Explain how fantasy football app version 1.0 worked
-- [ ] Explain what are the many features of 2.0
-- [ ] Style guide suggestions (naming conventions)
-- [x] Explaining all files
-- [ ] How to handle future pull requests
+
+### Fantasy Football App 1.0
+
+### Fantasy Football App 2.0
+
+### Creating Branches
+
+### Pull Requests
+
+### Style Guide
