@@ -88,7 +88,7 @@ draftDay.html
 ***
 
 ## To Do
-- [ ] Complete webpack build using [link](http://blog.teamtreehouse.com/26017-2 "Title").
+- [ ] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
 
 ### Fantasy Football App 1.0
 
