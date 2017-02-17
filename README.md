@@ -92,6 +92,7 @@ draftDay.html
 * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
 * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
 - [ ] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
+- [ ] Utilize new consistency rankings (ESPN - Google Doc)
 
 ### Fantasy Football App 1.0
 
