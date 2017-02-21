@@ -92,7 +92,8 @@ draftDay.html
 * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
 * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
 - [X] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
-- [ ] Moving to this [link](https://angularclass.github.io/NG6-starter/). Starting to refactor old code now
+- [X] Moving to this [link](https://angularclass.github.io/NG6-starter/).
+- [ ] Refactor old code with new webpack build
 - [ ] Utilize new consistency rankings (ESPN - Google Doc)
 
 ### Fantasy Football App 1.0
