@@ -35,7 +35,7 @@ Only folder to look at is public (everything else is still in development)
 #### CSS
 Need to move over to SASS to help make things cleaner
 - To do List for this particular file:
-- [ ] Create build process to compile SASS
+- [X] Create build process to compile SASS
 - [ ] Refactor CSS to SASS
 
 ***
@@ -91,7 +91,8 @@ draftDay.html
 - [ ] Must fix code as to explain why a conditional must be less than a given number.
 * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
 * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
-- [ ] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
+- [X] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
+- [ ] Moving to this [link](https://angularclass.github.io/NG6-starter/). Starting to refactor old code now
 - [ ] Utilize new consistency rankings (ESPN - Google Doc)
 
 ### Fantasy Football App 1.0
