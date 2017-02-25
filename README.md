@@ -89,12 +89,13 @@ draftDay.html
 
 ## To Do
 - [ ] Must fix code as to explain why a conditional must be less than a given number.
-* Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
-* So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
+    * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
+    * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
 - [X] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
 - [X] Moving to this [link](https://angularclass.github.io/NG6-starter/).
 - [ ] Refactor old code with new webpack build
 - [ ] Utilize new consistency rankings (ESPN - Google Doc)
+- [ ] Figure out D3.js
 
 ### Fantasy Football App 1.0
 
