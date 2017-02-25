@@ -94,8 +94,16 @@ draftDay.html
 - [X] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
 - [X] Moving to this [link](https://angularclass.github.io/NG6-starter/).
 - [ ] Refactor old code with new webpack build
+    - [ ] Update folder structer for app to include webpack structure
 - [ ] Utilize new consistency rankings (ESPN - Google Doc)
+- [ ] Collect ALL data
 - [ ] Figure out D3.js
+- [ ] Write out due dates / target dates for segment completions
+- [ ] Probably going to want to use MongoDB or Rethink (or Just Service for the time being ¯\_(ツ)_/¯ )
+    * MongoDB [link](https://app.pluralsight.com/library/courses/mongoose-for-nodejs-mongodb/discussion)
+        * ../web-dev/dev-mtn/W6D4
+        * also can check out benched sports to see what's going on there
+    * Rethink [link](https://app.pluralsight.com/library/courses/rethinkdb-fundamentals/discussion)
 
 ### Fantasy Football App 1.0
 
