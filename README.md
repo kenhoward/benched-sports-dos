@@ -99,6 +99,12 @@ draftDay.html
 ### Fantasy Football App 1.0
 
 ### Fantasy Football App 2.0
+- Refactor in process using Webpack/ES6/Less/Angular1
+- Compiling loads of stats from Fantasy Data
+    - [X] Player Stats 2010-2016
+    - [ ] Redzone performance
+    - [ ] Third down performance
+    - [ ] Projects 2013-2016 (to compare vs actual points)
 
 ### Creating Branches
 
