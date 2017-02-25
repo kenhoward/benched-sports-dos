@@ -100,11 +100,26 @@ draftDay.html
 
 ### Fantasy Football App 2.0
 - Refactor in process using Webpack/ES6/Less/Angular1
-- Compiling loads of stats from Fantasy Data
+    * Navbar
+        - [X] Get functionality working (UI Routing is working
+        - [ ] Style it so that it looks correct
+        - [ ] Add Reasearch tab, view, et al.
+- Compiling loads of stats from Fantasy Data.
+    * Biggest issue that I'm going to run into syncing all of this data
+    * Need to figure out how I'm going to store all of this data, ideally would compile down as much as possible
+    * May need to have multiple arrays of objects that will loop between all of them
     - [X] Player Stats 2010-2016
     - [ ] Redzone performance
     - [ ] Third down performance
-    - [ ] Projects 2013-2016 (to compare vs actual points)
+    - [ ] Projections (season, !games) 2013-2016
+        * To compare vs actual points
+        * should be the cleanest stats to put together (two statlines for one season)
+    - [ ] Snap counts 2012-2016 (45 downloads)
+    - [ ] Defense points against
+    - [ ] Incredibly ambitious but getting the player week to week scoring
+        * That entails getting 17 weeks of data for EACH position so that's 153 downloaded files... per season
+        * At least need to give it a shot to see how feasible it is
+
 
 ### Creating Branches
 
