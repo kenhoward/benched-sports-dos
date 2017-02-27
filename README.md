@@ -118,8 +118,8 @@ draftDay.html
     * Need to figure out how I'm going to store all of this data, ideally would compile down as much as possible
     * May need to have multiple arrays of objects that will loop between all of them
     - [X] Player Stats 2010-2016
-    - [ ] Redzone performance
-    - [ ] Third down performance
+    - [X] Redzone performance
+    - [X] Third down performance
     - [ ] Projections (season, !games) 2013-2016
         * To compare vs actual points
         * should be the cleanest stats to put together (two statlines for one season)
