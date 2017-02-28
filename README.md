@@ -97,8 +97,8 @@ draftDay.html
 - [ ] Collect ALL data ( SEE BELOW )
 - [ ] Figure out D3.js
     - [ ] Need to figure out issue of changing from ES5 to ES6
-    - [ ] Look into [this](https://github.com/harytkon/d3-es6-webpack-boilerplate/blob/master/package.json) regarding above issue
-    - [ ] Continue research with "[d3js AND webpack](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=d3js+AND+webpack&*)" to get around
+    - [ ] Look into [this](https://github.com/harytkon/d3-es6-webpack-boilerplate) regarding above issue
+    - [ ] Continue research with "[d3js AND webpack](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=d3js+AND+webpack&*)" to get around any issues
 - [ ] Write out due dates / target dates for segment completions
 - [ ] Probably going to want to use MongoDB or Rethink - or Just Service for the time being ¯\_(ツ)_/¯
     * [MongoDB](https://app.pluralsight.com/library/courses/mongoose-for-nodejs-mongodb/discussion)
