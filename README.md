@@ -120,11 +120,11 @@ draftDay.html
     - [X] Player Stats 2010-2016
     - [X] Redzone performance
     - [X] Third down performance
+    - [ ] Snap counts 2012-2016 (45 downloads)
+    - [ ] Defense points against
     - [ ] Projections (season, !games) 2013-2016
         * To compare vs actual points
         * should be the cleanest stats to put together (two statlines for one season)
-    - [ ] Snap counts 2012-2016 (45 downloads)
-    - [ ] Defense points against
     - [ ] Incredibly ambitious but getting the player week to week scoring
         * That entails getting 17 weeks of data for EACH position so that's 153 downloaded files... per season
         * At least need to give it a shot to see how feasible it is
