@@ -111,8 +111,13 @@ draftDay.html
 - Refactor in process using Webpack/ES6/Less/Angular1
     * Navbar
         - [X] Get functionality working (UI Routing is working
-        - [ ] Style it so that it looks correct
-        - [ ] Add Reasearch tab, view, et al.
+        - [X] Style it so that it looks correct
+        - [X] Add Reasearch tab, view, et al.
+    * About Page
+        - [ ] Change from "About" to "Draft"
+        - [ ] Ensure that everything is finalized
+    * Root Directory
+        - [ ] Study up on root directory items (i.e., gulpfile, karma, spec.bundle.js, webpack, etc)
 - Compiling loads of stats from Fantasy Data.
     * Biggest issue that I'm going to run into syncing all of this data
     * Need to figure out how I'm going to store all of this data, ideally would compile down as much as possible
