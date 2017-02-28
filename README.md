@@ -120,7 +120,7 @@ draftDay.html
     - [X] Player Stats 2010-2016
     - [X] Redzone performance
     - [X] Third down performance
-    - [ ] Snap counts 2012-2016 (45 downloads)
+    - [X] Snap counts 2012-2016 (45 downloads)
     - [ ] Defense points against
     - [ ] Projections (season, !games) 2013-2016
         * To compare vs actual points
