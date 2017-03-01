@@ -1,0 +1,40 @@
+@import '../common';
+
+.navigation {
+    background-color: #eee;
+    font-weight: 700;
+    .navigation-list {
+        font-size: 0;
+        padding: 5px 0 5px 0;
+        text-align: center;
+    }
+    .navigation-item {
+        font-size: 1rem;
+        display: inline-block;
+    }
+    .navigation-link {
+        display: block;
+        position: relative;
+        padding: 5px 20px;
+        text-decoration: none;
+        color: #333;
+        -webkit-transition: color .2s ease-in-out;
+        transition: color .2s ease-in-out;
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            left: 0;
+            border-bottom: solid 2px;
+            -webkit-transition: width .2s ease-in-out;
+            transition: width .2s ease-in-out;
+        }
+        &:hover {
+            color: $ff-green;
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+}

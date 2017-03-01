@@ -40,7 +40,7 @@ Need to move over to SASS to help make things cleaner
 
 ***
 #### JS
-app.js is handling routing 
+app.js is handling routing
 - Currently pointing to /draft-day with /home being commented out (focus has been draft-day functionality)
 - Once we are ready to develop other views, we'll need to adjust routing accordingly
 
@@ -66,7 +66,7 @@ roster.service.js
 - This is a future iteration where it will handle requests made to the database of the players
 
 sortplayer.service.js
-- This, like the draft service file, are temporary and this one also seems to be redundant 
+- This, like the draft service file, are temporary and this one also seems to be redundant
 
 ***
 ### Views
@@ -92,8 +92,6 @@ draftDay.html
 - [ ] Must fix code as to explain why a conditional must be less than a given number.
     * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
     * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
-- [X] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
-- [X] Moving to this [link](https://angularclass.github.io/NG6-starter/).
 - [ ] Refactor old code with new webpack build ( SEE BELOW )
 - [ ] Collect ALL data ( SEE BELOW )
 - [ ] Figure out D3.js
@@ -111,24 +109,16 @@ draftDay.html
 
 ### Fantasy Football App 2.0
 - Refactor in process using Webpack/ES6/Less/Angular1
-    * Navbar
-        - [X] Get functionality working (UI Routing is working
-        - [X] Style it so that it looks correct
-        - [X] Add Reasearch tab, view, et al.
-    * About Page
-        - [ ] Change from "About" to "Draft"
-        - [ ] Ensure that everything is finalized
+    * It's go time new Draft Page
+        - [ ] Analyze what needs to be moved
+        - [ ] Start moving on transitioning the code from master branch
     * Root Directory
         - [ ] Study up on root directory items (i.e., gulpfile, karma, spec.bundle.js, webpack, etc)
+        - [ ] Need to figure out how to hook up the server and DB
 - Compiling loads of stats from Fantasy Data.
     * Biggest issue that I'm going to run into syncing all of this data
     * Need to figure out how I'm going to store all of this data, ideally would compile down as much as possible
     * May need to have multiple arrays of objects that will loop between all of them
-    - [X] Player Stats 2010-2016
-    - [X] Redzone performance
-    - [X] Third down performance
-    - [X] Snap counts 2012-2016 (45 downloads)
-    - [X] Defense points against
     - [ ] consistency rankings ( ESPN - Google Doc )
 
 ### Creating Branches
