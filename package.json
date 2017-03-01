@@ -68,10 +68,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularclass/NG6-starter.git"
+    "url": "https://github.com/kenhoward/benched-sports-dos"
   },
-  "author": "AngularClass",
-  "license": "Apache-2.0",
+  "author": "",
+  "license": "ISC",
   "babel": {
     "plugins": [
       "transform-runtime"
