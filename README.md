@@ -88,7 +88,8 @@ draftDay.html
 ***
 
 ## To Do
-- [ ] Figure out how to branch all the changes in ff-refactored to this repo
+- [X] Figure out how to branch all the changes in ff-refactored to this repo
+- [ ] Update file structure in this README.md
 - [ ] Must fix code as to explain why a conditional must be less than a given number.
     * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
     * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
