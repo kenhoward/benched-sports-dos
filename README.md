@@ -121,6 +121,7 @@ draftDay.html
         - [ ] Ensure that everything is finalized
     * Root Directory
         - [ ] Study up on root directory items (i.e., gulpfile, karma, spec.bundle.js, webpack, etc)
+        - [ ] Seek to understand the deeper items of this build
 - Compiling loads of stats from Fantasy Data.
     * Biggest issue that I'm going to run into syncing all of this data
     * Need to figure out how I'm going to store all of this data, ideally would compile down as much as possible
