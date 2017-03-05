@@ -1,6 +1,27 @@
 <navbar></navbar>
-<main>
-    <div>
-        <h1>Found in the {{ $ctrl.name }}.html</h1>
-    </div>
-</main>
+<div class="container-fluid">
+    <h1>Found in the {{ $ctrl.name }}.html</h1>
+    <div class="container-fluid dd-ctr" id="dd">
+        <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
+            <button ng-click="defaultView()" class="btn btn-success">
+                Back
+            </button> <!-- ng-show="draftRoster" -->
+            <table>
+                <tr>
+                    <th class="col-sm-2">Pos.</th>
+                    <th class="col-sm-2">Name</th>
+                    <th class="col-sm-2">Tier</th>
+                    <th class="col-sm-2">Price</th>
+                    <th class="col-sm-1"></th>
+                </tr>
+                <tr>
+                    <td>QB</td>
+                    <td>Kenny Howard</td>
+                    <td>1</td>
+                    <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.qb.avg"></td> <!-- ng-if="$ctrl.qb" -->
+                    <td><a ng-click="oopsBtn(qb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td> <!-- ng-if="qb" -->
+                </tr>
+            </table>
+        </div> <!-- /Left Column -->
+    </div> <!-- /Container && /dd-ctr -->
+</div>

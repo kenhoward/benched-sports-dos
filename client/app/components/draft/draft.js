@@ -1,5 +1,6 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import bootstrap from 'angular-ui-bootstrap';
 import draftComponent from './draft.component';
 
 let draftModule = angular.module('draft', [
