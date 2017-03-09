@@ -1,3 +1,42 @@
-.about {
-  color: red;
+// @import "../../common/common";
+
+.dd-ctr {
+    margin-top: 20px;
+    .dd-plyr-table {
+        width: 100%;
+        td {
+            text-transform: uppercase;
+            padding: 1px 2px;
+            &:nth-child(3) {
+                padding-left: 17px;
+            }
+            &:nth-child(4) {
+                padding-left: 15px;
+            }
+        }
+    }
+    .dd-command-center {
+        button {
+            margin: 1px 0 2px -6px;
+            padding: 4px 4px 3px 4px;
+        }
+        span {
+            margin-left: 10px;
+        }
+    }
+    .pos-chg {
+        border-top: 3px solid black;
+    }
+    .player-info {
+        padding-top: 10px;
+        border: 1px solid black;
+    }
+    .player-stats {
+        margin-top: 20px;
+        padding-top: 10px;
+        border: 1px dotted black;
+    }
+    .player-details {
+        border: 1px solid black;
+    }
 }
