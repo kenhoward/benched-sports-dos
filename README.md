@@ -117,8 +117,15 @@ draftDay.html
         - [X] Style it so that it looks correct
         - [X] Add Reasearch tab, view, et al.
     * About Page
-        - [ ] Change from "About" to "Draft"
-        - [ ] Ensure that everything is finalized
+        - [X] Change from "About" to "Draft"
+        - [X] Ensure that everything is finalized
+    * Draft Page
+        - [X] Get Bootstrap working in the app
+        - [ ] Start bringing over code from old app to new one
+        - [ ] Convert CSS to SASS
+        - [ ] Convert ES5 to ES6
+        - [ ] Refactor JS as you go
+        - [ ] Ensure that everything is working correctly
     * Root Directory
         - [ ] Study up on root directory items (i.e., gulpfile, karma, spec.bundle.js, webpack, etc)
         - [ ] Seek to understand the deeper items of this build
@@ -132,6 +139,9 @@ draftDay.html
     - [X] Snap counts 2012-2016 (45 downloads)
     - [X] Defense points against
     - [ ] consistency rankings ( ESPN - Google Doc )
+
+- Ideal graphs
+    - [ ] Scatter plot [Example](http://bl.ocks.org/weiglemc/6185069)
 
 ### Creating Branches
 
