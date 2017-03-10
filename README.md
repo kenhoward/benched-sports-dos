@@ -142,6 +142,9 @@ draftDay.html
 
 - Ideal graphs
     - [ ] Scatter plot [Example](http://bl.ocks.org/weiglemc/6185069)
+        - More Examples:
+            * [A no nonsense guid to getting started with scatter plots](http://matthewgladney.com/blog/data-science/no-nonsense-guide-getting-started-scatter-plots-d3-js-d3-csv/)
+            * [Scatterplot with v4](https://bl.ocks.org/d3noob/6f082f0e3b820b6bf68b78f2f7786084)
 
 ### Creating Branches
 
