@@ -142,6 +142,7 @@ draftDay.html
 
 - Ideal graphs
     - [ ] Figure out how to integrate into this build. This [Google search](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=%22ng6+starter%22+AND+d3&*) may help
+    - [ ] Dig into [this](http://plnkr.co/edit/T9J7bz?p=preview)
     - [ ] Scatter plot [Example](http://bl.ocks.org/weiglemc/6185069)
         - More Examples:
             * [A no nonsense guid to getting started with scatter plots](http://matthewgladney.com/blog/data-science/no-nonsense-guide-getting-started-scatter-plots-d3-js-d3-csv/)
