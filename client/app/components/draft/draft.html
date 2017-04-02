@@ -1,78 +1,88 @@
 <navbar></navbar>
-<div class="container-fluid dd-ctr" id="dd">
-    <!-- <h1>Found in the {{ $ctrl.name }}.html</h1> -->
-    <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
-        <button ng-click="defaultView()" class="btn btn-xs">
+<div class="container dd-ctr" id="dd">
+    <!-- <h1>Found in {{ $ctrl.name }}.html</h1> -->
+    <!-- Left Column -->
+    <div class="dd-left-side col-lg-5 col-md-4 col-sm-12 col-xs-12">
+        <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-info btn-xs">
             Back
-        </button> <!-- ng-show="draftRoster" -->
-        <table class="table-condensed dd-plyr-table">
-          <tr>
-            <th class="col-sm-2">Pos.</th>
-            <th class="col-sm-5">Player Name</th>
-            <th class="col-sm-2">Tier</th>
-            <th class="col-sm-1">BYE</th>
-            <th class="col-sm-1">Price</th>
-            <!-- <th ng-if="preDrftPlayerDetails" class="col-sm-1">&nbsp;</th> -->
-            <!-- <th ng-if="draftRoster" class="col-sm-1">Buy</th> -->
-            <th class="col-sm-1"></th>
-          </tr>
-          <tr ng-repeat="qb in myQBs">
-            <td>QB</td>
-            <td>{{qb.player}}</td>
-            <td>{{qb.tier}}</td>
-            <td>{{qb.bye}}</td>
-            <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="qb.avg" ng-if="qb"></td>
-            <td><a ng-if="qb" ng-click="oopsBtn(qb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-            <td><a ng-hide="preDrftPlayerDetails" ng-if="qb" ng-click="purchasedPlayer(qb)" href=""><img ng-src="images/chk_mrk.png" ></a></td>
-          </tr>
-          <tr ng-repeat="rb in myRBs"> <!-- TODO work around pos-chg CSS -->
-            <td>RB</td>
-            <td>{{rb.player}}</td>
-            <td>{{rb.tier}}</td>
-            <td>{{rb.bye}}</td>
-            <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="rb.avg" ng-if="rb"></td>
-            <td><a ng-if="rb" ng-click="oopsBtn(rb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-            <td><a ng-hide="preDrftPlayerDetails" ng-if="rb" ng-click="purchasedPlayer(rb)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
-          </tr>
-          <tr ng-repeat="wr in myWRs" class="lt-gry-bk">
-            <td>WR</td>
-            <td>{{wr.player}}</td>
-            <td>{{wr.tier}}</td>
-            <td>{{wr.bye}}</td>
-            <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="wr.avg" ng-if="wr"></td>
-            <td><a ng-if="wr" ng-click="oopsBtn(wr)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-            <td><a ng-hide="preDrftPlayerDetails" ng-if="wr" ng-click="purchasedPlayer(wr)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
-          </tr>
-          <tr ng-repeat="te in myTEs" class="drk-gry-bk">
-            <td>TE</td>
-            <td>{{te.player}}</td>
-            <td>{{te.tier}}</td>
-            <td>{{te.bye}}</td>
-            <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="te.avg" ng-if="te"></td>
-            <td><a ng-if="te" ng-click="oopsBtn(te)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-            <td><a ng-hide="preDrftPlayerDetails" ng-if="te" ng-click="purchasedPlayer(te)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
-          </tr>
-          <tr ng-repeat="def in myDEFs" class="lt-gry-bk">
-            <td>D/ST</td>
-            <td>{{def.player}}</td>
-            <td>{{def.tier}}</td>
-            <td>{{def.bye}}</td>
-            <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="te.avg" ng-if="te"></td>
-            <td><a ng-if="te" ng-click="oopsBtn(te)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-            <td><a ng-hide="preDrftPlayerDetails" ng-if="te" ng-click="purchasedPlayer(te)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
-          </tr>
-          <tr ng-repeat="kckr in myKckr" class="drk-gry-bk">
-            <td>K</td>
-            <td>{{kckr.player}}</td>
-            <td>{{kckr.tier}}</td>
-            <td>{{kckr.bye}}</td>
-            <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="kckr.avg" ng-if="kckr"></td>
-            <td><a ng-if="kckr" ng-click="oopsBtn(kckr)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-            <td><a ng-hide="preDrftPlayerDetails" ng-if="kckr" ng-click="purchasedPlayer(kckr)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
-          </tr>
+        </button>
+        <table class="table-condensed">
+            <tr><!-- header -->
+                <th class="col-sm-2">Pos.</th>
+                <th class="col-sm-5">Player Name</th>
+                <th class="col-sm-2">Tier</th>
+                <th class="col-sm-1">BYE</th>
+                <th class="col-sm-1">Price</th>
+                <th class="col-sm-1"></th>
+            </tr>
+            <tr ><!-- QBs -->
+                <!-- ng-repeat="qb in myQBs" -->
+                <!-- NOTE Need to remove indexes once I plug in rest of my controller - Testing purposes only -->
+                <td>QB</td>
+                <td>{{$ctrl.qb[0].player}}</td>
+                <td>{{$ctrl.qb[0].tier}}</td>
+                <td>{{$ctrl.qb[0].bye}}</td>
+                <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.qb[0].avg" ng-if="$ctrl.qb"></td>
+                <td><a ng-if="$ctrl.qb" ng-click="oopsBtn(qb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+                <td><a ng-hide="preDrftPlayerDetails" ng-if="$ctrl.qb" ng-click="purchasedPlayer(qb)" href=""><img ng-src="images/chk_mrk.png" ></a></td>
+            </tr>
+            <tr ><!-- RBs -->
+                <!-- ng-repeat="rb in myRBs" -->
+                <!-- NOTE Remove Indexes -->
+                <td>RB</td>
+                <td>{{$ctrl.rb[0].player}}</td>
+                <td>{{$ctrl.rb[0].tier}}</td>
+                <td>{{$ctrl.rb[0].bye}}</td>
+                <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.rb[0].avg" ng-if="$ctrl.rb"></td>
+                <td><a ng-if="$ctrl.rb" ng-click="oopsBtn(rb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+                <td><a ng-hide="preDrftPlayerDetails" ng-if="$ctrl.rb" ng-click="purchasedPlayer(rb)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+            </tr>
+            <tr ><!-- WRs -->
+                <!-- ng-repeat="wr in myWRs" -->
+                <td>WR</td>
+                <td>{{$ctrl.wr[0].player}}</td>
+                <td>{{$ctrl.wr[0].tier}}</td>
+                <td>{{$ctrl.wr[0].bye}}</td>
+                <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.wr[0].avg" ng-if="$ctrl.wr"></td>
+                <td><a ng-if="$ctrl.wr" ng-click="oopsBtn(wr)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+                <td><a ng-hide="preDrftPlayerDetails" ng-if="$ctrl.wr" ng-click="purchasedPlayer(wr)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+            </tr>
+            <tr ><!-- TEs -->
+                <!-- ng-repeat="te in myTEs" -->
+                <td>TE</td>
+                <td>{{$ctrl.te[0].player}}</td>
+                <td>{{$ctrl.te[0].tier}}</td>
+                <td>{{$ctrl.te[0].bye}}</td>
+                <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.te[0].avg" ng-if="$ctrl.te"></td>
+                <td><a ng-if="$ctrl.te" ng-click="oopsBtn(te)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+                <td><a ng-hide="preDrftPlayerDetails" ng-if="$ctrl.te" ng-click="purchasedPlayer(te)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+            </tr>
+            <tr ><!-- DEF -->
+                <!-- ng-repeat="def in myDEFs" -->
+                <td>D/ST</td>
+                <td>{{$ctrl.def[0].player}}</td>
+                <td>{{$ctrl.def[0].tier}}</td>
+                <td>{{$ctrl.def[0].bye}}</td>
+                <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.def[0].avg" ng-if="$ctrl.te"></td>
+                <td><a ng-if="$ctrl.te" ng-click="oopsBtn(te)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+                <td><a ng-hide="preDrftPlayerDetails" ng-if="$ctrl.te" ng-click="purchasedPlayer(te)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+            </tr>
+            <tr ><!-- Kckr -->
+                <!-- ng-repeat="kckr in myKckr" -->
+                <td>K</td>
+                <td>{{$ctrl.kckr[0].player}}</td>
+                <td>{{$ctrl.kckr[0].tier}}</td>
+                <td>{{$ctrl.kckr[0].bye}}</td>
+                <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="$ctrl.kckr[0].avg" ng-if="$ctrl.kckr"></td>
+                <td><a ng-if="$ctrl.kckr" ng-click="oopsBtn(kckr)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+                <td><a ng-hide="preDrftPlayerDetails" ng-if="$ctrl.kckr" ng-click="purchasedPlayer(kckr)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+            </tr>
         </table>
     </div> <!-- /Left Column -->
+    <!-- Begin Right Column -->
     <div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 dd-player-details">
+        RIGHT SIDE<br />
 
+        NEEDS TO BE REDESINED
     </div> <!-- /Right Column -->
 </div> <!-- /Container && /dd-ctr -->
