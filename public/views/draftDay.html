@@ -1,26 +1,14 @@
 <div ng-controller="DraftDayController">
-  <!-- <pre>{{players}}</pre> -->
+  <pre>{{ object | json }}</pre>
   <div class="container dd-ctr" id="dd">
+      <!-- Begin Left Column -->
     <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
-      <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-xs">Back</button>
-      
-        <!-- TODO  REMOVE
-      <div class="roster-view-chg">
-        Research <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
-        Acquired <input type="radio" name="rosterView" ng-click="alternateView()">
-        <i uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" class="fa fa-info-circle"></i>
-      </div>
-    -->
-
-<!--
-TODO add in ng-repeat functionality
--->
-
-<!-- KH0818936_INPUT HERE -->
-
-<!-- ng-repeat="roster in viewRoster" -->
+        <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-xs">
+            Back
+        </button>
 
       <table class="table-condensed dd-plyr-table">
+        <!-- TODO work around pos-chg CSS -->
         <tr>
           <th class="col-sm-2">Pos.</th>
           <th class="col-sm-5">Player Name</th>
@@ -40,7 +28,7 @@ TODO add in ng-repeat functionality
           <td><a ng-if="qb" ng-click="oopsBtn(qb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
           <td><a ng-hide="preDrftPlayerDetails" ng-if="qb" ng-click="purchasedPlayer(qb)" href=""><img ng-src="images/chk_mrk.png" ></a></td>
         </tr>
-        <tr ng-repeat="rb in myRBs"> <!-- TODO work around pos-chg CSS -->
+        <tr ng-repeat="rb in myRBs">
           <td>RB</td>
           <td>{{rb.player}}</td>
           <td>{{rb.tier}}</td>
@@ -87,7 +75,7 @@ TODO add in ng-repeat functionality
         </tr>
       </table>
     </div> <!-- /Left Column -->
-    <!-- Right Column -->
+    <!-- Begin Right Column -->
     <div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 dd-player-details">
       <div ng-show="preDrftPlayerDetails">
         <div class="col-md-12 sp-input-btns">

@@ -35,7 +35,7 @@ Only folder to look at is public (everything else is still in development)
 #### CSS
 Need to move over to SASS to help make things cleaner
 - To do List for this particular file:
-- [X] Create build process to compile SASS
+- [ ] Create build process to compile SASS
 - [ ] Refactor CSS to SASS
 
 ***
@@ -88,65 +88,11 @@ draftDay.html
 ***
 
 ## To Do
-- [X] Figure out how to branch all the changes in ff-refactored to this repo
-- [ ] Update file structure in this README.md
-- [ ] Must fix code as to explain why a conditional must be less than a given number.
-    * Ex: ```player.pos === 'QB' && valQB.length < 3 && bench.length <= 6```
-    * So... ```var MAX_QBs = 3;``` and ```var MAX_BENCH = 6;```
-- [X] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
-- [X] Moving to this [link](https://angularclass.github.io/NG6-starter/).
-- [ ] Refactor old code with new webpack build ( SEE BELOW )
-- [ ] Collect ALL data ( SEE BELOW )
-- [ ] Figure out D3.js
-    - [ ] Need to figure out issue of changing from ES5 to ES6
-    - [ ] Look into [this](https://github.com/harytkon/d3-es6-webpack-boilerplate) regarding above issue
-    - [ ] Continue research with "[d3js AND webpack](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=d3js+AND+webpack&*)" to get around any issues
-- [ ] Write out due dates / target dates for segment completions
-- [ ] Probably going to want to use MongoDB or Rethink - or Just Service for the time being ¯\_(ツ)_/¯
-    * [MongoDB](https://app.pluralsight.com/library/courses/mongoose-for-nodejs-mongodb/discussion)
-        * ../web-dev/dev-mtn/W6D4
-        * also can check out benched sports to see what's going on there
-    * [Rethink](https://app.pluralsight.com/library/courses/rethinkdb-fundamentals/discussion)
+- [ ] Complete webpack build using this [link](http://blog.teamtreehouse.com/26017-2 "Title").
 
 ### Fantasy Football App 1.0
 
 ### Fantasy Football App 2.0
-- Refactor in process using Webpack/ES6/Less/Angular1
-    * Navbar
-        - [X] Get functionality working (UI Routing is working
-        - [X] Style it so that it looks correct
-        - [X] Add Reasearch tab, view, et al.
-    * About Page
-        - [X] Change from "About" to "Draft"
-        - [X] Ensure that everything is finalized
-    * Draft Page
-        - [X] Get Bootstrap working in the app
-        - [ ] Start bringing over code from old app to new one
-        - [ ] Convert CSS to SASS
-        - [ ] Convert ES5 to ES6
-        - [ ] Refactor JS as you go
-        - [ ] Ensure that everything is working correctly
-    * Root Directory
-        - [ ] Study up on root directory items (i.e., gulpfile, karma, spec.bundle.js, webpack, etc)
-        - [ ] Seek to understand the deeper items of this build
-- Compiling loads of stats from Fantasy Data.
-    * Biggest issue that I'm going to run into syncing all of this data
-    * Need to figure out how I'm going to store all of this data, ideally would compile down as much as possible
-    * May need to have multiple arrays of objects that will loop between all of them
-    - [X] Player Stats 2010-2016
-    - [X] Redzone performance
-    - [X] Third down performance
-    - [X] Snap counts 2012-2016 (45 downloads)
-    - [X] Defense points against
-    - [ ] consistency rankings ( ESPN - Google Doc )
-
-- Ideal graphs
-    - [ ] Figure out how to integrate into this build. This [Google search](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=%22ng6+starter%22+AND+d3&*) may help
-    - [ ] Dig into [this](http://plnkr.co/edit/T9J7bz?p=preview)
-    - [ ] Scatter plot [Example](http://bl.ocks.org/weiglemc/6185069)
-        - More Examples:
-            * [A no nonsense guid to getting started with scatter plots](http://matthewgladney.com/blog/data-science/no-nonsense-guide-getting-started-scatter-plots-d3-js-d3-csv/)
-            * [Scatterplot with v4](https://bl.ocks.org/d3noob/6f082f0e3b820b6bf68b78f2f7786084)
 
 ### Creating Branches
 
