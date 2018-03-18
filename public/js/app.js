@@ -1,20 +1,20 @@
 "use strict";
-var app = angular.module('FantasyFootball', ['ngRoute', 'ui.bootstrap']); //, 'ngAnimate'
+var app = angular.module('FantasyFootball', ['ngRoute', 'ui.bootstrap', 'firebase']); //, 'ngAnimate'
 
 app.config(function($routeProvider) {
-  $routeProvider
-    .when('/', {
-      templateUrl: './views/home.html',
-      controller: 'HomeController'
+    $routeProvider
+    .when('/draft-day', { // ~~~~TEMPORARY~~~~
+        templateUrl: './views/home.html',
+        controller: 'HomeController'
     })
     .when('/draft-day', {
-      templateUrl: './views/draftDay.html',
-      controller: 'DraftDayController'
+        templateUrl: './views/draftDay.html',
+        controller: 'DraftDayController'
     })
     .when('/research', {
-      templateUrl: './views/research.html'
+        templateUrl: './views/research.html'
     })
     .otherwise({
-      redirectTo: '/draft-day'
+        redirectTo: '/draft-day'
     });
 })

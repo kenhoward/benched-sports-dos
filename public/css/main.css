@@ -4,6 +4,7 @@ html {
 	box-sizing: border-box;
 	font-size: 10px;
 	font-family: 'Lato', sans-serif;
+	min-width: 320px;
 }
 
 *,
@@ -40,6 +41,29 @@ a {
 a:hover,
 a:active {
 	text-decoration: none;
+}
+
+.RIP-refactor-in-progress {
+	text-align: center;
+	font-size: 25px;
+	height: 75px;
+	font-weight: bold;
+}
+
+.RIP-refactor-in-progress span {
+	color: #66DBF9;
+}
+
+.react-logo {
+	animation: react-logo-spin infinite 20s linear;
+	height: 70px;
+	width: 50px;
+	margin-bottom: 5px;
+}
+
+@keyframes react-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .ib {

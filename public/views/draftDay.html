@@ -1,26 +1,13 @@
 <div ng-controller="DraftDayController">
-  <!-- <pre>{{players}}</pre> -->
   <div class="container dd-ctr" id="dd">
+      <!-- Begin Left Column -->
     <div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
-      <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-xs">Back</button>
-      
-        <!-- TODO  REMOVE
-      <div class="roster-view-chg">
-        Research <input type="radio" name="rosterView" ng-click="defaultView()" checked="checked">
-        Acquired <input type="radio" name="rosterView" ng-click="alternateView()">
-        <i uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" class="fa fa-info-circle"></i>
-      </div>
-    -->
-
-<!--
-TODO add in ng-repeat functionality
--->
-
-<!-- KH0818936_INPUT HERE -->
-
-<!-- ng-repeat="roster in viewRoster" -->
-
+        <button ng-show="draftRoster" ng-click="defaultView()" class="btn btn-xs">
+            Back
+        </button>
+        
       <table class="table-condensed dd-plyr-table">
+        <!-- TODO work around pos-chg CSS -->
         <tr>
           <th class="col-sm-2">Pos.</th>
           <th class="col-sm-5">Player Name</th>
@@ -31,22 +18,22 @@ TODO add in ng-repeat functionality
           <!-- <th ng-if="draftRoster" class="col-sm-1">Buy</th> -->
           <th class="col-sm-1"></th>
         </tr>
-        <tr ng-repeat="qb in myQBs">
+        <tr ng-repeat="qb in myQBs" class="lt-gry-bk">
           <td>QB</td>
           <td>{{qb.player}}</td>
           <td>{{qb.tier}}</td>
           <td>{{qb.bye}}</td>
           <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="qb.avg" ng-if="qb"></td>
-          <td><a ng-if="qb" ng-click="oopsBtn(qb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-if="qb" ng-click="oopsBtn(qb)" href=""><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></a></td>
           <td><a ng-hide="preDrftPlayerDetails" ng-if="qb" ng-click="purchasedPlayer(qb)" href=""><img ng-src="images/chk_mrk.png" ></a></td>
         </tr>
-        <tr ng-repeat="rb in myRBs"> <!-- TODO work around pos-chg CSS -->
+        <tr ng-repeat="rb in myRBs" class="drk-gry-bk">
           <td>RB</td>
           <td>{{rb.player}}</td>
           <td>{{rb.tier}}</td>
           <td>{{rb.bye}}</td>
           <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="rb.avg" ng-if="rb"></td>
-          <td><a ng-if="rb" ng-click="oopsBtn(rb)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-if="rb" ng-click="oopsBtn(rb)" href=""><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></a></td>
           <td><a ng-hide="preDrftPlayerDetails" ng-if="rb" ng-click="purchasedPlayer(rb)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
         </tr>
         <tr ng-repeat="wr in myWRs" class="lt-gry-bk">
@@ -55,7 +42,7 @@ TODO add in ng-repeat functionality
           <td>{{wr.tier}}</td>
           <td>{{wr.bye}}</td>
           <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="wr.avg" ng-if="wr"></td>
-          <td><a ng-if="wr" ng-click="oopsBtn(wr)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-if="wr" ng-click="oopsBtn(wr)" href=""><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></a></td>
           <td><a ng-hide="preDrftPlayerDetails" ng-if="wr" ng-click="purchasedPlayer(wr)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
         </tr>
         <tr ng-repeat="te in myTEs" class="drk-gry-bk">
@@ -64,7 +51,7 @@ TODO add in ng-repeat functionality
           <td>{{te.tier}}</td>
           <td>{{te.bye}}</td>
           <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="te.avg" ng-if="te"></td>
-          <td><a ng-if="te" ng-click="oopsBtn(te)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-if="te" ng-click="oopsBtn(te)" href=""><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></a></td>
           <td><a ng-hide="preDrftPlayerDetails" ng-if="te" ng-click="purchasedPlayer(te)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
         </tr>
         <tr ng-repeat="def in myDEFs" class="lt-gry-bk">
@@ -72,9 +59,9 @@ TODO add in ng-repeat functionality
           <td>{{def.player}}</td>
           <td>{{def.tier}}</td>
           <td>{{def.bye}}</td>
-          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="te.avg" ng-if="te"></td>
-          <td><a ng-if="te" ng-click="oopsBtn(te)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
-          <td><a ng-hide="preDrftPlayerDetails" ng-if="te" ng-click="purchasedPlayer(te)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
+          <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="def.avg" ng-if="def"></td>
+          <td><a ng-if="def" ng-click="oopsBtn(def)" href=""><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></a></td>
+          <td><a ng-hide="preDrftPlayerDetails" ng-if="def" ng-click="purchasedPlayer(def)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
         </tr>
         <tr ng-repeat="kckr in myKckr" class="drk-gry-bk">
           <td>K</td>
@@ -82,12 +69,12 @@ TODO add in ng-repeat functionality
           <td>{{kckr.tier}}</td>
           <td>{{kckr.bye}}</td>
           <td><input type="number" onclick="this.select()" maxlength="3" style="width: 31px;" class="cp-val-sty" ng-model="kckr.avg" ng-if="kckr"></td>
-          <td><a ng-if="kckr" ng-click="oopsBtn(kckr)" href=""><img src="images/cancelBtn.jpg" alt=""></a></td>
+          <td><a ng-if="kckr" ng-click="oopsBtn(kckr)" href=""><i class="fa fa-window-close fa-2x" aria-hidden="true"></i></a></td>
           <td><a ng-hide="preDrftPlayerDetails" ng-if="kckr" ng-click="purchasedPlayer(kckr)" href=""><img src="images/chk_mrk.png" alt=""></a></td>
         </tr>
       </table>
     </div> <!-- /Left Column -->
-    <!-- Right Column -->
+    <!-- Begin Right Column -->
     <div class="col-lg-7 col-md-8 col-sm-12 col-xs-12 dd-player-details">
       <div ng-show="preDrftPlayerDetails">
         <div class="col-md-12 sp-input-btns">
@@ -755,4 +742,5 @@ TODO add in ng-repeat functionality
       </div>
     </div> <!-- /Right Column -->
   </div> <!-- /Container && /.dd-ctr -->
+    <pre>{{ object | json }}</pre>
 </div> <!-- Controller -->
