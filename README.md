@@ -8,6 +8,11 @@
 4. npm start
 5. server is listening on port 8787
 
+#### Firebase Option
+
+- `firebase serve`
+    - listening on port 5000
+
 ### Getting Around
 
 Only folder to look at is public (everything else is still in development)
@@ -40,7 +45,7 @@ Need to move over to SASS to help make things cleaner
 
 ***
 #### JS
-app.js is handling routing 
+app.js is handling routing
 - Currently pointing to /draft-day with /home being commented out (focus has been draft-day functionality)
 - Once we are ready to develop other views, we'll need to adjust routing accordingly
 
@@ -66,7 +71,7 @@ roster.service.js
 - This is a future iteration where it will handle requests made to the database of the players
 
 sortplayer.service.js
-- This, like the draft service file, are temporary and this one also seems to be redundant 
+- This, like the draft service file, are temporary and this one also seems to be redundant
 
 ***
 ### Views

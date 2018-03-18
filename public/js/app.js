@@ -3,7 +3,7 @@ var app = angular.module('FantasyFootball', ['ngRoute', 'ui.bootstrap', 'firebas
 
 app.config(function($routeProvider) {
     $routeProvider
-    .when('/', {
+    .when('/draft-day', { // ~~~~TEMPORARY~~~~
         templateUrl: './views/home.html',
         controller: 'HomeController'
     })

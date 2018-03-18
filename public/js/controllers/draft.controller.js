@@ -14,19 +14,40 @@ var app = angular.module('FantasyFootball');
 
 app.controller('DraftDayController', function($scope, DraftDayService, RosterService, SortPlayerService, $firebaseObject) {
 
-    var rootRef = firebase.database().ref().child('angular');
-    var ref = rootRef.child('object');
+    var rootRef = firebase.database().ref().child('object');
+    var ref = rootRef.child('players');
     $scope.object = $firebaseObject(ref);
 
     // $scope.viewRoster = rosterData;
 
+console.log('object', $scope.object[0]);
+
+for (var key in $scope.object) {
+  if ($scope.object.hasOwnProperty(key)) {
+    console.log(key + " -> " + $scope.object[key]);
+    // console.log('testing: ', JSON.stringify($scope.object[key]));
+    // alert(key + " -> " + JSON.stringify($scope.object[key]));
+  }
+}
+
+
+
+// (function() {
+//     for (var i = 0; i < $scope.object; i++) {
+//         console.log('object', $scope.object);
+//     }
+// })();
+
     $scope.players = DraftDayService;
 
-    // TODO create another array that backs up removed players
+    // TODO create another array that backs up removed players - shouldn't need with database - will be using objects
 
-    // CLEAN UP
+    // CLEAN UP ~~ Seriously it's an eye sore ~~
     $scope.backupArr = [];
 
+    // Ideally I won't be dealing with arrays so this approach can be handled with the data
+
+    // Selected Players Array
     $scope.myQBs = [];
     $scope.myRBs = [];
     $scope.myWRs = [];
@@ -35,6 +56,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     $scope.myDEFs = [];
     $scope.myKckr = [];
 
+    // Validation of Players
     $scope.validQB = [];
     $scope.validRB = [];
     $scope.validWR = [];
@@ -42,6 +64,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     $scope.validDEF = [];
     $scope.validKckr = [];
 
+    // Purchased Players
     $scope.purchQBs = [];
     $scope.purchRBs = [];
     $scope.purchWRs = [];
@@ -50,6 +73,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
     $scope.purchDEFs = [];
     $scope.purchKckr = [];
 
+    // This is for testing data
     $scope.purchBE = [];
     $scope.altViewBE = [];
     $scope.benchFull = false;
@@ -236,8 +260,7 @@ app.controller('DraftDayController', function($scope, DraftDayService, RosterSer
         console.log("purch bench size=", $scope.purchBE.length);
         console.log("status of full bench", $scope.benchFull);
 
-        if (player.price > 0 && player.price < 186 && $scope.benchFull === false) { //&& $scope.outtaMoney === false
-            console.log('made it in');
+        if (player.price > 0 && player.price < 186 && $scope.benchFull === false) {
             /* QB */
             if (player.pos === 'QB' && valQB.length < 3 && bench.length <= 6) {
                 $scope.validQB.push(player);
